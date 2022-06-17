@@ -9,6 +9,73 @@
 - Leonardo Campos
 - Thomas
 
+## Fazer
+
+### Urgencia
+
+- :red_circle: mais urgente
+- :yellow_circle: mediano
+- :green_circle: menos urgente
+- :x: falta fazer
+- :heavy_check_mark: feito
+
+</br>
+
+- Leitura usuarios :red_circle: :x:
+- Leitura ingredientes :red_circle: :x:
+- Leitura receitas :red_circle: :x:
+- Leitura receitas fotos :green_circle: :x:
+- Leitura receitas ingredientes :green_circle: :x:
+- Leitura receitas etapas :green_circle: :x:
+- Leitura receitas passos :green_circle: :x:
+- Leitura comentarios :yellow_circle: :x:
+- Leitura avaliacoes :yellow_circle: :x:
+- Leitura gostou :yellow_circle: :x:
+- Leitura experimentar :yellow_circle: :x:
+
+</br>
+
+- Cadastro usuarios
+- Cadastro ingredientes
+- Cadastro receitas
+- Cadastro receitas fotos
+- Cadastro receitas ingredientes
+- Cadastro receitas etapas
+- Cadastro receitas passos
+- Cadastro comentarios
+- Cadastro avaliacoes
+- Cadastro gostou
+- Cadastro experimentar
+
+</br>
+
+- Atualizar usuarios
+- Atualizar ingredientes
+- Atualizar receitas
+- Atualizar receitas fotos
+- Atualizar receitas ingredientes
+- Atualizar receitas etapas
+- Atualizar receitas passos
+- Atualizar comentarios
+- Atualizar avaliacoes
+- Atualizar gostou
+- Atualizar experimentar
+
+</br>
+
+- Remover usuarios
+- Remover ingredientes
+- Remover receitas
+- Remover receitas fotos
+- Remover receitas ingredientes
+- Remover receitas etapas
+- Remover receitas passos
+- Remover comentarios
+- Remover avaliacoes
+- Remover gostou
+- Remover experimentar
+
+
 ## Compilacao (makefile)
 
 | Comandos     | Funcao                                                                              |
