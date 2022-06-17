@@ -13,4 +13,9 @@
 
 ## Configuracao (Ubuntu)
 
-`sudo apt install mysql-server`
+- `sudo apt update`
+- `sudo apt upgrade`
+- `sudo apt update`
+- `sudo apt autoremove`
+- `sudo apt install mysql-server`
+- `sudo apt install libmysqlclient-dev`
