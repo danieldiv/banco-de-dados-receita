@@ -11,8 +11,8 @@ int main() {
         printf("Não foi possível carregar o cliente MySQL\n");
         return EXIT_FAILURE;
     }
-    char usuario[] = "admin";
-    char senha[] = "****";
+    char usuario[] = "aluno";
+    char senha[] = "Senh@Alun0";
     char banco[] = "cefet_receitas";
 
     if (mysql_real_connect(conexao, "127.0.0.1", usuario, senha, banco, 0, NULL, 0) == NULL) {
