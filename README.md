@@ -9,7 +9,13 @@
 - Leonardo Campos
 - Thomas
 
-## Funcionamento
+## Funcionamento (makefile)
+
+| Comando      s| Funcao |
+| ------------ | ------ |
+| `make clean` ||
+
+## Funcionamento (padrao)
 
 - `gcc -o main main.c -lmysqlclient`
 - `./main`

@@ -1,24 +1,26 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<mysql/mysql.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <mysql/mysql.h>
 
-int main(int argc, char** argv){
-    printf("%s\n",mysql_get_client_info());
-    MYSQL* conexao = mysql_init(NULL);
+// #include "a.hpp"
+
+int main() {
+    printf("%s\n", mysql_get_client_info());
+    MYSQL *conexao = mysql_init(NULL);
     if (conexao == NULL) {
         printf("Não foi possível carregar o cliente MySQL\n");
         return EXIT_FAILURE;
     }
     char usuario[] = "admin";
-    char senha[] = "*****";
+    char senha[] = "****";
     char banco[] = "cefet_receitas";
 
-    if (mysql_real_connect(conexao, "127.0.0.1", usuario, senha, banco, 0, NULL, 0) == NULL){
+    if (mysql_real_connect(conexao, "127.0.0.1", usuario, senha, banco, 0, NULL, 0) == NULL) {
         printf("Não foi possível conectar ao SGBD\n");
         return EXIT_FAILURE;
     }
     int opcao;
-    do{
+    do {
         printf("[1] Pesquisar receita por nome\n");
         printf("[2] Pesquisar receita por engrediente\n");
         printf("[3] Entrar\n");
@@ -26,9 +28,9 @@ int main(int argc, char** argv){
         printf("[0] Sair\n\n");
         printf(">>> ");
         scanf("%d", &opcao);
-        if(opcao == 1){
+        if (opcao == 1) {
             printf("\nPesquisar receita por nome\n\n");
-        }else if(opcao==2){
+        } else if (opcao == 2) {
             /*printf("\nPesquisa de Receita por engrediente\n\n");
             mysql_query(conexao, "SELECT * FROM contatos");
             MYSQL_RES* resultado = mysql_store_result(conexao);
@@ -37,9 +39,9 @@ int main(int argc, char** argv){
             while (linha = mysql_fetch_row(resultado)){
                 printf("(%s)-(%s)-(%s)-(%s)\n",linha[0],linha[1],linha[2],linha[3]);
             }*/
-        }else if(opcao==3){
+        } else if (opcao == 3) {
             printf("\nEntrar\n\n");
-        }else if(opcao==4){
+        } else if (opcao == 4) {
             printf("\nCadastro de Receitas\n\n");
             /*printf("Nome: ");
             char nome[65];
@@ -56,9 +58,9 @@ int main(int argc, char** argv){
             if(mysql_query(conexao, query) != 0){
                 printf("Oops... não conseguir cadastrar seu contato.\n");
             }*/
-        }else if(opcao==0){
+        } else if (opcao == 0) {
             printf("Até logo!\n\n");
-        }else {
+        } else {
             printf("opção escolhida não é válida...\n");
         }
     } while (opcao != 0);
