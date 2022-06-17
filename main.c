@@ -9,7 +9,11 @@ int main(int argc, char** argv){
         printf("Não foi possível carregar o cliente MySQL\n");
         return EXIT_FAILURE;
     }
-    if (mysql_real_connect(conexao, "127.0.0.1", "aluno", "123456", "livro_receita", 0, NULL, 0) == NULL){
+    char usuario[] = "admin";
+    char senha[] = "*****";
+    char banco[] = "cefet_receitas";
+
+    if (mysql_real_connect(conexao, "127.0.0.1", usuario, senha, banco, 0, NULL, 0) == NULL){
         printf("Não foi possível conectar ao SGBD\n");
         return EXIT_FAILURE;
     }
