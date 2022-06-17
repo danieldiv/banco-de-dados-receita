@@ -2,32 +2,23 @@
 #include <stdlib.h>
 #include <mysql/mysql.h>
 
-// #include "a.hpp"
+int conexao_banco(MYSQL *mysql, char *host, char *usuario, char *senha, char *banco);
+int menu();
 
 int main() {
-    printf("%s\n", mysql_get_client_info());
-    MYSQL *conexao = mysql_init(NULL);
-    if (conexao == NULL) {
-        printf("Não foi possível carregar o cliente MySQL\n");
-        return EXIT_FAILURE;
-    }
     char usuario[] = "aluno";
     char senha[] = "Senh@Alun0";
     char banco[] = "cefet_receitas";
+    char host[] = "127.0.0.1";
 
-    if (mysql_real_connect(conexao, "127.0.0.1", usuario, senha, banco, 0, NULL, 0) == NULL) {
-        printf("Não foi possível conectar ao SGBD\n");
-        return EXIT_FAILURE;
-    }
+    MYSQL *mysql = mysql_init(NULL);
+    if (conexao_banco(mysql, host, usuario, senha, banco) == EXIT_FAILURE) return EXIT_FAILURE;
+
     int opcao;
     do {
-        printf("[1] Pesquisar receita por nome\n");
-        printf("[2] Pesquisar receita por engrediente\n");
-        printf("[3] Entrar\n");
-        printf("[4] Cadastrar\n");
-        printf("[0] Sair\n\n");
-        printf(">>> ");
-        scanf("%d", &opcao);
+        system("clear");
+        opcao = menu();
+
         if (opcao == 1) {
             printf("\nPesquisar receita por nome\n\n");
         } else if (opcao == 2) {
@@ -60,10 +51,42 @@ int main() {
             }*/
         } else if (opcao == 0) {
             printf("Até logo!\n\n");
+
+            mysql_close(mysql);
+            return EXIT_SUCCESS;
         } else {
             printf("opção escolhida não é válida...\n");
         }
+        system("read -p \"\nPressione enter para continuar...\" continue");
     } while (opcao != 0);
-    mysql_close(conexao);
-    return 0;
+
+    return EXIT_SUCCESS;
+}
+
+int conexao_banco(MYSQL *mysql, char *host, char *usuario, char *senha, char *banco) {
+    if (mysql == NULL) {
+        printf("Não foi possível carregar o cliente MySQL\n");
+        return EXIT_FAILURE;
+    }
+    if (mysql_real_connect(mysql, host, usuario, senha, banco, 0, NULL, 0) == NULL) {
+        printf("Não foi possível conectar ao SGBD\n");
+        return EXIT_FAILURE;
+    }
+    return EXIT_SUCCESS;
+}
+
+int menu() {
+    int opcao;
+
+    printf("MENU\n\n");
+    printf("[1] Pesquisar receita por nome\n");
+    printf("[2] Pesquisar receita por engrediente\n");
+    printf("[3] Entrar\n");
+    printf("[4] Cadastrar\n");
+    printf("[0] Sair\n\n");
+    printf(">>> ");
+
+    scanf("%d", &opcao);
+
+    return opcao;
 }
