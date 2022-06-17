@@ -38,7 +38,7 @@
 - `sudo apt install mysql-server`
 - `sudo apt install libmysqlclient-dev`
 
-<!-->
+<!--
 ar -crv libminhalib.a minhalib.o -> gera a lib estatica
 gcc -shared -fPIC -o libminhalib.so minhalib.og -> gera lib dinamica
 gcc -c minhalib.c -> compila
@@ -48,4 +48,4 @@ gcc -o abc foo.c -I../daniel -L../daniel -lminhalib -> inclui lib para compilar
 sudo apt install libmysqlclient-dev
 usr/include/mysql
 gcc -o agenda agenda.c -lmysqlclient
-<!-->
+-->
