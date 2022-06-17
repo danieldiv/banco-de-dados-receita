@@ -31,12 +31,17 @@
 
 ## Configuracao (Ubuntu)
 
-- `sudo apt update`
-- `sudo apt upgrade`
-- `sudo apt update`
-- `sudo apt autoremove`
-- `sudo apt install mysql-server`
-- `sudo apt install libmysqlclient-dev`
+> sudo apt update
+>
+> sudo apt upgrade
+>
+> sudo apt update
+>
+> sudo apt autoremove
+>
+> sudo apt install mysql-server
+>
+> sudo apt install libmysqlclient-dev
 
 <!--
 ar -crv libminhalib.a minhalib.o -> gera a lib estatica
