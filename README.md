@@ -12,6 +12,7 @@
 ## Funcionamento
 
 - `gcc -o main main.c -lmysqlclient`
+- `./main`
 
 ## Configuracao (Ubuntu)
 
