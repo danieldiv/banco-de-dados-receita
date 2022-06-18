@@ -11,12 +11,6 @@
 
 ## Fazer
 
-### Legenda
-
-| alta         | media           | baixa          | fazer | feito              |
-| ------------ | --------------- | -------------- | ----- | ------------------ |
-| :red_circle: | :yellow_circle: | :green_circle: | :x:   | :heavy_check_mark: |
-
 | Tabelas               | Leitura             | Cadastro            | Atualizacao         | Remocao             |
 | --------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
 | usuarios              | :red_circle: :x:    | :red_circle: :x:    | :yellow_circle: :x: | :yellow_circle: :x: |
@@ -30,6 +24,12 @@
 | avaliacoes            | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :x:  |
 | gostou                | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :x:  |
 | experimentar          | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :x:  |
+
+### Legenda (prioridade)
+
+| alta         | media           | baixa          | fazer | feito              |
+| ------------ | --------------- | -------------- | ----- | ------------------ |
+| :red_circle: | :yellow_circle: | :green_circle: | :x:   | :heavy_check_mark: |
 
 ## Compilacao (makefile)
 
