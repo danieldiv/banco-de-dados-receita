@@ -11,70 +11,25 @@
 
 ## Fazer
 
-### Urgencia
+### Legenda
 
-- :red_circle: mais urgente
-- :yellow_circle: mediano
-- :green_circle: menos urgente
-- :x: falta fazer
-- :heavy_check_mark: feito
+| alta         | media           | baixa          | fazer | feito              |
+| ------------ | --------------- | -------------- | ----- | ------------------ |
+| :red_circle: | :yellow_circle: | :green_circle: | :x:   | :heavy_check_mark: |
 
-</br>
-
-- Leitura usuarios :red_circle: :x:
-- Leitura ingredientes :red_circle: :x:
-- Leitura receitas :red_circle: :x:
-- Leitura receitas fotos :green_circle: :x:
-- Leitura receitas ingredientes :green_circle: :x:
-- Leitura receitas etapas :green_circle: :x:
-- Leitura receitas passos :green_circle: :x:
-- Leitura comentarios :yellow_circle: :x:
-- Leitura avaliacoes :yellow_circle: :x:
-- Leitura gostou :yellow_circle: :x:
-- Leitura experimentar :yellow_circle: :x:
-
-</br>
-
-- Cadastro usuarios
-- Cadastro ingredientes
-- Cadastro receitas
-- Cadastro receitas fotos
-- Cadastro receitas ingredientes
-- Cadastro receitas etapas
-- Cadastro receitas passos
-- Cadastro comentarios
-- Cadastro avaliacoes
-- Cadastro gostou
-- Cadastro experimentar
-
-</br>
-
-- Atualizar usuarios
-- Atualizar ingredientes
-- Atualizar receitas
-- Atualizar receitas fotos
-- Atualizar receitas ingredientes
-- Atualizar receitas etapas
-- Atualizar receitas passos
-- Atualizar comentarios
-- Atualizar avaliacoes
-- Atualizar gostou
-- Atualizar experimentar
-
-</br>
-
-- Remover usuarios
-- Remover ingredientes
-- Remover receitas
-- Remover receitas fotos
-- Remover receitas ingredientes
-- Remover receitas etapas
-- Remover receitas passos
-- Remover comentarios
-- Remover avaliacoes
-- Remover gostou
-- Remover experimentar
-
+| Tabelas               | Leitura             | Cadastro            | Atualizacao         | Remocao             |
+| --------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| usuarios              | :red_circle: :x:    | :red_circle: :x:    | :yellow_circle: :x: | :yellow_circle: :x: |
+| ingredientes          | :red_circle: :x:    | :red_circle: :x:    | :red_circle: :x:    | :red_circle: :x:    |
+| receitas              | :red_circle: :x:    | :red_circle: :x:    | :yellow_circle: :x: | :yellow_circle: :x: |
+| receitas fotos        | :green_circle: :x:  | :red_circle: :x:    | :yellow_circle: :x: | :green_circle: :x:  |
+| receitas ingredientes | :green_circle: :x:  | :red_circle: :x:    | :yellow_circle: :x: | :green_circle: :x:  |
+| receitas etapas       | :green_circle: :x:  | :red_circle: :x:    | :yellow_circle: :x: | :green_circle: :x:  |
+| receitas passos       | :green_circle: :x:  | :red_circle: :x:    | :yellow_circle: :x: | :green_circle: :x:  |
+| comentarios           | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :x:  |
+| avaliacoes            | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :x:  |
+| gostou                | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :x:  |
+| experimentar          | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :x:  |
 
 ## Compilacao (makefile)
 
