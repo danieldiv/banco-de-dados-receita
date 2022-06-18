@@ -5,9 +5,9 @@
 ## Integrantes:
 
 - Daniel Alvez Sanches
-- Julia Mello
-- Leonardo Campos
-- Thomas
+- Julia Mello Lopez Gonçalves
+- Leonardo de Oliveira Campos
+- Thomas Teixeira
 
 ## Fazer
 
