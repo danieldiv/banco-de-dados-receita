@@ -2,10 +2,24 @@
 #include <stdlib.h>
 #include <mysql/mysql.h>
 
+#include "ingrediente.hpp"
+#include <string.h>
+
 int conexao_banco(MYSQL *mysql, char *host, char *usuario, char *senha, char *banco);
 int menu();
+int menuTeste();
+void imprimeDados(MYSQL *mysql, const char *query);
 
 int main() {
+    // Ingrediente *i = new Ingrediente(23, "Sal");
+
+    // cout << i->getId() << endl;
+    // cout << i->getNome() << endl;
+
+    // delete i;
+
+    // return 0;
+
     char usuario[] = "aluno";
     char senha[] = "Senh@Alun0";
     char banco[] = "cefet_receitas";
@@ -33,7 +47,36 @@ int main() {
         } else if (opcao == 3) {
             printf("\nEntrar\n\n");
         } else if (opcao == 4) {
-            printf("\nCadastro de Receitas\n\n");
+            system("clear");
+
+            char nome[100];
+            int op2 = menuTeste();
+            cout << endl;
+
+            if (op2 == 1) {
+                printf("\nCadastro de Ingrediente\n\n");
+
+                cout << "Informe o nome do ingrediente: ";
+                cin.ignore();
+                scanf(" %[^\n]", nome);
+
+                char query[200];
+
+                sprintf(query, "INSERT INTO ingredientes (nome) VALUES ('%s')", nome);
+
+                if (mysql_query(mysql, query) != 0)
+                    cout << "Ops... nao foi possivel cadastrar o ingrediente " << nome << "." << endl;
+                else
+                    cout << "O ingrediente " << nome << " foi cadastrado com sucesso" << endl;
+
+            } else if (op2 == 2) {
+                string query;
+                query.assign("SELECT * FROM ingredientes");
+                imprimeDados(mysql, query.c_str());
+            } else {
+                cout << "Opcao invalida!" << endl;
+            }
+            // printf("\nCadastro de Receitas\n\n");
             /*printf("Nome: ");
             char nome[65];
             scanf(" %[^\n]", nome);
@@ -89,4 +132,36 @@ int menu() {
     scanf("%d", &opcao);
 
     return opcao;
+}
+
+int menuTeste() {
+    int opcao;
+
+    cout << "MENU CADASTRO" << endl << endl;
+    cout << "[1] Cadastrar Ingrediente" << endl;
+    cout << "[2] Buscar Ingredientes" << endl << endl;
+    printf(">>> ");
+
+    cin >> opcao;
+
+    return opcao;
+}
+
+void imprimeDados(MYSQL *mysql, const char *query) {
+    mysql_query(mysql, query);
+    MYSQL_RES *resultado = mysql_store_result(mysql);
+    MYSQL_ROW linha;
+
+    int n_col = mysql_num_fields(resultado);
+    int aux_nCol;
+
+    while (linha = mysql_fetch_row(resultado)) {
+        aux_nCol = 0;
+
+        while (aux_nCol < n_col) {
+            if (linha[aux_nCol] != NULL) cout << "(" << linha[aux_nCol] << ")\t";
+            aux_nCol++;
+        }
+        cout << endl;
+    }
 }
