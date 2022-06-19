@@ -22,8 +22,8 @@
 | receitas passos       | :green_circle: :x:  | :red_circle: :x:    | :yellow_circle: :x: | :green_circle: :x:  |
 | comentarios           | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :x:  |
 | avaliacoes            | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :x:  |
-| gostou                | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :x:  |
-| experimentar          | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :x:  |
+| curtidas              | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :x:  |
+| receitas salvas       | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :x:  |
 
 ### Legenda (prioridade)
 
