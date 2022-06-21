@@ -4,22 +4,15 @@
 
 #include "ingrediente.hpp"
 #include <string.h>
+#include <stdbool.h>
 
 int conexao_banco(MYSQL *mysql, char *host, char *usuario, char *senha, char *banco);
 int menu();
 int menuTeste();
 void imprimeDados(MYSQL *mysql, const char *query);
+bool login(MYSQL *mysql, string usuario, string senha);
 
 int main() {
-    // Ingrediente *i = new Ingrediente(23, "Sal");
-
-    // cout << i->getId() << endl;
-    // cout << i->getNome() << endl;
-
-    // delete i;
-
-    // return 0;
-
     char usuario[] = "aluno";
     char senha[] = "Senh@Alun0";
     char banco[] = "cefet_receitas";
@@ -27,6 +20,17 @@ int main() {
 
     MYSQL *mysql = mysql_init(NULL);
     if (conexao_banco(mysql, host, usuario, senha, banco) == EXIT_FAILURE) return EXIT_FAILURE;
+
+    string user = "admin";
+    string password = "123456";
+
+    if (!(login(mysql, user, password))) {
+        cout << "Usuario ou senha invalida" << endl;
+    } else {
+        cout << "senha correta" << endl;
+    }
+
+    return EXIT_SUCCESS;
 
     int opcao;
     do {
@@ -125,7 +129,7 @@ int menu() {
     printf("[1] Pesquisar receita por nome\n");
     printf("[2] Pesquisar receita por engrediente\n");
     printf("[3] Entrar\n");
-    printf("[4] Cadastrar\n");
+    printf("[4] Cadastrar teste\n");
     printf("[0] Sair\n\n");
     printf(">>> ");
 
@@ -164,4 +168,37 @@ void imprimeDados(MYSQL *mysql, const char *query) {
         }
         cout << endl;
     }
+}
+
+bool login(MYSQL *mysql, string usuario, string senha) {
+    cout << "usuario: " << usuario << endl;
+    cout << "senha: " << senha << endl;
+    string query = "select id, nome from usuarios";
+
+    int codigo;
+    string nome;
+
+    mysql_query(mysql, query.c_str());
+    MYSQL_RES *resultado = mysql_store_result(mysql);
+    MYSQL_ROW linha;
+
+    while (linha = mysql_fetch_row(resultado)) {
+        codigo = stoi(linha[0]);
+        nome = linha[1];
+
+        cout << codigo << " " << nome << endl;
+
+        if (nome.compare(usuario) == 0) {
+            cout << "nome igual" << endl;
+
+            checkCredencial(mysql, codigo, senha);
+        }
+    }
+    return false;
+}
+
+bool checkCredencial(MYSQL *mysql, int codigo, string senha) {
+    cout << "credencial" << endl;
+    cout << codigo << endl;
+    cout << senha << endl;
 }
