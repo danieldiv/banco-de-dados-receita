@@ -10,7 +10,9 @@ int conexao_banco(MYSQL *mysql, char *host, char *usuario, char *senha, char *ba
 int menu();
 int menuTeste();
 void imprimeDados(MYSQL *mysql, const char *query);
+
 bool login(MYSQL *mysql, string usuario, string senha);
+bool checkCredencial(MYSQL *mysql, int codigo, string senha);
 
 int main() {
     char usuario[] = "aluno";
@@ -171,8 +173,6 @@ void imprimeDados(MYSQL *mysql, const char *query) {
 }
 
 bool login(MYSQL *mysql, string usuario, string senha) {
-    cout << "usuario: " << usuario << endl;
-    cout << "senha: " << senha << endl;
     string query = "select id, nome from usuarios";
 
     int codigo;
@@ -189,16 +189,28 @@ bool login(MYSQL *mysql, string usuario, string senha) {
         cout << codigo << " " << nome << endl;
 
         if (nome.compare(usuario) == 0) {
-            cout << "nome igual" << endl;
-
-            checkCredencial(mysql, codigo, senha);
+            if (checkCredencial(mysql, codigo, senha)) return true;
+            return false;
         }
     }
     return false;
 }
 
 bool checkCredencial(MYSQL *mysql, int codigo, string senha) {
-    cout << "credencial" << endl;
-    cout << codigo << endl;
-    cout << senha << endl;
+    string query = "select * from credenciais";
+
+    int codigo_credencial;
+    string senha_credencial;
+
+    mysql_query(mysql, query.c_str());
+    MYSQL_RES *resultado = mysql_store_result(mysql);
+    MYSQL_ROW linha;
+
+    while (linha = mysql_fetch_row(resultado)) {
+        codigo_credencial = stoi(linha[0]);
+        senha_credencial = linha[1];
+
+        if (senha.compare(senha_credencial) == 0)  return true;
+    }
+    return false;
 }
