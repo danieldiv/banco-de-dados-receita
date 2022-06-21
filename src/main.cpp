@@ -6,13 +6,15 @@
 #include <string.h>
 #include <stdbool.h>
 
+bool status = false;
+
 int conexao_banco(MYSQL *mysql, char *host, char *usuario, char *senha, char *banco);
 int menu();
-int menuTeste();
 void imprimeDados(MYSQL *mysql, const char *query);
 
 bool login(MYSQL *mysql, string usuario, string senha);
 bool checkCredencial(MYSQL *mysql, int codigo, string senha);
+int menuGerenciamento();
 
 int main() {
     char usuario[] = "aluno";
@@ -22,17 +24,6 @@ int main() {
 
     MYSQL *mysql = mysql_init(NULL);
     if (conexao_banco(mysql, host, usuario, senha, banco) == EXIT_FAILURE) return EXIT_FAILURE;
-
-    string user = "admin";
-    string password = "123456";
-
-    if (!(login(mysql, user, password))) {
-        cout << "Usuario ou senha invalida" << endl;
-    } else {
-        cout << "senha correta" << endl;
-    }
-
-    return EXIT_SUCCESS;
 
     int opcao;
     do {
@@ -51,37 +42,58 @@ int main() {
                 printf("(%s)-(%s)-(%s)-(%s)\n",linha[0],linha[1],linha[2],linha[3]);
             }*/
         } else if (opcao == 3) {
-            printf("\nEntrar\n\n");
-        } else if (opcao == 4) {
-            system("clear");
-
-            char nome[100];
-            int op2 = menuTeste();
-            cout << endl;
-
-            if (op2 == 1) {
-                printf("\nCadastro de Ingrediente\n\n");
-
-                cout << "Informe o nome do ingrediente: ";
-                cin.ignore();
-                scanf(" %[^\n]", nome);
-
-                char query[200];
-
-                sprintf(query, "INSERT INTO ingredientes (nome) VALUES ('%s')", nome);
-
-                if (mysql_query(mysql, query) != 0)
-                    cout << "Ops... nao foi possivel cadastrar o ingrediente " << nome << "." << endl;
-                else
-                    cout << "O ingrediente " << nome << " foi cadastrado com sucesso" << endl;
-
-            } else if (op2 == 2) {
-                string query;
-                query.assign("SELECT * FROM ingredientes");
-                imprimeDados(mysql, query.c_str());
+            if (status) {
+                cout << "Logout com sucesso" << endl;
+                status = false;
             } else {
-                cout << "Opcao invalida!" << endl;
+                string user = "admin";
+                string password = "123456";
+
+                cin.ignore();
+
+                cout << "Usuario: ";
+                getline(cin, user);
+
+                cout << "Senha: ";
+                getline(cin, password);
+
+                if (!(login(mysql, user, password))) {
+                    cout << "Usuario ou senha invalida" << endl;
+                } else {
+                    cout << "senha correta" << endl;
+                    status = true;
+                }
             }
+        } else if (opcao == 4) {
+            // system("clear");
+
+            // char nome[100];
+            // int op2 = menuGerenciamento();
+            // cout << endl;
+
+            // if (op2 == 1) {
+            //     printf("\nCadastro de Ingrediente\n\n");
+
+            //     cout << "Informe o nome do ingrediente: ";
+            //     cin.ignore();
+            //     scanf(" %[^\n]", nome);
+
+            //     char query[200];
+
+            //     sprintf(query, "INSERT INTO ingredientes (nome) VALUES ('%s')", nome);
+
+            //     if (mysql_query(mysql, query) != 0)
+            //         cout << "Ops... nao foi possivel cadastrar o ingrediente " << nome << "." << endl;
+            //     else
+            //         cout << "O ingrediente " << nome << " foi cadastrado com sucesso" << endl;
+
+            // } else if (op2 == 2) {
+            //     string query;
+            //     query.assign("SELECT * FROM ingredientes");
+            //     imprimeDados(mysql, query.c_str());
+            // } else {
+            //     cout << "Opcao invalida!" << endl;
+            // }
             // printf("\nCadastro de Receitas\n\n");
             /*printf("Nome: ");
             char nome[65];
@@ -130,7 +142,7 @@ int menu() {
     printf("MENU\n\n");
     printf("[1] Pesquisar receita por nome\n");
     printf("[2] Pesquisar receita por engrediente\n");
-    printf("[3] Entrar\n");
+    cout << "[3] " << ((status) ? "Logout" : "Entrar") << endl;
     printf("[4] Cadastrar teste\n");
     printf("[0] Sair\n\n");
     printf(">>> ");
@@ -140,10 +152,10 @@ int menu() {
     return opcao;
 }
 
-int menuTeste() {
+int menuGerenciamento() {
     int opcao;
 
-    cout << "MENU CADASTRO" << endl << endl;
+    cout << "MENU GERENCIAMENTO" << endl << endl;
     cout << "[1] Cadastrar Ingrediente" << endl;
     cout << "[2] Buscar Ingredientes" << endl << endl;
     printf(">>> ");
@@ -185,8 +197,6 @@ bool login(MYSQL *mysql, string usuario, string senha) {
     while (linha = mysql_fetch_row(resultado)) {
         codigo = stoi(linha[0]);
         nome = linha[1];
-
-        cout << codigo << " " << nome << endl;
 
         if (nome.compare(usuario) == 0) {
             if (checkCredencial(mysql, codigo, senha)) return true;
