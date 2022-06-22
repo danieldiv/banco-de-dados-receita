@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "ingrediente.hpp"
 #include "util.hpp"
 #include "control.hpp"
 
@@ -12,15 +11,16 @@ int menuGerenciamento();
 
 int main() {
     Util *util = new Util;
-    char nomeReceita[64], nomeIngrediente[64];
 
     char usuario[] = "aluno";
-    char senha[] = "123456";
+    char senha[] = "Senh@Alun0";
     char banco[] = "cefet_receitas";
     char host[] = "127.0.0.1";
 
     MYSQL *mysql = mysql_init(NULL);
     if (util->conexao_banco(mysql, host, usuario, senha, banco) == EXIT_FAILURE) return EXIT_FAILURE;
+
+    char nomeReceita[64], nomeIngrediente[64];
 
     int opcao;
     do {
@@ -29,9 +29,9 @@ int main() {
 
         switch (opcao) {
         case 1:
-        //leonardo
-            //util->login(mysql);
-            //deverá entrar com usuário com acesso só as receitas
+            //leonardo
+                //util->login(mysql);
+                //deverá entrar com usuário com acesso só as receitas
             printf("\nPesquisar receita por nome\n\n");
             printf("Digite o nome da receita: ");
             scanf(" %[^\n]", nomeReceita);
@@ -40,9 +40,9 @@ int main() {
             util->imprimeDados(mysql, "select * from receitas");
             break;
         case 2:
-        //leonado
-            //util->login(mysql);
-            //Deverá entrar com usuáio com acesso só aos ingredientes
+            //leonado
+                //util->login(mysql);
+                //Deverá entrar com usuáio com acesso só aos ingredientes
             printf("Pesquisar receita por engrediente\n");
             printf("Digite o ingrediente que deseja: ");
             scanf(" %[^\n]", nomeIngrediente);
@@ -54,7 +54,10 @@ int main() {
             util->login(mysql);
             break;
         case 4:
-            gerenciamento(mysql, util);
+            if (util->getStatus())
+                gerenciamento(mysql, util);
+            else
+                printf("opção invalida...\n");
             break;
         case 0:
             printf("Até logo!\n\n");
@@ -103,9 +106,16 @@ void gerenciamento(MYSQL *mysql, Util *util) {
             util->imprimeDados(mysql, "select * from ingredientes order by nome");
             break;
         case 3:
+            control->adicionarUsuario(mysql);
             break;
         case 4:
             util->imprimeDados(mysql, "select * from usuarios");
+            break;
+        case 5:
+            control->adicionarReceita(mysql);
+            break;
+        case 6:
+            util->imprimeDados(mysql, "select * from receitas");
             break;
         case 0:
             return;
@@ -125,6 +135,8 @@ int menuGerenciamento() {
     cout << "[2] Imprimir Ingredientes" << endl;
     cout << "[3] Cadastrar Usuario" << endl;
     cout << "[4] Imprimir Usuarios" << endl;
+    cout << "[5] Castrar receita" << endl;
+    cout << "[6] Imprimir receitas" << endl;
     // cout << "[3] Cadastrar Receita" << endl;
     // cout << "[4] Receitas salvas" << endl;
     cout << "[0] Voltar" << endl << endl;
