@@ -112,7 +112,7 @@ void gerenciamento(MYSQL *mysql, Util *util) {
             util->imprimeDados(mysql, "select * from usuarios");
             break;
         case 5:
-            control->adicionarReceita(mysql);
+            // control->adicionarReceita(mysql, util->getUser);
             break;
         case 6:
             util->imprimeDados(mysql, "select * from receitas");

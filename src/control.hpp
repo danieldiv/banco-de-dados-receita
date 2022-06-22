@@ -14,7 +14,7 @@ public:
 
     void adicionarIngrediente(MYSQL *mysql);
     void adicionarUsuario(MYSQL *mysql);
-    void adicionarReceita(MYSQL *mysql);
+    void adicionarReceita(MYSQL *mysql, string id_usuario);
 };
 
 #endif

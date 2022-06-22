@@ -63,7 +63,7 @@ void Control::adicionarUsuario(MYSQL *mysql) {
         cout << "O usuario " << nome << " foi cadastrado com sucesso" << endl;
 }
 
-void Control::adicionarReceita(MYSQL *mysql) {
+void Control::adicionarReceita(MYSQL *mysql, string id_usuario) {
     string nome;
     string rendimento;
     string tempo;
