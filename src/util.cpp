@@ -46,7 +46,10 @@ bool Util::checkUsuario(MYSQL *mysql, string usuario, string senha) {
         nome = linha[1];
 
         if (nome.compare(usuario) == 0) {
-            if (checkCredencial(mysql, codigo, senha)) return true;
+            if (checkCredencial(mysql, codigo, senha)) {
+                setId(codigo);
+                return true;
+            }
             return false;
         }
     }
@@ -117,4 +120,12 @@ void Util::setUser(string user) {
 
 string Util::getUser() {
     return this->user;
+}
+
+void Util::setId(long id) {
+    this->id = id;
+}
+
+long Util::getId() {
+    return this->id;
 }

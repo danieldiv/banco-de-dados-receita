@@ -80,8 +80,9 @@ void Control::adicionarReceita(MYSQL *mysql, string id_usuario) {
     cout << "Informe o tempo: ";
     getline(cin, tempo);
 
-    query.assign("INSERT INTO receitas (nome, rendimento, tempo) VALUES ")
-        .append("('").append(nome).append("','")
+    query.assign("INSERT INTO receitas (usuario_id, nome, rendimento, tempo) VALUES ")
+        .append("(").append(id_usuario).append(",'")
+        .append(nome).append("','")
         .append(rendimento).append("','")
         .append(tempo).append("');");
 

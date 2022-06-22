@@ -10,6 +10,7 @@ class Util {
 private:
     bool status;
     string user;
+    long id;
 public:
     ~Util();
     Util();
@@ -25,6 +26,9 @@ public:
 
     void setUser(string user);
     string getUser();
+
+    void setId(long id);
+    long getId();
 };
 
 #endif
