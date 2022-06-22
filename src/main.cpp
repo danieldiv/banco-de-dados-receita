@@ -115,7 +115,10 @@ void gerenciamento(MYSQL *mysql, Util *util) {
             // control->adicionarReceita(mysql, util->getUser);
             break;
         case 6:
-            util->imprimeDados(mysql, "select * from receitas");
+            util->imprimeDados(mysql, "select * from vw_receitas_ingredientes");
+            break;
+        case 7:
+            util->imprimeDados(mysql, "select * from vw_receitas_etapas_passos");
             break;
         case 0:
             return;
@@ -136,7 +139,8 @@ int menuGerenciamento() {
     cout << "[3] Cadastrar Usuario" << endl;
     cout << "[4] Imprimir Usuarios" << endl;
     cout << "[5] Castrar receita" << endl;
-    cout << "[6] Imprimir receitas" << endl;
+    cout << "[6] Imprimir receitas | ingredientes" << endl;
+    cout << "[7] Imprimir receitas | etapas | passos" << endl;
     // cout << "[3] Cadastrar Receita" << endl;
     // cout << "[4] Receitas salvas" << endl;
     cout << "[0] Voltar" << endl << endl;

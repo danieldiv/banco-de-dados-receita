@@ -96,7 +96,7 @@ void Util::imprimeDados(MYSQL *mysql, const char *query) {
         aux_nCol = 0;
 
         while (aux_nCol < n_col) {
-            if (linha[aux_nCol] != NULL) cout << "(" << linha[aux_nCol] << ")\t";
+            if (linha[aux_nCol] != NULL) printf("(%s)\t", linha[aux_nCol]);
             aux_nCol++;
         }
         cout << endl;
