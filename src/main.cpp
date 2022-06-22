@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "ingrediente.hpp"
 #include "util.hpp"
 #include "control.hpp"
 
@@ -11,9 +12,10 @@ int menuGerenciamento();
 
 int main() {
     Util *util = new Util;
+    char nomeReceita[64], nomeIngrediente[64];
 
     char usuario[] = "aluno";
-    char senha[] = "Senh@Alun0";
+    char senha[] = "123456";
     char banco[] = "cefet_receitas";
     char host[] = "127.0.0.1";
 
@@ -27,9 +29,26 @@ int main() {
 
         switch (opcao) {
         case 1:
+        //leonardo
+            //util->login(mysql);
+            //deverá entrar com usuário com acesso só as receitas
             printf("\nPesquisar receita por nome\n\n");
+            printf("Digite o nome da receita: ");
+            scanf(" %[^\n]", nomeReceita);
+            printf("Resultado: \n");
+            //procura receita especifica
+            util->imprimeDados(mysql, "select * from receitas");
             break;
         case 2:
+        //leonado
+            //util->login(mysql);
+            //Deverá entrar com usuáio com acesso só aos ingredientes
+            printf("Pesquisar receita por engrediente\n");
+            printf("Digite o ingrediente que deseja: ");
+            scanf(" %[^\n]", nomeIngrediente);
+            printf("Resultado: \n");
+            //procura ingrediente especifico
+            util->imprimeDados(mysql, "select * from receitas");
             break;
         case 3:
             util->login(mysql);
@@ -84,7 +103,6 @@ void gerenciamento(MYSQL *mysql, Util *util) {
             util->imprimeDados(mysql, "select * from ingredientes order by nome");
             break;
         case 3:
-            control->adicionarUsuario(mysql);
             break;
         case 4:
             util->imprimeDados(mysql, "select * from usuarios");
