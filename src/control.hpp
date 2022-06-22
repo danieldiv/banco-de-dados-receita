@@ -4,8 +4,6 @@
 #include <iostream>
 #include <mysql/mysql.h>
 
-#include "ingrediente.hpp"
-
 using namespace std;
 
 class Control {
@@ -15,6 +13,7 @@ public:
     ~Control();
 
     void adicionarIngrediente(MYSQL *mysql);
+    void adicionarUsuario(MYSQL *mysql);
 };
 
 #endif

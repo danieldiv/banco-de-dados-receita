@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "ingrediente.hpp"
 #include "util.hpp"
 #include "control.hpp"
 
@@ -85,6 +84,7 @@ void gerenciamento(MYSQL *mysql, Util *util) {
             util->imprimeDados(mysql, "select * from ingredientes order by nome");
             break;
         case 3:
+            control->adicionarUsuario(mysql);
             break;
         case 4:
             util->imprimeDados(mysql, "select * from usuarios");

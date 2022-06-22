@@ -19,3 +19,46 @@ void Control::adicionarIngrediente(MYSQL *mysql) {
     else
         cout << "O ingrediente " << nome << " foi cadastrado com sucesso" << endl;
 }
+
+void Control::adicionarUsuario(MYSQL *mysql) {
+    string nome;
+    string telefone;
+    string email;
+    string cidade;
+    string estado;
+    string foto;
+
+    string query;
+
+    cout << "Informe o nome do Usuario: ";
+    cin.ignore();
+    getline(cin, nome);
+
+    cout << "Informe o telefone: ";
+    getline(cin, telefone);
+
+    cout << "Informe o email: ";
+    getline(cin, email);
+
+    cout << "Informe a cidade: ";
+    getline(cin, cidade);
+
+    cout << "Informe o estado: ";
+    getline(cin, estado);
+
+    cout << "Informe a foto: ";
+    getline(cin, foto);
+
+    query.assign("INSERT INTO usuarios (nome, telefone, email, cidade, estado, foto) VALUES ")
+        .append("('").append(nome).append("','")
+        .append(telefone).append("','")
+        .append(email).append("','")
+        .append(cidade).append("','")
+        .append(estado).append("','")
+        .append(foto).append("');");
+
+    if (mysql_query(mysql, query.c_str()) != 0)
+        cout << "Ops... nao foi possivel cadastrar o usuario " << nome << "." << endl;
+    else
+        cout << "O usuario " << nome << " foi cadastrado com sucesso" << endl;
+}
