@@ -53,6 +53,10 @@
 
 ## Configuracao (Ubuntu)
 
+- Dentro da pasta bd execute o comando para criar o banco e inserir os dados
+
+`mysql -u admin -p < arquivo.sql`
+
 > sudo apt update
 >
 > sudo apt upgrade
