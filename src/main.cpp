@@ -115,12 +115,13 @@ void gerenciamento(MYSQL *mysql, Util *util) {
             control->adicionarReceita(mysql, to_string(util->getId()));
             break;
         case 6:
-            util->imprimeDados(mysql, "select * from vw_receitas_ingredientes");
+            control->carregarReceitas(mysql);
             break;
         case 7:
             util->imprimeDados(mysql, "select * from vw_receitas_etapas_passos");
             break;
         case 0:
+            delete control;
             return;
         default:
             cout << "Opcao invalida" << endl;

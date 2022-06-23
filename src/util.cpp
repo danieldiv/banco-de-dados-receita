@@ -10,16 +10,16 @@ void Util::login(MYSQL *mysql) {
         setUser("");
         cout << "Logout com sucesso" << endl;
     } else {
-        string user;
-        string password;
+        string user = "admin";
+        string password = "123456";
 
         cin.ignore();
 
-        cout << "Usuario: ";
-        getline(cin, user);
+        // cout << "Usuario: ";
+        // getline(cin, user);
 
-        cout << "Senha: ";
-        getline(cin, password);
+        // cout << "Senha: ";
+        // getline(cin, password);
 
         if (!(checkUsuario(mysql, user, password))) {
             cout << "\nUsuario ou senha invalida" << endl;

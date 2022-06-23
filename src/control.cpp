@@ -91,3 +91,51 @@ void Control::adicionarReceita(MYSQL *mysql, string id_usuario) {
     else
         cout << "A receita " << nome << " foi cadastrado com sucesso" << endl;
 }
+
+void Control::carregarReceitas(MYSQL *mysql) {
+    string query = "select * from vw_receitas_ingredientes order by receita";
+
+    mysql_query(mysql, query.c_str());
+    MYSQL_RES *resultado = mysql_store_result(mysql);
+    MYSQL_ROW linha;
+
+    int n_col = mysql_num_fields(resultado);
+
+    Receita *rec;
+    Ingrediente *ing;
+    Usuario *usu;
+
+    string receita_aux;
+    bool controle = true;
+
+    while (linha = mysql_fetch_row(resultado)) {
+        rec = new Receita(linha[0], linha[3], linha[4], linha[5]);
+
+        if (linha[1] != NULL) {
+            usu = new Usuario(linha[1], linha[2]);
+            rec->setUsuario(*usu);
+            delete usu;
+        }
+        if (linha[6] != NULL) rec->setInfo(linha[6]);
+
+        if (linha[7] != NULL) {
+            ing = new Ingrediente(linha[7], linha[8], linha[9], linha[10]);
+            rec->setIngrediente(*ing);
+            delete(ing);
+        }
+        if (controle) {
+            receita_aux = linha[3];
+            receitas.push_back(*rec);
+            controle = !controle;
+        } else {
+            if (receita_aux.compare(linha[3]) != 0) {
+                receitas.push_back(*rec);
+                receita_aux = linha[3];
+            }
+        }
+        delete rec;
+    }
+    for (Receita r : receitas) {
+        r.toString();
+    }
+}
