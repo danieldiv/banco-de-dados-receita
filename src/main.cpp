@@ -92,7 +92,7 @@ int menu(Util *util) {
 
 void gerenciamento(MYSQL *mysql, Util *util) {
     int op;
-    Control *control = new Control;
+    Control *control = new Control(mysql);
 
     do {
         system("clear");
@@ -100,22 +100,22 @@ void gerenciamento(MYSQL *mysql, Util *util) {
 
         switch (op) {
         case 1:
-            control->adicionarIngrediente(mysql);
+            control->adicionarIngrediente();
             break;
         case 2:
             util->imprimeDados(mysql, "select * from ingredientes order by nome");
             break;
         case 3:
-            control->adicionarUsuario(mysql);
+            control->adicionarUsuario();
             break;
         case 4:
             util->imprimeDados(mysql, "select * from usuarios");
             break;
         case 5:
-            control->adicionarReceita(mysql, to_string(util->getId()));
+            control->adicionarReceita(to_string(util->getId()));
             break;
         case 6:
-            control->carregarReceitas(mysql);
+            control->carregarReceitas();
             break;
         case 7:
             util->imprimeDados(mysql, "select * from vw_receitas_etapas_passos");

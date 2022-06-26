@@ -23,8 +23,8 @@ public:
     void setQuantidade(string quantidade);
     void setUnidade(string unidade);
 
-    string gettId();
-    string gettNome();
+    string getId();
+    string getNome();
     string getQuantidade();
     string getUnidade();
 };

@@ -1,10 +1,10 @@
 #include "control.hpp"
 
-Control::Control() {}
+Control::Control(MYSQL *mysql) { this->mysql = mysql; }
 
 Control::~Control() {}
 
-void Control::adicionarIngrediente(MYSQL *mysql) {
+void Control::adicionarIngrediente() {
     string nome;
     string query;
 
@@ -14,13 +14,13 @@ void Control::adicionarIngrediente(MYSQL *mysql) {
 
     query.assign("INSERT INTO ingredientes (nome) VALUES ('").append(nome).append("');");
 
-    if (mysql_query(mysql, query.c_str()) != 0)
+    if (mysql_query(this->mysql, query.c_str()) != 0)
         cout << "Ops... nao foi possivel cadastrar o ingrediente " << nome << "." << endl;
     else
         cout << "O ingrediente " << nome << " foi cadastrado com sucesso" << endl;
 }
 
-void Control::adicionarUsuario(MYSQL *mysql) {
+void Control::adicionarUsuario() {
     string nome;
     string telefone;
     string email;
@@ -57,13 +57,13 @@ void Control::adicionarUsuario(MYSQL *mysql) {
         .append(estado).append("','")
         .append(foto).append("');");
 
-    if (mysql_query(mysql, query.c_str()) != 0)
+    if (mysql_query(this->mysql, query.c_str()) != 0)
         cout << "Ops... nao foi possivel cadastrar o usuario " << nome << "." << endl;
     else
         cout << "O usuario " << nome << " foi cadastrado com sucesso" << endl;
 }
 
-void Control::adicionarReceita(MYSQL *mysql, string id_usuario) {
+void Control::adicionarReceita(string id_usuario) {
     string nome;
     string rendimento;
     string tempo;
@@ -86,56 +86,63 @@ void Control::adicionarReceita(MYSQL *mysql, string id_usuario) {
         .append(rendimento).append("','")
         .append(tempo).append("');");
 
-    if (mysql_query(mysql, query.c_str()) != 0)
+    if (mysql_query(this->mysql, query.c_str()) != 0)
         cout << "Ops... nao foi possivel cadastrar a receita " << nome << "." << endl;
     else
         cout << "A receita " << nome << " foi cadastrado com sucesso" << endl;
 }
 
-void Control::carregarReceitas(MYSQL *mysql) {
-    string query = "select * from vw_receitas_ingredientes order by receita";
+void Control::carregarReceitas() {
+    string query = "select * from receitas order by nome";
 
-    mysql_query(mysql, query.c_str());
+    mysql_query(this->mysql, query.c_str());
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;
 
-    int n_col = mysql_num_fields(resultado);
-
     Receita *rec;
     Ingrediente *ing;
-    Usuario *usu;
-
-    string receita_aux;
-    bool controle = true;
 
     while (linha = mysql_fetch_row(resultado)) {
-        rec = new Receita(linha[0], linha[3], linha[4], linha[5]);
+        rec = new Receita(linha[0], linha[2], linha[3], linha[4]);
 
-        if (linha[1] != NULL) {
-            usu = new Usuario(linha[1], linha[2]);
-            rec->setUsuario(*usu);
-            delete usu;
-        }
-        if (linha[6] != NULL) rec->setInfo(linha[6]);
+        if (linha[1] != NULL) buscarUsuarioPorId(rec, linha[1]);
 
-        if (linha[7] != NULL) {
-            ing = new Ingrediente(linha[7], linha[8], linha[9], linha[10]);
-            rec->setIngrediente(*ing);
-            delete(ing);
-        }
-        if (controle) {
-            receita_aux = linha[3];
-            receitas.push_back(*rec);
-            controle = !controle;
-        } else {
-            if (receita_aux.compare(linha[3]) != 0) {
-                receitas.push_back(*rec);
-                receita_aux = linha[3];
-            }
-        }
-        delete rec;
+        buscarIngredientesDaReceita(rec);
+        this->receitas.push_back(*rec);
     }
-    for (Receita r : receitas) {
-        r.toString();
+    for (Receita r : receitas) r.toString();
+}
+
+void Control::buscarIngredientesDaReceita(Receita *rec) {
+    string query = "select * from vw_receitas_ingredientes where receita_id = ";
+    query.append(rec->getId());
+
+    mysql_query(this->mysql, query.c_str());
+    MYSQL_RES *resultado = mysql_store_result(mysql);
+    MYSQL_ROW linha;
+
+    Ingrediente *ing;
+    while (linha = mysql_fetch_row(resultado)) {
+        ing = new Ingrediente(linha[1], linha[2], linha[3], linha[4]);
+        rec->setIngredientes(*ing);
+    }
+}
+
+void Control::buscarUsuarioPorId(Receita *rec, string id) {
+    string query = "select * from usuarios where id = ";
+    query.append(id);
+
+    cout << "query:" << query << endl;
+
+    mysql_query(this->mysql, query.c_str());
+    MYSQL_RES *resultado = mysql_store_result(mysql);
+    MYSQL_ROW linha;
+
+    Usuario *usu = new Usuario();
+
+    while (linha = mysql_fetch_row(resultado)) {
+        usu->setId(linha[0]);
+        usu->setNome(linha[1]);
+        rec->setUsuario(*usu);
     }
 }

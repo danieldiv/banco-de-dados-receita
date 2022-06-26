@@ -12,15 +12,21 @@ using namespace std;
 class Control {
 private:
     vector<Receita> receitas;
+    MYSQL *mysql;
+
+    Usuario usuario;
 public:
-    Control();
+    Control(MYSQL *mysql);
     ~Control();
 
-    void adicionarIngrediente(MYSQL *mysql);
-    void adicionarUsuario(MYSQL *mysql);
-    void adicionarReceita(MYSQL *mysql, string id_usuario);
+    void adicionarIngrediente();
+    void adicionarUsuario();
+    void adicionarReceita(string id_usuario);
 
-    void carregarReceitas(MYSQL *mysql);
+    void carregarReceitas();
+    void buscarIngredientesDaReceita(Receita *rec);
+
+    void buscarUsuarioPorId(Receita *rec, string id);
 };
 
 #endif

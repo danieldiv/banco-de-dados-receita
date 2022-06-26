@@ -2,6 +2,7 @@
 #define RECEITA_HPP
 
 #include <iostream>
+#include <vector>
 
 #include "ingrediente.hpp"
 #include "usuario.hpp"
@@ -16,7 +17,7 @@ private:
     string tempo;
     string info;
 
-    Ingrediente ingrediente;
+    vector<Ingrediente> ingredientes;
     Usuario usuario;
 public:
     Receita();
@@ -25,8 +26,8 @@ public:
 
     void toString();
 
-    void setIngrediente(Ingrediente ingrediente);
-    Ingrediente getIngrediente();
+    void setIngredientes(Ingrediente ingrediente);
+    void getIngredientes();
 
     void setUsuario(Usuario usuario);
     Usuario getUsuario();

@@ -1,4 +1,3 @@
-
 #include "receita.hpp"
 
 Receita::Receita(string id, string nome, string rendimento, string tempo) {
@@ -11,8 +10,11 @@ Receita::Receita(string id, string nome, string rendimento, string tempo) {
 Receita::Receita() {}
 Receita::~Receita() {}
 
-void Receita::setIngrediente(Ingrediente ingrediente) { this->ingrediente = ingrediente; }
-Ingrediente Receita::getIngrediente() { return this->ingrediente; }
+void Receita::setIngredientes(Ingrediente ingrediente) { this->ingredientes.push_back(ingrediente); }
+
+void Receita::getIngredientes() {
+    for (Ingrediente ing : this->ingredientes) ing.toString();
+}
 
 void Receita::setUsuario(Usuario usuario) { this->usuario = usuario; }
 Usuario Receita::getUsuario() { return this->usuario; }
@@ -31,7 +33,9 @@ string Receita::getInfo() { return this->info; }
 
 void Receita::toString() {
     cout
-        << "[nome]: " << getNome() << " [rend]: " << getRendimento() << " [tempo]: " << getTempo()
-        << " [info]: " << getInfo() << " [usu]: " << getUsuario().getNome();
-    getIngrediente().toString();
+        << "[id]: " << getId() << " [receita]: " << getNome() << " [rendimento]: " << getRendimento()
+        << " [tempo]: " << getTempo() << " [info]: " << getInfo()
+        << " [usuario]: " << getUsuario().getId() << " " << getUsuario().getNome() << endl << endl;
+    getIngredientes();
+    cout << endl;
 }

@@ -95,9 +95,7 @@ create table receitas_salvas(
 	foreign key(receita_id) references receitas(id)
 );
 
-insert into usuarios (nome, telefone, email, cidade, estado, foto)
-values
-('admin', '12345678911', 'admin@email.com', 'divinopolis', 'MG', 'descricao da foto');
+insert into usuarios (nome, telefone, email, cidade, estado, foto)values('admin', '12345678911', 'admin@email.com', 'divinopolis', 'MG', 'descricao da foto');
 
 insert into credenciais (id, senha) values (1, '123456');
 
