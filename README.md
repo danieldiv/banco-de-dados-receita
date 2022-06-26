@@ -69,18 +69,6 @@
 >
 > sudo apt install libmysqlclient-dev
 
-<!--
-ar -crv libminhalib.a minhalib.o -> gera a lib estatica
-gcc -shared -fPIC -o libminhalib.so minhalib.og -> gera lib dinamica
-gcc -c minhalib.c -> compila
-gcc -I ../daniel -o foo foo.c
-gcc -o abc foo.c -I../daniel -L../daniel -lminhalib -> inclui lib para compilar
-
-sudo apt install libmysqlclient-dev
-usr/include/mysql
-gcc -o agenda agenda.c -lmysqlclient
--->
-
 ## Funcionamento
 
 O banco de dados usado como parâmetro da aplicação se encontra na pasta DB neste repositório. O Aplicativo em questão trata-se de um acesso através da linguagem C ao banco de dados de Receitas elaborado em sala de aula. Em bora tenha sido confeccionado com linguagem C o Makefile que o executa está configurado em C++ visto que como são linguagens subjacentes, o processo de compilação se mantem, aproveitando as utilidades de C e C++. Para o funcionamento do aplicativo é necessário que o usuário execute o banco de dados em sua máquina e em seguida instale a biblioteca do mysql que permite a compilação com C(Este processo está acima na documentação). Após isso configure suas credenciais no software e está tudo pronto para execução do mesmo.
