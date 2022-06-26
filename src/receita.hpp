@@ -4,8 +4,9 @@
 #include <iostream>
 #include <vector>
 
-#include "ingrediente.hpp"
 #include "usuario.hpp"
+#include "ingrediente.hpp"
+#include "etapa.hpp"
 
 using namespace std;
 
@@ -17,8 +18,10 @@ private:
     string tempo;
     string info;
 
-    vector<Ingrediente> ingredientes;
     Usuario usuario;
+
+    vector<Ingrediente> ingredientes;
+    vector<Etapa> etapas;
 public:
     Receita();
     Receita(string id, string nome, string rendimento, string tempo);
@@ -31,6 +34,9 @@ public:
 
     void setUsuario(Usuario usuario);
     Usuario getUsuario();
+
+    void setEtapas(Etapa etapa);
+    void getEtapas();
 
     void setId(string id);
     void setNome(string nome);

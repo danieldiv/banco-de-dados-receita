@@ -21,6 +21,5 @@ string Ingrediente::getQuantidade() { return this->quantidade; }
 string Ingrediente::getUnidade() { return this->unidade; }
 
 void Ingrediente::toString() {
-    cout
-        << "\t[qtd]: " << getQuantidade() << "\t[und]: " << getUnidade() << "\t[ing]: " << getNome() << endl;
+    cout << "- " << getNome() << " (" << getQuantidade() << " " << getUnidade() << ")" << endl;
 }

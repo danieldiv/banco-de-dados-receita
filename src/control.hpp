@@ -14,7 +14,7 @@ private:
     vector<Receita> receitas;
     MYSQL *mysql;
 
-    Usuario usuario;
+    // Usuario usuario;
 public:
     Control(MYSQL *mysql);
     ~Control();
@@ -27,6 +27,9 @@ public:
     void buscarIngredientesDaReceita(Receita *rec);
 
     void buscarUsuarioPorId(Receita *rec, string id);
+
+    void buscarEtapasDaReceita(Receita *rec);
+    void buscarPassosDaEtapa(Etapa *etapa);
 };
 
 #endif

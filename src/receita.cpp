@@ -13,7 +13,19 @@ Receita::~Receita() {}
 void Receita::setIngredientes(Ingrediente ingrediente) { this->ingredientes.push_back(ingrediente); }
 
 void Receita::getIngredientes() {
-    for (Ingrediente ing : this->ingredientes) ing.toString();
+    if (this->ingredientes.size() != 0)
+        for (Ingrediente ing : this->ingredientes) ing.toString();
+    else
+        cout << "A receita nao possui ingredientes" << endl;
+}
+
+void Receita::setEtapas(Etapa etapa) { this->etapas.push_back(etapa); }
+
+void Receita::getEtapas() {
+    if (this->etapas.size() != 0)
+        for (Etapa etapa : this->etapas) etapa.toString();
+    else
+        cout << "\nA receita nao possui etapas" << endl;
 }
 
 void Receita::setUsuario(Usuario usuario) { this->usuario = usuario; }
@@ -32,10 +44,14 @@ string Receita::getTempo() { return this->tempo; }
 string Receita::getInfo() { return this->info; }
 
 void Receita::toString() {
-    cout
-        << "[id]: " << getId() << " [receita]: " << getNome() << " [rendimento]: " << getRendimento()
-        << " [tempo]: " << getTempo() << " [info]: " << getInfo()
-        << " [usuario]: " << getUsuario().getId() << " " << getUsuario().getNome() << endl << endl;
+    cout << endl << "[" << getNome() << "]" << endl << endl
+        << "preparo: " << getTempo() << " min | " << "rendimento: " << getRendimento() << getInfo()
+        << " | usuario: " << getUsuario().getNome() << endl;
+
+    cout << endl << "[Ingredientes]" << endl << endl;
     getIngredientes();
-    cout << endl;
+
+    cout << endl << "[Modo de preparo]" << endl;
+    getEtapas();
+    cout << endl << "---------------------------------------------------------------------------" << endl;
 }

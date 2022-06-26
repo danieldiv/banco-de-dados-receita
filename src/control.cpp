@@ -108,6 +108,8 @@ void Control::carregarReceitas() {
         if (linha[1] != NULL) buscarUsuarioPorId(rec, linha[1]);
 
         buscarIngredientesDaReceita(rec);
+        buscarEtapasDaReceita(rec);
+
         this->receitas.push_back(*rec);
     }
     for (Receita r : receitas) r.toString();
@@ -129,10 +131,8 @@ void Control::buscarIngredientesDaReceita(Receita *rec) {
 }
 
 void Control::buscarUsuarioPorId(Receita *rec, string id) {
-    string query = "select * from usuarios where id = ";
+    string query = "select id, nome from usuarios where id = ";
     query.append(id);
-
-    cout << "query:" << query << endl;
 
     mysql_query(this->mysql, query.c_str());
     MYSQL_RES *resultado = mysql_store_result(mysql);
@@ -144,5 +144,37 @@ void Control::buscarUsuarioPorId(Receita *rec, string id) {
         usu->setId(linha[0]);
         usu->setNome(linha[1]);
         rec->setUsuario(*usu);
+    }
+}
+
+void Control::buscarEtapasDaReceita(Receita *rec) {
+    string query = "select * from receitas_etapas where receita_id = ";
+    query.append(rec->getId());
+
+    mysql_query(this->mysql, query.c_str());
+    MYSQL_RES *resultado = mysql_store_result(mysql);
+    MYSQL_ROW linha;
+
+    while (linha = mysql_fetch_row(resultado)) {
+        Etapa *etapa = new Etapa(linha[0], linha[1], linha[2]);
+        buscarPassosDaEtapa(etapa);
+        rec->setEtapas(*etapa);
+    }
+}
+
+void Control::buscarPassosDaEtapa(Etapa *etapa) {
+    string query = "select * from receitas_passos where receita_id = ";
+    query
+        .append(etapa->getCodigoReceita())
+        .append(" and ")
+        .append("etapa_numero = ").append(etapa->getNumero());
+
+    mysql_query(this->mysql, query.c_str());
+    MYSQL_RES *resultado = mysql_store_result(mysql);
+    MYSQL_ROW linha;
+
+    while (linha = mysql_fetch_row(resultado)) {
+        Passo passo(linha[2], linha[3]);
+        etapa->setPassos(passo);
     }
 }
