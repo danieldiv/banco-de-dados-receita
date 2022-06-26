@@ -1,44 +1,42 @@
-CXX      := -g++
-# CXXFLAGS := -Wall -Wextra -Werror
-LDFLAGS  := -lstdc++ -lm -lmysqlclient
-BUILD    := ./build
-OBJ_DIR  := $(BUILD)/objects
-APP_DIR  := $(BUILD)/
-TARGET   := app
-INCLUDE  := -Iinclude/
-SRC      :=  $(wildcard src/*.cpp)
+APPS = ./apps
+BIN = ./bin
+INCLUDE = ./include
+LIB = ./lib
+OBJ = ./obj
+SRC = ./src
 
-OBJECTS := $(SRC:%.cpp=$(OBJ_DIR)/%.o)
+FLAGS = -O3 -Wall
+LIBS = -lm -led -L $(LIB) -lmysqlclient
 
-all: build $(APP_DIR)/$(TARGET)
+all: libed myapps
 
-$(OBJ_DIR)/%.o: %.cpp
-	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $<
+libed: \
+	$(OBJ)/util.o \
+	$(OBJ)/float_vector.o \
+	$(OBJ)/mytime.o \
+	$(OBJ)/control.o \
+	$(OBJ)/etapa.o \
+	$(OBJ)/ingrediente.o \
+	$(OBJ)/passo.o \
+	$(OBJ)/receita.o \
+	$(OBJ)/usuario.o
+	ar -rcs $(LIB)/libed.a $(OBJ)/*.o
 
-$(APP_DIR)/$(TARGET): $(OBJECTS)
-	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $(APP_DIR)/$(TARGET) $(OBJECTS) $(LDFLAGS)
 
-.PHONY: all build clean debug release run
+myapps: clean_apps \
+	$(BIN)/main
 
-build:
-	@mkdir -p $(APP_DIR)
-	@mkdir -p $(OBJ_DIR)
+$(OBJ)/%.o: $(SRC)/%.cpp $(INCLUDE)/%.hpp
+	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
 
-debug: CXXFLAGS += -DDEBUG -g
-debug: all
-
-release: CXXFLAGS += -O3
-release: all
-
-clean:
-	-@rm -rvf $(OBJ_DIR)/*
-	-@rm -rvf $(APP_DIR)/*
+$(BIN)/%: $(APPS)/%.cpp
+	g++ $(FLAGS) $< $(LIBS) -I $(INCLUDE) -o $@
 
 run:
-	./$(BUILD)/$(TARGET)
+	$(BIN)/main
 
-r: all run
+clean:
+	rm -rf $(BIN)/* $(LIB)/* $(OBJ)/*
 
-c: clean all run
+clean_apps:
+	rm -rf $(BIN)/*

@@ -10,7 +10,7 @@ void Util::login(MYSQL *mysql) {
         setUser("");
         cout << "Logout com sucesso" << endl;
     } else {
-        string user = "admin";
+        string user = "daniel";
         string password = "123456";
 
         cin.ignore();
@@ -41,7 +41,7 @@ bool Util::checkUsuario(MYSQL *mysql, string usuario, string senha) {
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;
 
-    while (linha = mysql_fetch_row(resultado)) {
+    while ((linha = mysql_fetch_row(resultado))) {
         codigo = stoi(linha[0]);
         nome = linha[1];
 
@@ -59,18 +59,19 @@ bool Util::checkUsuario(MYSQL *mysql, string usuario, string senha) {
 bool Util::checkCredencial(MYSQL *mysql, int codigo, string senha) {
     string query = "select * from credenciais";
 
-    int codigo_credencial;
+    string codigo_credencial;
     string senha_credencial;
 
     mysql_query(mysql, query.c_str());
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;
 
-    while (linha = mysql_fetch_row(resultado)) {
-        codigo_credencial = stoi(linha[0]);
+    while ((linha = mysql_fetch_row(resultado))) {
+        codigo_credencial = linha[0];
         senha_credencial = linha[1];
 
-        if (senha.compare(senha_credencial) == 0)  return true;
+        if (codigo_credencial.compare(to_string(codigo)) == 0)
+            if (senha.compare(senha_credencial) == 0)  return true;
     }
     return false;
 }
@@ -95,7 +96,7 @@ void Util::imprimeDados(MYSQL *mysql, const char *query) {
     int n_col = mysql_num_fields(resultado);
     int aux_nCol;
 
-    while (linha = mysql_fetch_row(resultado)) {
+    while ((linha = mysql_fetch_row(resultado))) {
         aux_nCol = 0;
 
         while (aux_nCol < n_col) {

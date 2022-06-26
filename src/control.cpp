@@ -100,9 +100,8 @@ void Control::carregarReceitas() {
     MYSQL_ROW linha;
 
     Receita *rec;
-    Ingrediente *ing;
 
-    while (linha = mysql_fetch_row(resultado)) {
+    while ((linha = mysql_fetch_row(resultado))) {
         rec = new Receita(linha[0], linha[2], linha[3], linha[4]);
 
         if (linha[1] != NULL) buscarUsuarioPorId(rec, linha[1]);
@@ -124,7 +123,7 @@ void Control::buscarIngredientesDaReceita(Receita *rec) {
     MYSQL_ROW linha;
 
     Ingrediente *ing;
-    while (linha = mysql_fetch_row(resultado)) {
+    while ((linha = mysql_fetch_row(resultado))) {
         ing = new Ingrediente(linha[1], linha[2], linha[3], linha[4]);
         rec->setIngredientes(*ing);
     }
@@ -140,7 +139,7 @@ void Control::buscarUsuarioPorId(Receita *rec, string id) {
 
     Usuario *usu = new Usuario();
 
-    while (linha = mysql_fetch_row(resultado)) {
+    while ((linha = mysql_fetch_row(resultado))) {
         usu->setId(linha[0]);
         usu->setNome(linha[1]);
         rec->setUsuario(*usu);
@@ -155,7 +154,7 @@ void Control::buscarEtapasDaReceita(Receita *rec) {
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;
 
-    while (linha = mysql_fetch_row(resultado)) {
+    while ((linha = mysql_fetch_row(resultado))) {
         Etapa *etapa = new Etapa(linha[0], linha[1], linha[2]);
         buscarPassosDaEtapa(etapa);
         rec->setEtapas(*etapa);
@@ -173,7 +172,7 @@ void Control::buscarPassosDaEtapa(Etapa *etapa) {
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;
 
-    while (linha = mysql_fetch_row(resultado)) {
+    while ((linha = mysql_fetch_row(resultado))) {
         Passo passo(linha[2], linha[3]);
         etapa->setPassos(passo);
     }
