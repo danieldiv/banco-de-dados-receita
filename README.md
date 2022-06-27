@@ -7,7 +7,7 @@
 - Daniel Alvez Sanches
 - Julia Mello Lopez Gonçalves
 - Leonardo de Oliveira Campos
-- Thomas Teixeira
+- Thomás Teixeira
 
 ## Fazer
 
