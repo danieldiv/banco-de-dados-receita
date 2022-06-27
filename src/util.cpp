@@ -15,11 +15,11 @@ void Util::login(MYSQL *mysql) {
 
         cin.ignore();
 
-        // cout << "Usuario: ";
-        // getline(cin, user);
+        cout << "Usuario: ";
+        getline(cin, user);
 
-        // cout << "Senha: ";
-        // getline(cin, password);
+        cout << "Senha: ";
+        getline(cin, password);
 
         if (!(checkUsuario(mysql, user, password))) {
             cout << "\nUsuario ou senha invalida" << endl;

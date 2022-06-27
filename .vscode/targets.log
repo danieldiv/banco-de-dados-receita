@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Jun 26 18:49:34 2022
+# Make data base, printed on Mon Jun 27 07:24:24 2022
 
 # Variables
 
@@ -53,7 +53,7 @@ VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{"*":"pt-br"},"_languagePackId":"195456cb6bc5e7dd989215cd334fb359.pt-br","_translationsConfigFile":"/home/daniel/.config/Code/clp/195456cb6bc5e7dd989215cd334fb359.pt-br/tcf.json","_cacheRoot":"/home/daniel/.config/Code/clp/195456cb6bc5e7dd989215cd334fb359.pt-br","_resolvedLanguagePackCoreLocation":"/home/daniel/.config/Code/clp/195456cb6bc5e7dd989215cd334fb359.pt-br/30d9c6cd9483b2cc586687151bcbcd635f373630","_corruptedFile":"/home/daniel/.config/Code/clp/195456cb6bc5e7dd989215cd334fb359.pt-br/corrupted.info","_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:45012
+JOURNAL_STREAM = 8:46778
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -73,11 +73,11 @@ MANDATORY_PATH = /usr/share/gconf/ubuntu.mandatory.path
 # environment
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
-DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=03e49af7f2cdfad7d37fc3cf62b8b736
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=c111d0de90bd8c8924e5bde462b984b7
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 1711
+MANAGERPID = 1777
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -91,7 +91,7 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/daniel:@/tmp/.ICE-unix/1958,unix/daniel:/tmp/.ICE-unix/1958
+SESSION_MANAGER = local/daniel:@/tmp/.ICE-unix/2002,unix/daniel:/tmp/.ICE-unix/2002
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -109,7 +109,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 6b8ab56d0eaf4a42966d7757bdefc817
+INVOCATION_ID = ed0bf2e302324be4a515fba93667f0ff
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/99/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # makefile (from 'Makefile', line 4)
@@ -135,7 +135,7 @@ PWD = /home/daniel/Documentos/banco-de-dados-receita
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1905
+SSH_AGENT_PID = 1965
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -187,7 +187,7 @@ SHLVL = 1
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-6004b8f5-c723-4410-844e-3d24f10abcdf.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-81eac539-2111-4672-bca6-a8cf80d14c19.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -223,6 +223,7 @@ MFLAGS = -pqrR
 # environment
 GDK_BACKEND = x11
 # automatic
+ 
 +F = $(notdir $+)
 # environment
 QT_ACCESSIBILITY = 1
@@ -247,11 +248,11 @@ DBUS_STARTER_BUS_TYPE = session
 # makefile (from 'Makefile', line 9)
 LIBS = -lm -led -L $(LIB) -lmysqlclient
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/a05aeee4_8c79_4006_8379_511b966417cb
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/e008cd57_ee5a_4d8b_9510_ea6b993e5ca5
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.1362
+GNOME_TERMINAL_SERVICE = :1.78
 # default
 SUFFIXES := 
 # makefile (from 'Makefile', line 8)
@@ -271,12 +272,11 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 21408
+VSCODE_PID = 2932
 # environment
-DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=03e49af7f2cdfad7d37fc3cf62b8b736
+DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=c111d0de90bd8c8924e5bde462b984b7
 # variable set hash-table stats:
- 
-# Load=132/1024=13%, Rehash=0, Collisions=32/177=18%
+# Load=132/1024=13%, Rehash=0, Collisions=31/176=18%
 
 # Pattern-specific Variable Values
 
@@ -284,21 +284,21 @@ DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=03e49af7f2cdfad7d37fc3c
 
 # Directories
 
-# include (device 2051, inode 11010405): 11 files, no impossibilities so far.
+# include (device 2051, inode 11010405): 10 files, no impossibilities so far.
 # . (device 2051, inode 10750654): 12 files, no impossibilities.
-# src (device 2051, inode 11010437): 11 files, no impossibilities so far.
+# src (device 2051, inode 11010437): 10 files, no impossibilities so far.
 # apps (device 2051, inode 11010401): No files, no impossibilities so far.
 
-# 34 files, no impossibilities in 4 directories.
+# 32 files, no impossibilities in 4 directories.
 
 # Implicit Rules
 
 obj/%.o: src/%.cpp include/%.hpp
-#  recipe to execute (from 'Makefile', line 30):
+#  recipe to execute (from 'Makefile', line 29):
 	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
 
 bin/%: apps/%.cpp
-#  recipe to execute (from 'Makefile', line 33):
+#  recipe to execute (from 'Makefile', line 32):
 	g++ $(FLAGS) $< $(LIBS) -I $(INCLUDE) -o $@
 
 # 2 implicit rules, 0 (0.0%) terminal.
@@ -319,27 +319,13 @@ src/receita.cpp:
 #  File has been updated.
 #  Successfully updated.
 
-# Not a target:
-include/float_vector.hpp:
-#  Implicit rule search has been done.
-#  Last modified 2021-07-03 16:04:31
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
-src/float_vector.cpp:
-#  Implicit rule search has been done.
-#  Last modified 2022-06-26 18:16:11.883586
-#  File has been updated.
-#  Successfully updated.
-
 obj/control.o: src/control.cpp include/control.hpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'control'
-#  Last modified 2022-06-26 18:42:39.49932
+#  Last modified 2022-06-27 07:23:39.632258962
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 30):
+#  recipe to execute (from 'Makefile', line 29):
 	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
 
 all: libed myapps
@@ -354,22 +340,22 @@ all: libed myapps
 obj/usuario.o: src/usuario.cpp include/usuario.hpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'usuario'
-#  Last modified 2022-06-26 18:42:43.107371
+#  Last modified 2022-06-27 07:23:43.204044918
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 30):
+#  recipe to execute (from 'Makefile', line 29):
 	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
 
 obj/etapa.o: src/etapa.cpp include/etapa.hpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'etapa'
-#  Last modified 2022-06-26 18:42:40.243331
+#  Last modified 2022-06-27 07:23:40.304214444
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 30):
+#  recipe to execute (from 'Makefile', line 29):
 	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
 
-libed: obj/util.o obj/float_vector.o obj/mytime.o obj/control.o obj/etapa.o obj/ingrediente.o obj/passo.o obj/receita.o obj/usuario.o
+libed: obj/util.o obj/mytime.o obj/control.o obj/etapa.o obj/ingrediente.o obj/passo.o obj/receita.o obj/usuario.o
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
 #  File does not exist.
@@ -382,18 +368,18 @@ libed: obj/util.o obj/float_vector.o obj/mytime.o obj/control.o obj/etapa.o obj/
 # automatic
 # * := 
 # automatic
-# + := obj/util.o obj/float_vector.o obj/mytime.o obj/control.o obj/etapa.o obj/ingrediente.o obj/passo.o obj/receita.o obj/usuario.o
+# + := obj/util.o obj/mytime.o obj/control.o obj/etapa.o obj/ingrediente.o obj/passo.o obj/receita.o obj/usuario.o
 # automatic
 # | := 
 # automatic
 # < := obj/util.o
 # automatic
-# ^ := obj/util.o obj/float_vector.o obj/mytime.o obj/control.o obj/etapa.o obj/ingrediente.o obj/passo.o obj/receita.o obj/usuario.o
+# ^ := obj/util.o obj/mytime.o obj/control.o obj/etapa.o obj/ingrediente.o obj/passo.o obj/receita.o obj/usuario.o
 # automatic
-# ? := obj/util.o obj/float_vector.o obj/mytime.o obj/control.o obj/etapa.o obj/ingrediente.o obj/passo.o obj/receita.o obj/usuario.o
+# ? := obj/util.o obj/mytime.o obj/control.o obj/etapa.o obj/ingrediente.o obj/passo.o obj/receita.o obj/usuario.o
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/13=8%
-#  recipe to execute (from 'Makefile', line 23):
+#  recipe to execute (from 'Makefile', line 22):
 	ar -rcs $(LIB)/libed.a $(OBJ)/*.o
 
 # Not a target:
@@ -404,8 +390,9 @@ libed: obj/util.o obj/float_vector.o obj/mytime.o obj/control.o obj/etapa.o obj/
 
 # Not a target:
 Makefile:
+ 
 #  Implicit rule search has been done.
-#  Last modified 2022-06-26 18:39:28.328854
+#  Last modified 2022-06-27 07:23:36.580487341
 #  File has been updated.
 #  Successfully updated.
 
@@ -426,10 +413,10 @@ src/util.cpp:
 obj/mytime.o: src/mytime.cpp include/mytime.hpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'mytime'
-#  Last modified 2022-06-26 18:42:38.227302
+#  Last modified 2022-06-27 07:23:38.40834525
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 30):
+#  recipe to execute (from 'Makefile', line 29):
 	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
 
 # Not a target:
@@ -449,19 +436,19 @@ src/ingrediente.cpp:
 obj/passo.o: src/passo.cpp include/passo.hpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'passo'
-#  Last modified 2022-06-26 18:42:41.239345
+#  Last modified 2022-06-27 07:23:41.324150789
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 30):
+#  recipe to execute (from 'Makefile', line 29):
 	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
 
 obj/receita.o: src/receita.cpp include/receita.hpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'receita'
-#  Last modified 2022-06-26 18:42:42.555363
+#  Last modified 2022-06-27 07:23:42.612076798
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 30):
+#  recipe to execute (from 'Makefile', line 29):
 	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
 
 # Not a target:
@@ -481,6 +468,7 @@ src/control.cpp:
 # Not a target:
 include/usuario.hpp:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2022-06-26 18:17:06.260939
 #  File has been updated.
 #  Successfully updated.
@@ -501,6 +489,7 @@ include/etapa.hpp:
 # Not a target:
 src/usuario.cpp:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2022-06-26 18:18:43.295353
 #  File has been updated.
 #  Successfully updated.
@@ -508,31 +497,23 @@ src/usuario.cpp:
 # Not a target:
 src/etapa.cpp:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2022-06-26 18:19:00.05177
 #  File has been updated.
 #  Successfully updated.
-
-obj/float_vector.o: src/float_vector.cpp include/float_vector.hpp
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'float_vector'
-#  Last modified 2022-06-26 18:42:38.139301
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 30):
-	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
 
 run:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 36):
+#  recipe to execute (from 'Makefile', line 35):
 	$(BIN)/main
 
 clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 39):
+#  recipe to execute (from 'Makefile', line 38):
 	rm -rf $(BIN)/* $(LIB)/* $(OBJ)/*
 
 # Not a target:
@@ -558,11 +539,10 @@ bin/main:
 obj/util.o: src/util.cpp include/util.hpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'util'
-#  Last modified 2022-06-26 18:47:37.215897
+#  Last modified 2022-06-27 07:23:29.088596693
 #  File has been updated.
 #  Successfully updated.
- 
-#  recipe to execute (from 'Makefile', line 30):
+#  recipe to execute (from 'Makefile', line 29):
 	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
 
 myapps: clean_apps bin/main
@@ -587,33 +567,34 @@ src/passo.cpp:
 clean_apps:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 42):
+#  recipe to execute (from 'Makefile', line 41):
 	rm -rf $(BIN)/*
 
 obj/ingrediente.o: src/ingrediente.cpp include/ingrediente.hpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'ingrediente'
-#  Last modified 2022-06-26 18:42:40.755338
+#  Last modified 2022-06-27 07:23:40.824181284
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 30):
+#  recipe to execute (from 'Makefile', line 29):
 	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
 
 # files hash-table stats:
-# Load=37/1024=4%, Rehash=0, Collisions=2/110=2%
+# Load=34/1024=3%, Rehash=0, Collisions=2/101=2%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 82 / storage = 957 B / avg = 11 B
-# current buf: size = 8162 B / used = 957 B / count = 82 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 76 / storage = 845 B / avg = 11 B
+# current buf: size = 8162 B / used = 845 B / count = 76 / avg = 11 B
 
-# strcache performance: lookups = 122 / hit rate = 32%
+# strcache performance: lookups = 114 / hit rate = 33%
 # hash-table stats:
-# Load=82/8192=1%, Rehash=0, Collisions=3/122=2%
-# Finished Make data base on Sun Jun 26 18:49:34 2022
+# Load=76/8192=1%, Rehash=0, Collisions=3/114=3%
+# Finished Make data base on Mon Jun 27 07:24:24 2022
 
  
