@@ -37,6 +37,7 @@ int main() {
             cout << "Informe o nome da receita: ";
             cin.ignore();
             getline(cin, nomeReceita);
+
             control->carregarReceitas(nomeReceita);
             //leonardo
                 //util->login(mysql);

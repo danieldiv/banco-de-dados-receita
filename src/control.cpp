@@ -98,21 +98,24 @@ void Control::carregarReceitas(string nomeReceita) {
 
     mysql_query(this->mysql, query.c_str());
     MYSQL_RES *resultado = mysql_store_result(mysql);
-    MYSQL_ROW linha;
 
-    Receita *rec;
+    if (mysql_num_rows(resultado) > 0) {
+        MYSQL_ROW linha;
+        Receita *rec;
 
-    while ((linha = mysql_fetch_row(resultado))) {
-        rec = new Receita(linha[0], linha[2], linha[3], linha[4]);
+        while ((linha = mysql_fetch_row(resultado))) {
+            rec = new Receita(linha[0], linha[2], linha[3], linha[4]);
 
-        if (linha[1] != NULL) buscarUsuarioPorId(rec, linha[1]);
+            if (linha[1] != NULL) buscarUsuarioPorId(rec, linha[1]);
 
-        buscarIngredientesDaReceita(rec);
-        buscarEtapasDaReceita(rec);
+            buscarIngredientesDaReceita(rec);
+            buscarEtapasDaReceita(rec);
 
-        this->receitas.push_back(*rec);
-    }
-    for (Receita r : receitas) r.toString();
+            this->receitas.push_back(*rec);
+        }
+        for (Receita r : receitas) r.toString();
+    } else
+        cout << "\nNenhuma receita encontrada" << endl;
     this->receitas.clear();
 }
 
