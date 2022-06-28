@@ -22,7 +22,7 @@ int main() {
     MYSQL *mysql = mysql_init(NULL);
     if (util->conexao_banco(mysql, host, usuario, senha, banco) == EXIT_FAILURE) return EXIT_FAILURE;
 
-    Control *control = new Control(mysql);
+    Control *control = new Control(mysql, util);
 
     // char nomeReceita[64], nomeIngrediente[64];
     string nomeReceita, nomeIngrediente;
@@ -117,7 +117,7 @@ int menu(Util *util) {
 void gerenciamento(MYSQL *mysql, Util *util) {
     int op;
 
-    Control *control = new Control(mysql);
+    Control *control = new Control(mysql, util);
 
     do {
         if (system("clear") == -1)cout << "erro no system" << endl;
@@ -141,6 +141,9 @@ void gerenciamento(MYSQL *mysql, Util *util) {
             break;
         case 6:
             control->carregarReceitas("");
+            break;
+        case 7:
+            control->removerIngrediente();
             break;
         case 0:
             delete control;

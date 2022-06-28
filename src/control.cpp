@@ -1,6 +1,9 @@
 #include "control.hpp"
 
-Control::Control(MYSQL *mysql) { this->mysql = mysql; }
+Control::Control(MYSQL *mysql, Util *util) {
+    this->mysql = mysql;
+    this->util = util;
+}
 
 Control::~Control() {}
 
@@ -18,6 +21,40 @@ void Control::adicionarIngrediente() {
         cout << "Ops... nao foi possivel cadastrar o ingrediente " << nome << "." << endl;
     else
         cout << "O ingrediente " << nome << " foi cadastrado com sucesso" << endl;
+}
+
+void Control::removerIngrediente() {
+    string query = "select * from ingredientes";
+    this->util->imprimeDados(this->mysql, query.c_str());
+
+    string id;
+
+    cout << "\nInforme o codigo do ingrediente para excluir: ";
+    cin.ignore();
+    getline(cin, id);
+
+    // ===============
+
+    query.assign("delete from ingredientes where id = ").append(id);
+    cout << "query: " << query << endl;
+    // this->util->imprimeDados(this->mysql, query.c_str());
+
+    // MYSQL *resultado = mysql_store_result(mysql);
+    cout << mysql_query(this->mysql, query.c_str()) << endl;
+
+    cout << mysql_affected_rows(this->mysql) << endl;
+
+    if (mysql_query(this->mysql, query.c_str()) != 0)
+        cout << "Nao foi possivel excluir o ingrediente" << endl;
+    else
+        cout << "Ingrediente removido com suceso" << endl;
+    // MYSQL_ROW linha;
+
+    // Ingrediente *ing;
+    // while ((linha = mysql_fetch_row(resultado))) {
+    //     ing = new Ingrediente(linha[1], linha[2], linha[3], linha[4]);
+    //     rec->setIngredientes(*ing);
+    // }
 }
 
 void Control::adicionarUsuario() {
