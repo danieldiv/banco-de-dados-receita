@@ -113,7 +113,7 @@ void Control::carregarReceitas(string nomeReceita) {
 
             this->receitas.push_back(*rec);
         }
-        for (Receita r : receitas) r.toString();
+        for (Receita r : this->receitas) r.toString();
     } else
         cout << "\nNenhuma receita encontrada" << endl;
     this->receitas.clear();
@@ -181,4 +181,51 @@ void Control::buscarPassosDaEtapa(Etapa *etapa) {
         Passo passo(linha[2], linha[3]);
         etapa->setPassos(passo);
     }
+}
+
+void Control::buscarReceitaPorIngrediente(string ingrediente) {
+    string query = "select receita_id from vw_receitas_ingredientes where nome like";
+    query.append(" '%").append(ingrediente).append("%' order by receita_id");
+
+    mysql_query(this->mysql, query.c_str());
+    MYSQL_RES *resultado = mysql_store_result(mysql);
+    MYSQL_ROW linha;
+
+    map<string, int> mapeamento;
+    map<string, int>::iterator itr;
+
+    while ((linha = mysql_fetch_row(resultado))) {
+        itr = mapeamento.find(linha[0]);
+
+        if (!(itr != mapeamento.end())) mapeamento.insert({ linha[0], 1 });
+    }
+
+    if (mapeamento.size() > 0) {
+        for (itr = mapeamento.begin(); itr != mapeamento.end(); itr++)
+            buscarReceitaPorId(itr->first);
+    } else cout << "\nNenhuma receita encontrada" << endl;
+}
+
+void Control::buscarReceitaPorId(string id) {
+    string query = "select * from receitas where id = ";
+    query.append(id);
+
+    mysql_query(this->mysql, query.c_str());
+    MYSQL_RES *resultado = mysql_store_result(mysql);
+    MYSQL_ROW linha;
+
+    Receita *rec;
+
+    while ((linha = mysql_fetch_row(resultado))) {
+        rec = new Receita(linha[0], linha[2], linha[3], linha[4]);
+
+        if (linha[1] != NULL) buscarUsuarioPorId(rec, linha[1]);
+
+        buscarIngredientesDaReceita(rec);
+        buscarEtapasDaReceita(rec);
+
+        this->receitas.push_back(*rec);
+    }
+    for (Receita r : this->receitas) r.toString();
+    this->receitas.clear();
 }

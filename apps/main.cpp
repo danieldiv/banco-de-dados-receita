@@ -25,7 +25,7 @@ int main() {
     Control *control = new Control(mysql);
 
     // char nomeReceita[64], nomeIngrediente[64];
-    string nomeReceita;
+    string nomeReceita, nomeIngrediente;
 
     int opcao;
     do {
@@ -38,7 +38,10 @@ int main() {
             cin.ignore();
             getline(cin, nomeReceita);
 
-            control->carregarReceitas(nomeReceita);
+            if (nomeReceita.length() > 0)
+                control->carregarReceitas(nomeReceita);
+            else
+                cout << "\nNao foi informada a receita" << endl;
             //leonardo
                 //util->login(mysql);
                 //deverá entrar com usuário com acesso só as receitas
@@ -50,6 +53,14 @@ int main() {
             // util->imprimeDados(mysql, "select * from receitas");
             break;
         case 2:
+            cout << "Informe o nome da receita: ";
+            cin.ignore();
+            getline(cin, nomeIngrediente);
+
+            if (nomeIngrediente.length() > 0)
+                control->buscarReceitaPorIngrediente(nomeIngrediente);
+            else
+                cout << "\nNao foi informado o ingrediente" << endl;
             //leonado
                 //util->login(mysql);
                 //Deverá entrar com usuáio com acesso só aos ingredientes

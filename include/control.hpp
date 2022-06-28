@@ -4,6 +4,7 @@
 #include <iostream>
 #include <mysql/mysql.h>
 #include <vector>
+#include <map>
 
 #include "receita.hpp"
 
@@ -30,6 +31,9 @@ public:
 
     void buscarEtapasDaReceita(Receita *rec);
     void buscarPassosDaEtapa(Etapa *etapa);
+
+    void buscarReceitaPorIngrediente(string ingrediente);
+    void buscarReceitaPorId(string id);
 };
 
 #endif
