@@ -22,7 +22,10 @@ int main() {
     MYSQL *mysql = mysql_init(NULL);
     if (util->conexao_banco(mysql, host, usuario, senha, banco) == EXIT_FAILURE) return EXIT_FAILURE;
 
+    Control *control = new Control(mysql);
+
     // char nomeReceita[64], nomeIngrediente[64];
+    string nomeReceita;
 
     int opcao;
     do {
@@ -31,6 +34,10 @@ int main() {
 
         switch (opcao) {
         case 1:
+            cout << "Informe o nome da receita: ";
+            cin.ignore();
+            getline(cin, nomeReceita);
+            control->carregarReceitas(nomeReceita);
             //leonardo
                 //util->login(mysql);
                 //deverá entrar com usuário com acesso só as receitas
@@ -63,8 +70,11 @@ int main() {
             break;
         case 0:
             printf("Até logo!\n\n");
-            mysql_close(mysql);
+
             delete util;
+            delete control;
+            mysql_close(mysql);
+
             return EXIT_SUCCESS;
         default:
             printf("opção invalida...\n");
@@ -94,6 +104,7 @@ int menu(Util *util) {
 
 void gerenciamento(MYSQL *mysql, Util *util) {
     int op;
+
     Control *control = new Control(mysql);
 
     do {
@@ -117,7 +128,7 @@ void gerenciamento(MYSQL *mysql, Util *util) {
             control->adicionarReceita(to_string(util->getId()));
             break;
         case 6:
-            control->carregarReceitas();
+            control->carregarReceitas("");
             break;
         case 0:
             delete control;

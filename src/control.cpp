@@ -92,8 +92,9 @@ void Control::adicionarReceita(string id_usuario) {
         cout << "A receita " << nome << " foi cadastrado com sucesso" << endl;
 }
 
-void Control::carregarReceitas() {
-    string query = "select * from receitas order by nome";
+void Control::carregarReceitas(string nomeReceita) {
+    string query = "select * from receitas";
+    query.append(" where nome like '%").append(nomeReceita).append("%'");
 
     mysql_query(this->mysql, query.c_str());
     MYSQL_RES *resultado = mysql_store_result(mysql);
@@ -112,6 +113,7 @@ void Control::carregarReceitas() {
         this->receitas.push_back(*rec);
     }
     for (Receita r : receitas) r.toString();
+    this->receitas.clear();
 }
 
 void Control::buscarIngredientesDaReceita(Receita *rec) {

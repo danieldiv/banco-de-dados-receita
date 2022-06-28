@@ -1,15 +1,7 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory '/home/daniel/Documentos/banco-de-dados-receita'
-g++ -O3 -Wall -c src/util.cpp -I ./include -o obj/util.o
-g++ -O3 -Wall -c src/mytime.cpp -I ./include -o obj/mytime.o
-g++ -O3 -Wall -c src/control.cpp -I ./include -o obj/control.o
-g++ -O3 -Wall -c src/etapa.cpp -I ./include -o obj/etapa.o
-g++ -O3 -Wall -c src/ingrediente.cpp -I ./include -o obj/ingrediente.o
-g++ -O3 -Wall -c src/passo.cpp -I ./include -o obj/passo.o
-g++ -O3 -Wall -c src/receita.cpp -I ./include -o obj/receita.o
-g++ -O3 -Wall -c src/usuario.cpp -I ./include -o obj/usuario.o
 ar -rcs ./lib/libed.a ./obj/*.o
+ 
 rm -rf ./bin/*
-g++ -O3 -Wall apps/main.cpp -lm -led -L ./lib -lmysqlclient -I ./include -o bin/main
 make: Leaving directory '/home/daniel/Documentos/banco-de-dados-receita'
  

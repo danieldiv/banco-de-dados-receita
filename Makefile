@@ -39,3 +39,5 @@ clean:
 
 clean_apps:
 	rm -rf $(BIN)/*
+
+r: all run
