@@ -139,7 +139,11 @@ int menuGerenciamento() {
     cout << "[3] Cadastrar Usuario" << endl;
     cout << "[4] Imprimir Usuarios" << endl;
     cout << "[5] Castrar receita" << endl;
-    cout << "[6] Imprimir receitas" << endl;
+    cout << "[6] Imprimir receitas" << endl << endl;
+
+    cout << "[7] Remover ingrediente" << endl;
+    cout << "[8] Remover usuario" << endl;
+    cout << "[9] Remover receita" << endl;
     cout << "[0] Voltar" << endl << endl;
     cout << ">>> ";
 
