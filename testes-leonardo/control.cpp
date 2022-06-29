@@ -49,76 +49,13 @@ void Control::removerReceitaEmCascata() {
 
     // assumindo que o id exista
 
-    string queryIngredientes = "select receita_id, ingrediente_id from receitas_ingredientes where receita_id = ";
+    string queryIngredientes = "select * from receitas_ingredientes where receita_id = ";
     queryIngredientes.append(id);
 
-    // getUtil()->imprimeDados(getMysql(), queryIngredientes.c_str());
+    getUtil()->imprimeDados(getMysql(), queryIngredientes.c_str());
 
     // buscarIngredientesDaReceita(rec);
     // buscarEtapasDaReceita(rec);
-
-    mysql_query(getMysql(), queryIngredientes.c_str());
-    MYSQL_RES *resultado = mysql_store_result(mysql);
-    MYSQL_ROW linha;
-
-    if (resultado == NULL) {
-        cout << "Query invalida" << endl;
-    } else if (mysql_affected_rows(mysql) == 0) {
-        cout << "Nao possui ingredientes nesta receita" << endl;
-    }
-
-    while ((linha = mysql_fetch_row(resultado))) {
-        query.assign("delete from receitas_ingredientes where receita_id = ")
-            .append(id).append(" and ingrediente_id = ").append(linha[1]);
-        // cout << "query: " << query << endl;
-        removerLinha(query);
-    }
-
-    string queryEtapas = "select receita_id, numero from receitas_etapas where receita_id = ";
-    queryEtapas.append(id);
-
-    // getUtil()->imprimeDados(getMysql(), queryEtapas.c_str());
-
-    mysql_query(getMysql(), queryEtapas.c_str());
-    resultado = mysql_store_result(mysql);
-
-    if (resultado == NULL) {
-        cout << "Query invalida" << endl;
-    } else if (mysql_affected_rows(mysql) == 0) {
-        cout << "Nao possui etapas nesta receita" << endl;
-    }
-
-    while ((linha = mysql_fetch_row(resultado))) {
-        // query.assign("delete from receitas_ingredientes where receita_id = ")
-        //     .append(id).append(" and numero = ").append(linha[1]);
-        // cout << "query: " << query << endl;
-        // removerLinha(query);
-
-        string queryPassosDaEtapa = "select receita_id, etapa_numero, sequencia from receitas_passos where receita_id = ";
-        queryPassosDaEtapa.append(id).append(" and etapa_numero = ").append(linha[1]);
-
-        // getUtil()->imprimeDados(getMysql(), queryEtapas.c_str());
-
-        mysql_query(getMysql(), queryPassosDaEtapa.c_str());
-        MYSQL_RES *resultado2 = mysql_store_result(mysql);
-        MYSQL_ROW linha2;
-
-        // cout << "query etapas: " << queryEtapas << endl;
-        // cout << "query passos:" << queryPassosDaEtapa << endl;
-
-        while ((linha2 = mysql_fetch_row(resultado2))) {
-            queryPassosDaEtapa.assign("delete from receitas_passos where receita_id = ")
-                .append(id).append(" and etapa_numero = ").append(linha2[1])
-                .append(" and sequencia = ").append(linha2[2]);
-            removerLinha(queryPassosDaEtapa);
-        }
-        queryEtapas.assign("delete from receitas_etapas where receita_id = ")
-            .append(id).append(" and numero = ").append(linha[1]);
-        // cout << "query: " << queryEtapas << endl;
-        removerLinha(queryEtapas);
-    }
-    query.assign("delete from receitas where id = ").append(id);
-    removerLinha(query);
 }
 
 void Control::adicionarIngrediente() {
@@ -209,45 +146,6 @@ void Control::adicionarReceita(string id_usuario) {
         cout << "A receita " << nome << " foi cadastrado com sucesso" << endl;
 }
 
-
-/* 
-[Thomás]:
-
-- Dando erro ao cadastrar
-* Arrumar como é passado o id da Receita, 
-* Se der certo criar opção de adicionar mais ingredientes à receita
-*/
-void Control::adicionarIngredienteReceitas(string id_usuario) {
-    string id_ingrediente;
-    string quantidade;
-    string unidade;
-
-    string query;
-
-    cout << endl <<  "[Adicionando Ingredientes à receita]" << endl << endl;
-    cout << "Informe id do ingrediente: ";
-    cin.ignore();
-    getline(cin, id_ingrediente);
-
-    cout << "Informe a quantidade: ";
-    getline(cin, quantidade);
-
-    cout << "Informe a unidade: ";
-    getline(cin, unidade);
-
-    query.assign("INSERT INTO receitas_ingredientes(receita_id,ingrediente_id, quantidade, unidade) VALUES ")
-        .append("(").append(id_usuario).append(",'")
-        .append(id_ingrediente).append("','")
-        .append(quantidade).append("','")
-        .append(unidade).append("');");
-
-    if (mysql_query(getMysql(), query.c_str()) != 0)
-        cout << "Ops... nao foi possivel cadastrar ingrediente à receita." << endl;
-    else
-        cout << "O ingrediente foi cadastrado na receita com sucesso" << endl;
-}
-
-
 void Control::carregarReceitas(string nomeReceita) {
     string query = "select * from receitas";
     query.append(" where nome like '%").append(nomeReceita).append("%'");
@@ -260,7 +158,7 @@ void Control::carregarReceitas(string nomeReceita) {
         Receita *rec;
 
         while ((linha = mysql_fetch_row(resultado))) {
-            rec = new Receita(linha[0], linha[2], linha[3], linha[4]);
+            rec = new Receita(linha[0], linha[2], linha[3], linha[4]/*, linha[5], linha[6], linha[7]*/);
 
             if (linha[1] != NULL) buscarUsuarioPorId(rec, linha[1]);
 
@@ -372,7 +270,7 @@ void Control::buscarReceitaPorId(string id) {
     Receita *rec;
 
     while ((linha = mysql_fetch_row(resultado))) {
-        rec = new Receita(linha[0], linha[2], linha[3], linha[4]);
+        rec = new Receita(linha[0], linha[2], linha[3], linha[4]/*, linha[5], linha[6], linha[7]*/);
 
         if (linha[1] != NULL) buscarUsuarioPorId(rec, linha[1]);
 
