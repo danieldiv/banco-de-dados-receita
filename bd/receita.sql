@@ -3,7 +3,7 @@ create database cefet_receitas;
 use cefet_receitas;
 
 create table usuarios(
-	id binary(16) primary key,
+	id int primary key auto_increment,
 	nome varchar(64) not null,
 	telefone char(11) not null unique,
 	email varchar(128) not null unique,
@@ -12,9 +12,10 @@ create table usuarios(
 	foto varchar(128) not null
 );
 
+
 create table credenciais(
-	id binary(16) primary key,
-	senha binary(32) not null,
+	id int primary key,
+	senha varchar(32) not null,
 	foreign key (id) references usuarios(id)
 );
 
@@ -25,7 +26,7 @@ create table ingredientes(
 
 create table receitas(
 	id int primary key auto_increment,
-	usuario_id binary(16),
+	usuario_id int,
 	nome varchar(128) not null,
 	rendimento int not null,
 	tempo int not null,
@@ -62,13 +63,13 @@ create table receitas_passos (
 	receita_id int,
 	etapa_numero int not null,
 	sequencia int not null,
-	instrucao varchar(128) not null,
+	instrucao text not null,
 	primary key (receita_id, etapa_numero, sequencia),
 	foreign key (receita_id, etapa_numero) references receitas_etapas (receita_id, numero)
 );
 
 create table comentarios(
-	usuario_id binary(16) not null,
+	usuario_id int not null,
 	receita_id int not null,
 	data_hora timestamp not null,
 	mensagem text,
@@ -78,7 +79,7 @@ create table comentarios(
 );
 
 create table curtidas(
-	usuario_id binary(16) not null,
+	usuario_id int not null,
 	receita_id int not null,
 	estrelas int not null,
 	primary key(usuario_id, receita_id),
@@ -87,14 +88,21 @@ create table curtidas(
 );
 
 create table receitas_salvas(
-	usuario_id binary(16) not null,
+	usuario_id int not null,
 	receita_id int not null,
 	primary key(usuario_id, receita_id),
 	foreign key(usuario_id) references usuarios(id),
 	foreign key(receita_id) references receitas(id)
 );
 
+insert into usuarios (nome, telefone, email, cidade, estado, foto)values('admin', '12345678911', 'admin@email.com', 'divinopolis', 'MG', 'descricao da foto');
 
+insert into credenciais (id, senha) values (1, '123456');
+
+
+CREATE VIEW `vw_receitas_ingredientes` AS select `ri`.`receita_id` AS `receita_id`,`ri`.`ingrediente_id` AS `ingrediente_id`,`i`.`nome` AS `nome`,`ri`.`quantidade` AS `quantidade`,`ri`.`unidade` AS `unidade` from (`receitas_ingredientes` `ri` left join `ingredientes` `i` on((`i`.`id` = `ri`.`ingrediente_id`)));
+
+/*
 -- Receita: Patê de frango 
 -- Receita: Bolo de chocolate
 -- Receita: Pizza de marguerita
@@ -103,10 +111,12 @@ create table receitas_salvas(
 -- Receita: Bolo de chocolate de caneca
 -- Receita: Fricassê de frango
 -- Receita: Panqueca
-
 -------------------------------------------------------------------------
 ------------------------- Receita: Brigadeiro ---------------------------
 -------------------------------------------------------------------------
+*/
+
+USE cefet_receitas;
 
 INSERT INTO ingredientes(id,nome) VALUES 
 	(1,'Leite condensado'),
@@ -134,11 +144,13 @@ INSERT INTO receitas_passos( receita_id,etapa_numero, sequencia, instrucao ) VAL
     (1,2,2,'Faça pequenas bolas de brigadeiro com as mãos.'),
     (1,2,3,'Passe as bolas de brigadeiro no chocolate granulado');
     
-SELECT * FROM receitas;
+/*
+-- SELECT * FROM receitas;
 
 -------------------------------------------------------------------------
 ------------------------- Receita: Patê de Frango -----------------------
 -------------------------------------------------------------------------
+*/
    
 INSERT INTO ingredientes(id,nome) VALUES 
 	(6,'Peito de frango cozido e desfiado'),
@@ -166,9 +178,11 @@ INSERT INTO receitas_passos( receita_id,etapa_numero, sequencia, instrucao ) VAL
 	(2,1,3,'Sirva o patê em uma travessa');
 
 
+/*
 -------------------------------------------------------------------------
 ---------------------- Receita: Bolo de Chocolate -----------------------
 -------------------------------------------------------------------------
+*/
 
 
 INSERT INTO ingredientes(id,nome) VALUES 
@@ -185,9 +199,9 @@ INSERT INTO receitas(id,nome,rendimento,tempo) VALUES
     
 INSERT INTO receitas_ingredientes(receita_id,ingrediente_id,quantidade,unidade) VALUES
 	(3,11,4,'unidades'),
-    (3,12,'meia','xícara de chá'),
+    (3,12,1,'meia xícara de chá'),
     (3,13,1,'xícara de chá'),
-    (3,14,1,'duas e meia','xícara de chá'),
+    (3,14,1,'duas e meia xícara de chá'),
     (3,15,1,'xícara de chá'),
    	(3,16,1,'colher de sopa');
     
@@ -208,13 +222,15 @@ INSERT INTO receitas_passos( receita_id,etapa_numero, sequencia, instrucao ) VAL
     (3,2,3,'Desligue e jogue imediatamente em cima do bolo');
    
    
+/*
 -------------------------------------------------------------------------
 ---------------------- Receita: Pizza de marguerita ---------------------
 -------------------------------------------------------------------------
+*/
    
 INSERT INTO ingredientes(id,nome) VALUES 
-	(18,'Fermento biológico fresco')
-	(19,'Molho de tomate');
+	(18,'Fermento biológico fresco'),
+	(19,'Molho de tomate'),
 	(20,'Orégano'),
 	(21,'Manjericão'),
 	(22,'Tomate em rodelas'),
@@ -248,22 +264,23 @@ INSERT INTO receitas_passos( receita_id,etapa_numero, sequencia, instrucao ) VAL
     (4,1,3,'Colocar a farinha de trigo em uma vasilha grande e cavar um buraco no meio. Acrescentar neste buraco a mistura do fermento, o azeite e a água salgada'),
     (4,1,4,'Acrescentar o restante da água aos poucos.'),
     (4,1,5,'Sovar bem a massa e fazer uma bola.'),
-    (4,1,6,'Cobrir a massa com um pano de prato e deixar descansando por 2 horas.');
+    (4,1,6,'Cobrir a massa com um pano de prato e deixar descansando por 2 horas.'),
    	(4,2,1,'Forrar com azeite (cerca de 2 colheres de sopa) uma assadeira redonda para pizza, pegar a metade da massa e abrir com as mãos sobre a assadeira.'),
    	(4,2,2,'Colocar o molho de tomate sobre a massa, depois orégano, a mussarela, tomates e por fim jogue manjericão.'),
    	(4,2,3,'Regar com azeite. Assar em forno pré-aquecido em temperatura alta por cerca de 15 minutos.');
     
+/*
 SELECT * FROM receitas;
 
 -------------------------------------------------------------------------
 ------------------- Receita: Strogonoff de frango------------------------
 -------------------------------------------------------------------------
+*/
 
 INSERT INTO ingredientes(id,nome) VALUES 
 	(25,'Peitos de frango cortados em cubos'),
     (26,'Alho picado'),
     (27,'Pimenta'),
-	(28,'Maionese'),
 	(29,'Cebola picada'),
 	(30,'Ketchup'),
 	(31,'Mostarda'),
@@ -279,14 +296,14 @@ INSERT INTO receitas_ingredientes(receita_id,ingrediente_id,quantidade,unidade) 
 	(5,26,1,'unidade'),
 	(5,10,1,'a gosto'),
 	(5,27,1,'a gosto'),
-	(5,28,2,'colher de sopa'),
+	(5, 8,2,'colher de sopa'),
 	(5,32,1,'copo'),
 	(5,33,1,'copo'),
 	(5,34,1,'a gosto');
     
     
 INSERT INTO receitas_etapas(receita_id,numero,titulo) VALUES
-	(5,1,'Preparação do strogonoff'),
+	(5,1,'Preparação do strogonoff');
 
     
 INSERT INTO receitas_passos( receita_id,etapa_numero, sequencia, instrucao ) VALUES
@@ -297,13 +314,13 @@ INSERT INTO receitas_passos( receita_id,etapa_numero, sequencia, instrucao ) VAL
     (5,1,5,'Incorpore o creme de leite e retire do fogo antes de ferver.'),
    	(5,1,6,'Sirva com arroz branco e batata palha.');
     
-SELECT * FROM receitas;
-
-
+/*
+-- SELECT * FROM receitas;
 
 -------------------------------------------------------------------------
 ---------------------- Receita: Palha italiana --------------------------
 -------------------------------------------------------------------------
+*/
 
 INSERT INTO ingredientes(id,nome) VALUES 
 	(35,'Biscoito maisena');
@@ -328,10 +345,11 @@ INSERT INTO receitas_passos( receita_id,etapa_numero, sequencia, instrucao ) VAL
     (6,1,5,'Abra a massa, batendo com a palma das mãos.'),
     (6,1,6,'Deixe esfriar e corte em quadradinhos');
    
+/*
 -------------------------------------------------------------------------
 ------------------ Receita: Bolo de chocolate de caneca -----------------
 -------------------------------------------------------------------------
-   
+*/ 
    
 INSERT INTO ingredientes(id,nome) VALUES 
 	(36,'Leite');
@@ -343,7 +361,7 @@ INSERT INTO receitas_ingredientes(receita_id,ingrediente_id,quantidade,unidade) 
 	(7,11,1,'unidade'),
     (7,36,5,'colher de sopa'),
     (7,12,3,'colher de sopa'),
-    (7,15,'duas e meia','colher de sopa'),
+    (7,15,1,'colher de sopa'),
     (7,17,4,'colher de sopa'),
     (7,14,3,'colher de sopa'),
     (7,18,1,'colher de café'),
@@ -360,16 +378,16 @@ INSERT INTO receitas_passos( receita_id,etapa_numero, sequencia, instrucao ) VAL
     (7,1,4,'Leve ao microondas por 3 minutos, na potência máxima.'),
     (7,2,1,'Para a calda misture os ingredientes e leve ao microondas por 30 segundos.');
    
-   
+/*
 -------------------------------------------------------------------------
 --------------------- Receita: Fricassê de grangp -----------------------
 -------------------------------------------------------------------------
+*/
    
  INSERT INTO ingredientes(id,nome) VALUES 
-	(37,'creme de leite'),
 	(38,'milho'),
 	(39,'requeijão cremoso'),
-	(40, 'azeitona sem caroço'),
+	(40,'azeitona sem caroço'),
 	(41,'peito de frango desfiado'),
 	(42,'água');
 	
@@ -378,7 +396,7 @@ INSERT INTO receitas(id,nome,rendimento,tempo) VALUES
 	(8,'Fricassê de frango', 5, 30);
     
 INSERT INTO receitas_ingredientes(receita_id,ingrediente_id,quantidade,unidade) VALUES
-	(8,37,1,'lata'),
+	(8,33,1,'lata'),
     (8,38,1,'lata'),
     (8,39,1,'copo'),
     (8,40,100,'gramas'),
@@ -398,12 +416,11 @@ INSERT INTO receitas_passos( receita_id,etapa_numero, sequencia, instrucao ) VAL
     (8,1,4,'Leve ao forno até borbulhar.'),
     (8,1,5,'Sirva com arroz branco.');
   
-
-   
+/* 
 -------------------------------------------------------------------------
 ------------------------ Receita: Massa de Panqueca ---------------------
 -------------------------------------------------------------------------
-   
+*/ 
  
     
 INSERT INTO receitas(id,nome,rendimento,tempo) VALUES 
