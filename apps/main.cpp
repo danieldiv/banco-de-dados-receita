@@ -136,6 +136,9 @@ void gerenciamento(MYSQL *mysql, Util *util) {
         case 10:
             control->removerReceitaEmCascata();
             break;
+        case 12:
+            control->adicionarIngredienteReceitas();
+            break;
         case 0:
             delete control;
             return;
@@ -162,21 +165,8 @@ int menuGerenciamento() {
     cout << "[ 8] Remover Usuario" << endl;
     cout << "[ 9] Remover Receita" << endl;
     cout << "[10] Remover Receita em cascata" << endl;
+    cout << "[12] Adicionar ingrediente na receita" << endl;
     cout << "[ 0] Voltar" << endl << endl;
-    cout << ">>> ";
-
-    cin >> opcao;
-
-    return opcao;
-}
-
-int menuExclusao() {
-    int opcao;
-
-    cout << "MENU DE ESCLUSAO" << endl << endl;
-    cout << "[1] remover receita" << endl;
-    cout << "[2] remover ingrediente" << endl;
-    cout << "[3] remover usuario" << endl;
     cout << ">>> ";
 
     cin >> opcao;
