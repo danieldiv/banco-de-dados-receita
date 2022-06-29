@@ -16,28 +16,33 @@ private:
     vector<Receita> receitas;
     MYSQL *mysql;
     Util *util;
-
-    // Usuario usuario;
 public:
     Control(MYSQL *mysql, Util *util);
     ~Control();
 
+    MYSQL *getMysql();
+    Util *getUtil();
+
+    void removerLinha(string query);
+    void construirQueryRemocao(string tabela);
+
     void adicionarIngrediente();
-    void removerIngrediente();
 
     void adicionarUsuario();
-    void adicionarReceita(string id_usuario);
-
-    void carregarReceitas(string nomeReceita);
-    void buscarIngredientesDaReceita(Receita *rec);
-
     void buscarUsuarioPorId(Receita *rec, string id);
 
+    void adicionarReceita(string id_usuario);
+    void carregarReceitas(string nomeReceita);
+    void buscarIngredientesDaReceita(Receita *rec);
     void buscarEtapasDaReceita(Receita *rec);
     void buscarPassosDaEtapa(Etapa *etapa);
-
     void buscarReceitaPorIngrediente(string ingrediente);
     void buscarReceitaPorId(string id);
+
+    void removerReceitaEmCascata();
+    void removerIngredientesDaReceita(Receita *rec);
+    void removerEtapasDaReceita(Receita *rec);
+    void removerPassosDaEtapa(Etapa *etapa);
 };
 
 #endif

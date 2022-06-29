@@ -93,6 +93,14 @@ void Util::imprimeDados(MYSQL *mysql, const char *query) {
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;
 
+    if (resultado == NULL) {
+        cout << "Query invalida" << endl;
+        return;
+    } else if (mysql_affected_rows(mysql) == 0) {
+        cout << "Empty set" << endl;
+        return;
+    }
+
     int n_col = mysql_num_fields(resultado);
     int aux_nCol;
 

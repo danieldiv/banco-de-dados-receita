@@ -7,6 +7,57 @@ Control::Control(MYSQL *mysql, Util *util) {
 
 Control::~Control() {}
 
+MYSQL *Control::getMysql() { return this->mysql; }
+Util *Control::getUtil() { return this->util; }
+
+void Control::removerLinha(string query) {
+    if (mysql_query(getMysql(), query.c_str()) != 0)
+        cout << "Nao foi possivel excluir a linha" << endl;
+    else {
+        if (mysql_affected_rows(getMysql()) != 0)
+            cout << "Linha removida com sucesso" << endl;
+        else
+            cout << "Nenhuma linha afetada" << endl;
+    }
+}
+
+void Control::construirQueryRemocao(string tabela) {
+    string query = "select * from ";
+    query.append(tabela);
+
+    getUtil()->imprimeDados(getMysql(), query.c_str());
+
+    string id;
+
+    cout << "\nInforme o codigo da tabela (" << tabela << ") para excluir: ";
+    cin.ignore();
+    getline(cin, id);
+
+    query.assign("delete from ").append(tabela).append(" where id = ").append(id);
+    removerLinha(query);
+}
+
+void Control::removerReceitaEmCascata() {
+    string query = "select id, nome from receitas";
+    getUtil()->imprimeDados(getMysql(), query.c_str());
+
+    string id;
+
+    cout << "\nInforme o codigo da receita para excluir: ";
+    cin.ignore();
+    getline(cin, id);
+
+    // assumindo que o id exista
+
+    string queryIngredientes = "select * from receitas_ingredientes where receita_id = ";
+    queryIngredientes.append(id);
+
+    getUtil()->imprimeDados(getMysql(), queryIngredientes.c_str());
+
+    // buscarIngredientesDaReceita(rec);
+    // buscarEtapasDaReceita(rec);
+}
+
 void Control::adicionarIngrediente() {
     string nome;
     string query;
@@ -17,44 +68,10 @@ void Control::adicionarIngrediente() {
 
     query.assign("INSERT INTO ingredientes (nome) VALUES ('").append(nome).append("');");
 
-    if (mysql_query(this->mysql, query.c_str()) != 0)
+    if (mysql_query(getMysql(), query.c_str()) != 0)
         cout << "Ops... nao foi possivel cadastrar o ingrediente " << nome << "." << endl;
     else
         cout << "O ingrediente " << nome << " foi cadastrado com sucesso" << endl;
-}
-
-void Control::removerIngrediente() {
-    string query = "select * from ingredientes";
-    this->util->imprimeDados(this->mysql, query.c_str());
-
-    string id;
-
-    cout << "\nInforme o codigo do ingrediente para excluir: ";
-    cin.ignore();
-    getline(cin, id);
-
-    // ===============
-
-    query.assign("delete from ingredientes where id = ").append(id);
-    cout << "query: " << query << endl;
-    // this->util->imprimeDados(this->mysql, query.c_str());
-
-    // MYSQL *resultado = mysql_store_result(mysql);
-    cout << mysql_query(this->mysql, query.c_str()) << endl;
-
-    cout << mysql_affected_rows(this->mysql) << endl;
-
-    if (mysql_query(this->mysql, query.c_str()) != 0)
-        cout << "Nao foi possivel excluir o ingrediente" << endl;
-    else
-        cout << "Ingrediente removido com suceso" << endl;
-    // MYSQL_ROW linha;
-
-    // Ingrediente *ing;
-    // while ((linha = mysql_fetch_row(resultado))) {
-    //     ing = new Ingrediente(linha[1], linha[2], linha[3], linha[4]);
-    //     rec->setIngredientes(*ing);
-    // }
 }
 
 void Control::adicionarUsuario() {
@@ -94,7 +111,7 @@ void Control::adicionarUsuario() {
         .append(estado).append("','")
         .append(foto).append("');");
 
-    if (mysql_query(this->mysql, query.c_str()) != 0)
+    if (mysql_query(getMysql(), query.c_str()) != 0)
         cout << "Ops... nao foi possivel cadastrar o usuario " << nome << "." << endl;
     else
         cout << "O usuario " << nome << " foi cadastrado com sucesso" << endl;
@@ -123,7 +140,7 @@ void Control::adicionarReceita(string id_usuario) {
         .append(rendimento).append("','")
         .append(tempo).append("');");
 
-    if (mysql_query(this->mysql, query.c_str()) != 0)
+    if (mysql_query(getMysql(), query.c_str()) != 0)
         cout << "Ops... nao foi possivel cadastrar a receita " << nome << "." << endl;
     else
         cout << "A receita " << nome << " foi cadastrado com sucesso" << endl;
@@ -133,7 +150,7 @@ void Control::carregarReceitas(string nomeReceita) {
     string query = "select * from receitas";
     query.append(" where nome like '%").append(nomeReceita).append("%'");
 
-    mysql_query(this->mysql, query.c_str());
+    mysql_query(getMysql(), query.c_str());
     MYSQL_RES *resultado = mysql_store_result(mysql);
 
     if (mysql_num_rows(resultado) > 0) {
@@ -160,7 +177,7 @@ void Control::buscarIngredientesDaReceita(Receita *rec) {
     string query = "select * from vw_receitas_ingredientes where receita_id = ";
     query.append(rec->getId());
 
-    mysql_query(this->mysql, query.c_str());
+    mysql_query(getMysql(), query.c_str());
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;
 
@@ -175,7 +192,7 @@ void Control::buscarUsuarioPorId(Receita *rec, string id) {
     string query = "select id, nome from usuarios where id = ";
     query.append(id);
 
-    mysql_query(this->mysql, query.c_str());
+    mysql_query(getMysql(), query.c_str());
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;
 
@@ -192,7 +209,7 @@ void Control::buscarEtapasDaReceita(Receita *rec) {
     string query = "select * from receitas_etapas where receita_id = ";
     query.append(rec->getId());
 
-    mysql_query(this->mysql, query.c_str());
+    mysql_query(getMysql(), query.c_str());
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;
 
@@ -210,7 +227,7 @@ void Control::buscarPassosDaEtapa(Etapa *etapa) {
         .append(" and ")
         .append("etapa_numero = ").append(etapa->getNumero());
 
-    mysql_query(this->mysql, query.c_str());
+    mysql_query(getMysql(), query.c_str());
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;
 
@@ -224,7 +241,7 @@ void Control::buscarReceitaPorIngrediente(string ingrediente) {
     string query = "select receita_id from vw_receitas_ingredientes where nome like";
     query.append(" '%").append(ingrediente).append("%' order by receita_id");
 
-    mysql_query(this->mysql, query.c_str());
+    mysql_query(getMysql(), query.c_str());
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;
 
@@ -233,7 +250,6 @@ void Control::buscarReceitaPorIngrediente(string ingrediente) {
 
     while ((linha = mysql_fetch_row(resultado))) {
         itr = mapeamento.find(linha[0]);
-
         if (!(itr != mapeamento.end())) mapeamento.insert({ linha[0], 1 });
     }
 
@@ -247,7 +263,7 @@ void Control::buscarReceitaPorId(string id) {
     string query = "select * from receitas where id = ";
     query.append(id);
 
-    mysql_query(this->mysql, query.c_str());
+    mysql_query(getMysql(), query.c_str());
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;
 

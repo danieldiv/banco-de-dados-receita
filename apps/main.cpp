@@ -8,6 +8,7 @@
 int menu(Util *util);
 void gerenciamento(MYSQL *mysql, Util *util);
 int menuGerenciamento();
+int menuExclusao();
 
 int main() {
     Util *util = new Util;
@@ -24,7 +25,6 @@ int main() {
 
     Control *control = new Control(mysql, util);
 
-    // char nomeReceita[64], nomeIngrediente[64];
     string nomeReceita, nomeIngrediente;
 
     int opcao;
@@ -42,15 +42,6 @@ int main() {
                 control->carregarReceitas(nomeReceita);
             else
                 cout << "\nNao foi informada a receita" << endl;
-            //leonardo
-                //util->login(mysql);
-                //deverá entrar com usuário com acesso só as receitas
-            // printf("\nPesquisar receita por nome\n\n");
-            // printf("Digite o nome da receita: ");
-            // scanf(" %[^\n]", nomeReceita);
-            // printf("Resultado: \n");
-            //procura receita especifica
-            // util->imprimeDados(mysql, "select * from receitas");
             break;
         case 2:
             cout << "Informe o nome da receita: ";
@@ -61,15 +52,6 @@ int main() {
                 control->buscarReceitaPorIngrediente(nomeIngrediente);
             else
                 cout << "\nNao foi informado o ingrediente" << endl;
-            //leonado
-                //util->login(mysql);
-                //Deverá entrar com usuáio com acesso só aos ingredientes
-            // printf("Pesquisar receita por engrediente\n");
-            // printf("Digite o ingrediente que deseja: ");
-            // scanf(" %[^\n]", nomeIngrediente);
-            // printf("Resultado: \n");
-            //procura ingrediente especifico
-            // util->imprimeDados(mysql, "select * from receitas");
             break;
         case 3:
             util->login(mysql);
@@ -143,7 +125,16 @@ void gerenciamento(MYSQL *mysql, Util *util) {
             control->carregarReceitas("");
             break;
         case 7:
-            control->removerIngrediente();
+            control->construirQueryRemocao("ingredientes");
+            break;
+        case 8:
+            control->construirQueryRemocao("usuarios");
+            break;
+        case 9:
+            control->construirQueryRemocao("receitas");
+            break;
+        case 10:
+            control->removerReceitaEmCascata();
             break;
         case 0:
             delete control;
@@ -160,17 +151,32 @@ int menuGerenciamento() {
     int opcao;
 
     cout << "MENU GERENCIAMENTO" << endl << endl;
-    cout << "[1] Cadastrar Ingrediente" << endl;
-    cout << "[2] Imprimir Ingredientes" << endl;
-    cout << "[3] Cadastrar Usuario" << endl;
-    cout << "[4] Imprimir Usuarios" << endl;
-    cout << "[5] Castrar receita" << endl;
-    cout << "[6] Imprimir receitas" << endl << endl;
+    cout << "[ 1] Cadastrar Ingrediente" << endl;
+    cout << "[ 2] Imprimir Ingredientes" << endl;
+    cout << "[ 3] Cadastrar Usuario" << endl;
+    cout << "[ 4] Imprimir Usuarios" << endl;
+    cout << "[ 5] Castrar Receita" << endl;
+    cout << "[ 6] Imprimir Receitas" << endl << endl;
 
-    cout << "[7] Remover ingrediente" << endl;
-    cout << "[8] Remover usuario" << endl;
-    cout << "[9] Remover receita" << endl;
-    cout << "[0] Voltar" << endl << endl;
+    cout << "[ 7] Remover Ingrediente" << endl;
+    cout << "[ 8] Remover Usuario" << endl;
+    cout << "[ 9] Remover Receita" << endl;
+    cout << "[10] Remover Receita em cascata" << endl;
+    cout << "[ 0] Voltar" << endl << endl;
+    cout << ">>> ";
+
+    cin >> opcao;
+
+    return opcao;
+}
+
+int menuExclusao() {
+    int opcao;
+
+    cout << "MENU DE ESCLUSAO" << endl << endl;
+    cout << "[1] remover receita" << endl;
+    cout << "[2] remover ingrediente" << endl;
+    cout << "[3] remover usuario" << endl;
     cout << ">>> ";
 
     cin >> opcao;

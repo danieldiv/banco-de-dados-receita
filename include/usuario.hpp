@@ -14,6 +14,7 @@ private:
     string cidade;
     string estado;
     string foto;
+
 public:
     Usuario();
     Usuario(string id, string nome);
