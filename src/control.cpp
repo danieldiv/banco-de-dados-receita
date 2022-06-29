@@ -146,6 +146,45 @@ void Control::adicionarReceita(string id_usuario) {
         cout << "A receita " << nome << " foi cadastrado com sucesso" << endl;
 }
 
+
+/* 
+[Thomás]:
+
+- Dando erro ao cadastrar
+* Arrumar como é passado o id da Receita, 
+* Se der certo criar opção de adicionar mais ingredientes à receita
+*/
+void Control::adicionarIngredienteReceitas(string id_usuario) {
+    string id_ingrediente;
+    string quantidade;
+    string unidade;
+
+    string query;
+
+    cout << endl <<  "[Adicionando Ingredientes à receita]" << endl << endl;
+    cout << "Informe id do ingrediente: ";
+    cin.ignore();
+    getline(cin, id_ingrediente);
+
+    cout << "Informe a quantidade: ";
+    getline(cin, quantidade);
+
+    cout << "Informe a unidade: ";
+    getline(cin, unidade);
+
+    query.assign("INSERT INTO receitas_ingredientes(receita_id,ingrediente_id, quantidade, unidade) VALUES ")
+        .append("(").append(id_usuario).append(",'")
+        .append(id_ingrediente).append("','")
+        .append(quantidade).append("','")
+        .append(unidade).append("');");
+
+    if (mysql_query(getMysql(), query.c_str()) != 0)
+        cout << "Ops... nao foi possivel cadastrar ingrediente à receita." << endl;
+    else
+        cout << "O ingrediente foi cadastrado na receita com sucesso" << endl;
+}
+
+
 void Control::carregarReceitas(string nomeReceita) {
     string query = "select * from receitas";
     query.append(" where nome like '%").append(nomeReceita).append("%'");
