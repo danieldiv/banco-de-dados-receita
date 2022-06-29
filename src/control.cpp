@@ -261,14 +261,24 @@ void Control::adicionarIngredienteReceitas() {
         return;
     }
 
-    cout << "Informe id do ingrediente: ";
+    cout << "\nInforme o id do ingrediente: ";
     // cin.ignore();
     getline(cin, id_ingrediente);
 
-    cout << "id: " << id_ingrediente << endl;
+    query.assign("select * from ingredientes where id = ")
+        .append(id_ingrediente);
 
-    // query.assign("select * from ingredientes where id = ")
-    //     .append(id_ingrediente);
+    mysql_query(getMysql(), query.c_str());
+    resultado = mysql_store_result(mysql);
+
+    // verifica se a query eh invalida ou se encontrou o id informado
+    if (resultado == NULL) {
+        cout << "Query invalida" << endl;
+        return;
+    } else if (mysql_affected_rows(mysql) == 0) {
+        cout << "Ingrediente nao encontrado" << endl;
+        return;
+    }
 
     cout << "Informe a quantidade: ";
     getline(cin, quantidade);
@@ -282,12 +292,12 @@ void Control::adicionarIngredienteReceitas() {
         .append(quantidade).append(",'")
         .append(unidade).append("')");
 
-    cout << "query: " << query << endl;
+    // cout << "query: " << query << endl;
 
-    // if (mysql_query(getMysql(), query.c_str()) != 0)
-    //     cout << "Ops... nao foi possivel cadastrar ingrediente à receita." << endl;
-    // else
-    //     cout << "O ingrediente foi cadastrado na receita com sucesso" << endl;
+    if (mysql_query(getMysql(), query.c_str()) != 0)
+        cout << "Ops... nao foi possivel cadastrar ingrediente à receita." << endl;
+    else
+        cout << "O ingrediente foi cadastrado na receita com sucesso" << endl;
 }
 
 
