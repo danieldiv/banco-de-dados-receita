@@ -12,7 +12,6 @@ all: libed myapps
 
 libed: \
 	$(OBJ)/util.o \
-	$(OBJ)/mytime.o \
 	$(OBJ)/control.o \
 	$(OBJ)/etapa.o \
 	$(OBJ)/ingrediente.o \
