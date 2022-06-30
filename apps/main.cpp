@@ -170,13 +170,10 @@ int menuGerenciamento() {
     cout << "[ 8] Remover Usuario" << endl;
     cout << "[ 9] Remover Receita" << endl;
     cout << "[10] Remover Receita em cascata" << endl;
-<<<<<<< HEAD
 
     cout << "[11] Atualizar Ingrediente" << endl;
-
-=======
+    
     cout << "[12] Adicionar ingrediente na receita" << endl;
->>>>>>> e547f99d7fc93d9292ebc0a018a9b2904fbd9886
     cout << "[ 0] Voltar" << endl << endl;
     cout << ">>> ";
 

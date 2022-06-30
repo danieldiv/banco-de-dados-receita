@@ -423,7 +423,6 @@ void Control::buscarReceitaPorId(string id) {
     for (Receita r : this->receitas) r.toString();
     this->receitas.clear();
 }
-<<<<<<< HEAD
 
 void Control::atualizarIngrediente() {
     string id, nome;
@@ -454,5 +453,3 @@ void Control::atualizarIngrediente() {
     else
         cout << "A ingrediente " << nome << " foi atualizado com sucesso" << endl;
 }
-=======
->>>>>>> e547f99d7fc93d9292ebc0a018a9b2904fbd9886
