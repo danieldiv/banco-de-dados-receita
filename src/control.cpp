@@ -282,3 +282,33 @@ void Control::buscarReceitaPorId(string id) {
     for (Receita r : this->receitas) r.toString();
     this->receitas.clear();
 }
+
+void Control::atualizarIngrediente() {
+    string id, nome;
+    string query = "select * from ingredientes where id = ";
+
+    cout << "Informe o id do ingrediente: ";
+    cin.ignore();
+    getline(cin, id);
+    query.append(id);
+
+    getUtil()->imprimeDados(getMysql(),query.c_str());
+
+    mysql_query(getMysql(), query.c_str());
+    MYSQL_RES *resultado = mysql_store_result(this->mysql);
+    MYSQL_ROW linha;
+
+    Ingrediente *ing = new Ingrediente();
+
+    cout << "Informe o novo nome do ingrediente: ";
+    getline(cin, nome);
+
+    query.assign("UPDATE ingredientes set nome = ")
+        .append("'").append(nome).append("'")
+        .append(" where id = ").append(id);
+
+    if (mysql_query(getMysql(), query.c_str()) != 0)
+        cout << "Ops... nao foi possivel atualizar o ingrdiente " << nome << "." << endl;
+    else
+        cout << "A ingrediente " << nome << " foi atualizado com sucesso" << endl;
+}

@@ -43,6 +43,8 @@ public:
     void removerIngredientesDaReceita(Receita *rec);
     void removerEtapasDaReceita(Receita *rec);
     void removerPassosDaEtapa(Etapa *etapa);
+
+    void atualizarIngrediente();
 };
 
 #endif
