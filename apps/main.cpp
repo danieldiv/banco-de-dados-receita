@@ -16,7 +16,7 @@ int main() {
     // printf("%s\n", mysql_get_client_info());
 
     char usuario[] = "aluno";
-    char senha[] = "123456";
+    char senha[] = "Senh@Alun0";
     char banco[] = "cefet_receitas";
     char host[] = "127.0.0.1";
 
@@ -136,14 +136,11 @@ void gerenciamento(MYSQL *mysql, Util *util) {
         case 10:
             control->removerReceitaEmCascata();
             break;
-<<<<<<< HEAD
         case 11:
             control->atualizarIngrediente();
-=======
+            break;
         case 12:
             control->adicionarIngredienteReceitas();
->>>>>>> e547f99d7fc93d9292ebc0a018a9b2904fbd9886
-            break;
         case 0:
             delete control;
             return;
@@ -172,7 +169,7 @@ int menuGerenciamento() {
     cout << "[10] Remover Receita em cascata" << endl;
 
     cout << "[11] Atualizar Ingrediente" << endl;
-    
+
     cout << "[12] Adicionar ingrediente na receita" << endl;
     cout << "[ 0] Voltar" << endl << endl;
     cout << ">>> ";

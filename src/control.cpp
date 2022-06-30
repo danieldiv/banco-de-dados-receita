@@ -344,6 +344,7 @@ Usuario Control::buscarUsuarioPorId(string id) {
         return *usu;
         // rec->setUsuario(*usu);
     }
+    return *usu;
 }
 
 void Control::buscarEtapasDaReceita(Receita *rec) {
@@ -426,20 +427,19 @@ void Control::buscarReceitaPorId(string id) {
 
 void Control::atualizarIngrediente() {
     string id, nome;
-    string query = "select * from ingredientes where id = ";
+    string query = "select * from ingredientes";
+    getUtil()->imprimeDados(getMysql(), query.c_str());
 
-    cout << "Informe o id do ingrediente: ";
+    cout << "\nInforme o id do ingrediente: ";
     cin.ignore();
     getline(cin, id);
     query.append(id);
 
-    getUtil()->imprimeDados(getMysql(),query.c_str());
+    // mysql_query(getMysql(), query.c_str());
+    // MYSQL_RES *resultado = mysql_store_result(this->mysql);
+    // MYSQL_ROW linha;
 
-    mysql_query(getMysql(), query.c_str());
-    MYSQL_RES *resultado = mysql_store_result(this->mysql);
-    MYSQL_ROW linha;
-
-    Ingrediente *ing = new Ingrediente();
+    // Ingrediente *ing = new Ingrediente();
 
     cout << "Informe o novo nome do ingrediente: ";
     getline(cin, nome);
