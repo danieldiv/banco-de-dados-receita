@@ -39,7 +39,7 @@ int main() {
             getline(cin, nomeReceita);
 
             if (nomeReceita.length() > 0)
-                control->carregarReceitas(nomeReceita);
+                control->getControlSelect().carregarReceitas(nomeReceita);
             else
                 cout << "\nNao foi informada a receita" << endl;
             break;
@@ -49,7 +49,7 @@ int main() {
             getline(cin, nomeIngrediente);
 
             if (nomeIngrediente.length() > 0)
-                control->buscarReceitaPorIngrediente(nomeIngrediente);
+                control->getControlSelect().buscarReceitaPorIngrediente(nomeIngrediente);
             else
                 cout << "\nNao foi informado o ingrediente" << endl;
             break;
@@ -107,40 +107,40 @@ void gerenciamento(MYSQL *mysql, Util *util) {
 
         switch (op) {
         case 1:
-            control->adicionarIngrediente();
+            control->getControlInsert().adicionarIngrediente();
             break;
         case 2:
             util->imprimeDados(mysql, "select * from ingredientes order by nome");
             break;
         case 3:
-            control->adicionarUsuario();
+            control->getControlInsert().adicionarUsuario();
             break;
         case 4:
             util->imprimeDados(mysql, "select * from usuarios");
             break;
         case 5:
-            control->adicionarReceita(to_string(util->getId()));
+            control->getControlInsert().adicionarReceita(to_string(util->getId()));
             break;
         case 6:
-            control->carregarReceitas("");
+            control->getControlSelect().carregarReceitas("");
             break;
         case 7:
-            control->construirQueryRemocao("ingredientes");
+            control->getControlDelete().construirQueryRemocao("ingredientes");
             break;
         case 8:
-            control->construirQueryRemocao("usuarios");
+            control->getControlDelete().construirQueryRemocao("usuarios");
             break;
         case 9:
-            control->construirQueryRemocao("receitas");
+            control->getControlDelete().construirQueryRemocao("receitas");
             break;
         case 10:
-            control->removerReceitaEmCascata();
+            control->getControlDelete().removerReceitaEmCascata();
             break;
         case 11:
-            control->atualizarIngrediente();
+            control->getControlUpdate().atualizarIngrediente();
             break;
         case 12:
-            control->adicionarIngredienteReceitas();
+            control->getControlInsert().adicionarIngredienteReceitas();
         case 0:
             delete control;
             return;

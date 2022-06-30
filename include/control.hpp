@@ -1,13 +1,15 @@
 #ifndef CONTROL_HPP
 #define CONTROL_HPP
 
-#include <iostream>
-#include <mysql/mysql.h>
-#include <vector>
-#include <map>
+// #include <iostream>
+// #include <mysql/mysql.h>
+// #include <vector>
+// #include <map>
 
-#include "receita.hpp"
-#include "util.hpp"
+#include "control_delete.hpp"
+#include "control_select.hpp"
+#include "control_insert.hpp"
+#include "control_update.hpp"
 
 using namespace std;
 
@@ -16,37 +18,19 @@ private:
     vector<Receita> receitas;
     MYSQL *mysql;
     Util *util;
+
+    ControlDelete ctr_delete;
+    ControlSelect ctr_select;
+    ControlInsert ctr_insert;
+    ControlUpdate ctr_update;
 public:
     Control(MYSQL *mysql, Util *util);
     ~Control();
 
-    MYSQL *getMysql();
-    Util *getUtil();
-
-    void removerLinha(string query);
-    void construirQueryRemocao(string tabela);
-
-    void adicionarIngrediente();
-
-    void adicionarUsuario();
-    Usuario buscarUsuarioPorId(string id);
-
-    void adicionarReceita(string id_usuario);
-    void adicionarIngredienteReceitas();
-
-    void carregarReceitas(string nomeReceita);
-    void buscarIngredientesDaReceita(Receita *rec);
-    void buscarEtapasDaReceita(Receita *rec);
-    void buscarPassosDaEtapa(Etapa *etapa);
-    void buscarReceitaPorIngrediente(string ingrediente);
-    void buscarReceitaPorId(string id);
-
-    void removerReceitaEmCascata();
-    void removerIngredientesDaReceita(Receita *rec);
-    void removerEtapasDaReceita(Receita *rec);
-    void removerPassosDaEtapa(Etapa *etapa);
-
-    void atualizarIngrediente();
+    ControlDelete getControlDelete();
+    ControlSelect getControlSelect();
+    ControlInsert getControlInsert();
+    ControlUpdate getControlUpdate();
 };
 
 #endif

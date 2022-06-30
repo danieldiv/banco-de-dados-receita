@@ -5,8 +5,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Thu Jun 30 00:43:48 2022
+# Make data base, printed on Thu Jun 30 01:43:31 2022
 
 # Variables
 
@@ -275,32 +276,32 @@ TERM = xterm-256color
 # environment
 VSCODE_PID = 107265
 # environment
- 
 DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=bdcee93a3b8d4b996d88671762bc9fd2
 # variable set hash-table stats:
-# Load=133/1024=13%, Rehash=0, Collisions=31/177=18%
+# Load=133/1024=13%, Rehash=0, Collisions=34/180=19%
 
 # Pattern-specific Variable Values
 
+ 
 # No pattern-specific variable values.
 
 # Directories
 
-# include (device 2051, inode 11274322): 6 files, no impossibilities so far.
+# include (device 2051, inode 11274322): 13 files, no impossibilities so far.
 # . (device 2051, inode 11274151): 14 files, no impossibilities.
-# src (device 2051, inode 11274342): 4 files, no impossibilities so far.
+# src (device 2051, inode 11274342): 13 files, no impossibilities so far.
 # apps (device 2051, inode 11274316): No files, no impossibilities so far.
 
-# 24 files, no impossibilities in 4 directories.
+# 40 files, no impossibilities in 4 directories.
 
 # Implicit Rules
 
 obj/%.o: src/%.cpp include/%.hpp
-#  recipe to execute (from 'Makefile', line 29):
+#  recipe to execute (from 'Makefile', line 32):
 	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
 
 bin/%: apps/%.cpp
-#  recipe to execute (from 'Makefile', line 32):
+#  recipe to execute (from 'Makefile', line 35):
 	g++ $(FLAGS) $< $(LIBS) -I $(INCLUDE) -o $@
 
 # 2 implicit rules, 0 (0.0%) terminal.
@@ -312,6 +313,13 @@ obj/control.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+
+# Not a target:
+include/control_select.hpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 01:15:30.972483369
+#  File has been updated.
+#  Successfully updated.
 
 all: libed myapps
 #  Command line target.
@@ -333,26 +341,80 @@ obj/usuario.o:
 #  Modification time never checked.
 #  File has not been updated.
 
+obj/control_select.o: src/control_select.cpp include/control_select.hpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'control_select'
+#  Last modified 2022-06-30 01:37:53.547315141
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 32):
+	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
+
 # Not a target:
 obj/etapa.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-libed: obj/util.o obj/mytime.o obj/control.o obj/etapa.o obj/ingrediente.o obj/passo.o obj/receita.o obj/usuario.o
+libed: obj/util.o obj/control_delete.o obj/control_select.o obj/control_insert.o obj/control_update.o obj/usuario.o obj/passo.o obj/etapa.o obj/ingrediente.o obj/receita.o obj/control.o
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/5=0%
-#  recipe to execute (from 'Makefile', line 22):
+#  recipe to execute (from 'Makefile', line 25):
 	ar -rcs $(LIB)/libed.a $(OBJ)/*.o
+
+obj/control_insert.o: src/control_insert.cpp include/control_insert.hpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'control_insert'
+#  Last modified 2022-06-30 01:41:10.922242389
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 32):
+	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
+
+obj/control_update.o: src/control_update.cpp include/control_update.hpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'control_update'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := obj/control_update.o
+# automatic
+# % := 
+# automatic
+# * := control_update
+# automatic
+# + := src/control_update.cpp include/control_update.hpp
+# automatic
+# | := 
+# automatic
+# < := src/control_update.cpp
+# automatic
+# ^ := src/control_update.cpp include/control_update.hpp
+# automatic
+# ? := src/control_update.cpp include/control_update.hpp
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/15=13%
+#  recipe to execute (from 'Makefile', line 32):
+	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
+
+obj/control_delete.o: src/control_delete.cpp include/control_delete.hpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'control_delete'
+#  Last modified 2022-06-30 01:37:52.083370308
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 32):
+	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-30 00:43:36.84287415
+#  Last modified 2022-06-30 01:43:29.452945672
 #  File has been updated.
 #  Successfully updated.
 
@@ -369,12 +431,6 @@ src/util.cpp:
 #  Last modified 2022-06-30 00:43:36.858870782
 #  File has been updated.
 #  Successfully updated.
-
-# Not a target:
-obj/mytime.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
 
 # Not a target:
 obj/passo.o:
@@ -394,19 +450,68 @@ obj/receita.o:
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+src/control_select.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 01:19:12.644199953
+#  File has been updated.
+#  Successfully updated.
+
 run:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 35):
+#  recipe to execute (from 'Makefile', line 38):
 	$(BIN)/main
+
+# Not a target:
+include/control_insert.hpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 01:37:03.941353394
+#  File has been updated.
+#  Successfully updated.
 
 clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 38):
+#  recipe to execute (from 'Makefile', line 41):
 	rm -rf $(BIN)/* $(LIB)/* $(OBJ)/*
+
+# Not a target:
+src/control_insert.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 01:41:06.970303356
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+include/control_update.hpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 01:43:07.109052623
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/control_update.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 01:42:35.089270665
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+include/control_delete.hpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 01:07:27.904918789
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/control_delete.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 01:07:55.489283818
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 bin/main:
@@ -417,28 +522,10 @@ bin/main:
 obj/util.o: src/util.cpp include/util.hpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'util'
-#  Last modified 2022-06-30 00:43:36.854871624
+#  Last modified 2022-06-30 01:37:51.335398624
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := obj/util.o
-# automatic
-# % := 
-# automatic
-# * := util
-# automatic
-# + := src/util.cpp include/util.hpp
-# automatic
-# | := 
-# automatic
-# < := src/util.cpp
-# automatic
-# ^ := src/util.cpp include/util.hpp
-# automatic
-# ? := src/util.cpp
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=2/15=13%
-#  recipe to execute (from 'Makefile', line 29):
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 32):
 	g++ $(FLAGS) -c $< -I $(INCLUDE) -o $@
 
 myapps: clean_apps bin/main
@@ -450,7 +537,7 @@ clean_apps:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 41):
+#  recipe to execute (from 'Makefile', line 44):
 	rm -rf $(BIN)/*
 
 # Not a target:
@@ -460,19 +547,19 @@ obj/ingrediente.o:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=21/1024=2%, Rehash=0, Collisions=0/54=0%
+# Load=32/1024=3%, Rehash=0, Collisions=3/88=3%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 50 / storage = 470 B / avg = 9 B
-# current buf: size = 8162 B / used = 470 B / count = 50 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 79 / storage = 1022 B / avg = 12 B
+# current buf: size = 8162 B / used = 1022 B / count = 79 / avg = 12 B
 
-# strcache performance: lookups = 74 / hit rate = 32%
+# strcache performance: lookups = 113 / hit rate = 30%
 # hash-table stats:
-# Load=50/8192=1%, Rehash=0, Collisions=1/74=1%
-# Finished Make data base on Thu Jun 30 00:43:48 2022
+# Load=79/8192=1%, Rehash=0, Collisions=3/113=3%
+# Finished Make data base on Thu Jun 30 01:43:31 2022
 
  

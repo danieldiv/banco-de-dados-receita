@@ -12,12 +12,16 @@ all: libed myapps
 
 libed: \
 	$(OBJ)/util.o \
-	$(OBJ)/control.o \
+	$(OBJ)/control_delete.o \
+	$(OBJ)/control_select.o \
+	$(OBJ)/control_insert.o \
+	$(OBJ)/control_update.o \
+	$(OBJ)/usuario.o \
+	$(OBJ)/passo.o \
 	$(OBJ)/etapa.o \
 	$(OBJ)/ingrediente.o \
-	$(OBJ)/passo.o \
 	$(OBJ)/receita.o \
-	$(OBJ)/usuario.o
+	$(OBJ)/control.o
 	ar -rcs $(LIB)/libed.a $(OBJ)/*.o
 
 
