@@ -29,7 +29,7 @@ public:
     void adicionarIngrediente();
 
     void adicionarUsuario();
-    void buscarUsuarioPorId(Receita *rec, string id);
+    Usuario buscarUsuarioPorId(string id);
 
     void adicionarReceita(string id_usuario);
     void adicionarIngredienteReceitas();

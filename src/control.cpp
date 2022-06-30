@@ -231,8 +231,7 @@ void Control::adicionarIngredienteReceitas() {
     cin.ignore();
     getline(cin, id_receita);
 
-    query.assign("select * from receitas where id = ")
-        .append(id_receita);
+    query.assign("select * from receitas where id = ").append(id_receita);
 
     mysql_query(getMysql(), query.c_str());
     MYSQL_RES *resultado = mysql_store_result(mysql);
@@ -250,23 +249,11 @@ void Control::adicionarIngredienteReceitas() {
     query = "select * from ingredientes";
     getUtil()->imprimeDados(getMysql(), query.c_str());
 
-    mysql_query(getMysql(), query.c_str());
-    resultado = mysql_store_result(mysql);
-
-    if (resultado == NULL) {
-        cout << "Query invalida" << endl;
-        return;
-    } else if (mysql_affected_rows(mysql) == 0) {
-        cout << "Empty set" << endl;
-        return;
-    }
-
     cout << "\nInforme o id do ingrediente: ";
     // cin.ignore();
     getline(cin, id_ingrediente);
 
-    query.assign("select * from ingredientes where id = ")
-        .append(id_ingrediente);
+    query.assign("select * from ingredientes where id = ").append(id_ingrediente);
 
     mysql_query(getMysql(), query.c_str());
     resultado = mysql_store_result(mysql);
@@ -292,14 +279,11 @@ void Control::adicionarIngredienteReceitas() {
         .append(quantidade).append(",'")
         .append(unidade).append("')");
 
-    // cout << "query: " << query << endl;
-
     if (mysql_query(getMysql(), query.c_str()) != 0)
         cout << "Ops... nao foi possivel cadastrar ingrediente à receita." << endl;
     else
         cout << "O ingrediente foi cadastrado na receita com sucesso" << endl;
 }
-
 
 void Control::carregarReceitas(string nomeReceita) {
     string query = "select * from receitas";
@@ -315,7 +299,7 @@ void Control::carregarReceitas(string nomeReceita) {
         while ((linha = mysql_fetch_row(resultado))) {
             rec = new Receita(linha[0], linha[2], linha[3], linha[4]);
 
-            if (linha[1] != NULL) buscarUsuarioPorId(rec, linha[1]);
+            if (linha[1] != NULL) rec->setUsuario(buscarUsuarioPorId(linha[1]));
 
             buscarIngredientesDaReceita(rec);
             buscarEtapasDaReceita(rec);
@@ -343,7 +327,7 @@ void Control::buscarIngredientesDaReceita(Receita *rec) {
     }
 }
 
-void Control::buscarUsuarioPorId(Receita *rec, string id) {
+Usuario Control::buscarUsuarioPorId(string id) {
     string query = "select id, nome from usuarios where id = ";
     query.append(id);
 
@@ -356,7 +340,9 @@ void Control::buscarUsuarioPorId(Receita *rec, string id) {
     while ((linha = mysql_fetch_row(resultado))) {
         usu->setId(linha[0]);
         usu->setNome(linha[1]);
-        rec->setUsuario(*usu);
+
+        return *usu;
+        // rec->setUsuario(*usu);
     }
 }
 
@@ -427,7 +413,7 @@ void Control::buscarReceitaPorId(string id) {
     while ((linha = mysql_fetch_row(resultado))) {
         rec = new Receita(linha[0], linha[2], linha[3], linha[4]);
 
-        if (linha[1] != NULL) buscarUsuarioPorId(rec, linha[1]);
+        if (linha[1] != NULL) rec->setUsuario(buscarUsuarioPorId(linha[1]));
 
         buscarIngredientesDaReceita(rec);
         buscarEtapasDaReceita(rec);
