@@ -9,6 +9,20 @@ void ControlInsert::setUtil(Util *util) { this->util = util; }
 MYSQL *ControlInsert::getMysql() { return this->mysql; }
 Util *ControlInsert::getUtil() { return this->util; }
 
+/**
+ * @brief testeQuery testa a query informada
+ *
+ * @param query
+ * @return int -1 = query invalida
+ * 				1 = query executada com sucesso
+ * 				0 = nenhuma linha afetada
+ */
+int ControlInsert::testQuery(string query) {
+	if (mysql_query(getMysql(), query.c_str()) != 0) return -1;
+	else if (mysql_affected_rows(getMysql()) != 0) return 1;
+	return 0;
+}
+
 void ControlInsert::adicionarIngrediente() {
 	string nome;
 	string query;
@@ -171,4 +185,44 @@ void ControlInsert::adicionarIngredienteReceitas() {
 		cout << "Ops... nao foi possivel cadastrar ingrediente à receita." << endl;
 	else
 		cout << "O ingrediente foi cadastrado na receita com sucesso" << endl;
+}
+
+void ControlInsert::adicionarComentarioReceita() {
+	string query = "select id, nome from receitas";
+
+	if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+		string receita_id;
+
+		cout << "\nInforme o codigo da receita: ";
+		cin.ignore();
+		getline(cin, receita_id);
+
+		query.append(" where id = ").append(receita_id);
+
+		mysql_query(getMysql(), query.c_str());
+		if (mysql_store_result(getMysql()) == NULL) {
+			cout << "Query invalida" << endl;
+			return;
+		} else if (mysql_affected_rows(getMysql()) == 0) {
+			cout << "Receita nao encontrada" << endl;
+			return;
+		}
+
+		string mensagem;
+		cout << "Informe a mensagem do comentario: ";
+		getline(cin, mensagem);
+
+		query.assign("insert into comentarios")
+			.append("(usuario_id, receita_id, data_hora, mensagem) values (")
+			.append(to_string(getUtil()->getId())).append(", ")
+			.append(receita_id).append(", '")
+			.append(getUtil()->getDataAtual()).append("', '")
+			.append(mensagem).append("')");
+
+		if (mysql_query(getMysql(), query.c_str()) != 0) {
+			cout << "Nao foi possivel cadastrar o comentario" << endl;
+			return;
+		}
+		cout << "comentario inserido com sucesso" << endl;
+	}
 }

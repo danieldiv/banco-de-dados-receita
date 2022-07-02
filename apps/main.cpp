@@ -121,7 +121,8 @@ void gerenciamento(MYSQL *mysql, Util *util) {
             util->imprimeDados(mysql, "select * from usuarios");
             break;
         case 5:
-            control->getControlInsert().adicionarReceita(to_string(util->getId()));
+            control->getControlInsert().adicionarComentarioReceita();
+            // control->getControlInsert().adicionarReceita(to_string(util->getId()));
             break;
         case 6:
             control->getControlSelect().carregarReceitas("");
