@@ -62,25 +62,15 @@ void ControlUpdate::atualizarUsuario(){
 
 	query.assign("UPDATE usuarios set nome = ")
 		.append("'").append(nome).append("'")
-		.append(" where id = ").append(id);
-
-	query.assign("UPDATE usuarios set telefone = ")
+		.append(", telefone = ")
 		.append("'").append(telefone).append("'")
-		.append(" where id = ").append(id);
-
-	query.assign("UPDATE usuarios set email = ")
+		.append(", email = ")
 		.append("'").append(email).append("'")
-		.append(" where id = ").append(id);
-
-	query.assign("UPDATE usuarios set cidade = ")
+		.append(", cidade = ")
 		.append("'").append(cidade).append("'")
-		.append(" where id = ").append(id);
-	
-	query.assign("UPDATE usuarios set estado = ")
+		.append(", estado = ")
 		.append("'").append(estado).append("'")
-		.append(" where id = ").append(id);
-
-	query.assign("UPDATE usuarios set foto = ")
+		.append(", foto = ")
 		.append("'").append(foto).append("'")
 		.append(" where id = ").append(id);
 
