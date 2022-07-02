@@ -27,7 +27,7 @@ void ControlUpdate::atualizarIngrediente() {
 		.append(" where id = ").append(id);
 
 	if (mysql_query(getMysql(), query.c_str()) != 0)
-		cout << "Ops... nao foi possivel atualizar o ingrdiente " << nome << "." << endl;
+		cout << "Ops... nao foi possivel atualizar o ingrediente " << nome << "." << endl;
 	else
 		cout << "A ingrediente " << nome << " foi atualizado com sucesso" << endl;
 }
@@ -75,12 +75,49 @@ void ControlUpdate::atualizarUsuario() {
 		.append(" where id = ").append(id);
 
 	if (mysql_query(getMysql(), query.c_str()) != 0)
-		cout << "Ops... nao foi possivel atualizar o ingrdiente " << nome << "." << endl;
+		cout << "Ops... nao foi possivel atualizar o usuario " << nome << "." << endl;
 	else
 		cout << "O ususario " << nome << " foi atualizado com sucesso" << endl;
 }
 
-void ControlUpdate::atualizarReceita() {}
+void ControlUpdate::atualizarReceita() {
+	string id, nome, rendimento, tempo, info;
+	string query = "select * from usuarios";
+	getUtil()->imprimeDados(getMysql(), query.c_str());
+
+	cout << "\nInforme o id da receita: ";
+	cin.ignore();
+	getline(cin, id);
+	query.append(id);
+
+	cout << "Informe o nome da receita: ";
+	getline(cin, nome);
+
+	cout << "Informe o rendimento da receita: ";
+	getline(cin, rendimento);
+
+	cout << "Informe o tempo da receita: ";
+	getline(cin, email);
+
+	cout << "Informe o info da receita: ";
+	getline(cin, info);
+
+	query.assign("UPDATE usuarios set nome = ")
+		.append("'").append(nome).append("'")
+		.append(", rendimento = ")
+		.append("'").append(rendimento).append("'")
+		.append(", tempo = ")
+		.append("'").append(tempo).append("'")
+		.append(", info = ")
+		.append("'").append(info).append("'")
+		.append(" where id = ").append(id);
+
+	if (mysql_query(getMysql(), query.c_str()) != 0)
+		cout << "Ops... nao foi possivel atualizar a receita " << nome << "." << endl;
+	else
+		cout << "A receita " << nome << " foi atualizada com sucesso" << endl;
+}
+
 void ControlUpdate::atualizarFoto() {}
 void ControlUpdate::atualiozarReceitaIngrediente() {}
 void ControlUpdate::atualizarReceitaEtapa() {}
