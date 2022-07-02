@@ -12,11 +12,125 @@ Control::Control(MYSQL *mysql, Util *util) {
 
     this->ctr_update.setMysql(mysql);
     this->ctr_update.setUtil(util);
+
+    setMysql(mysql);
+    setUtil(util);
 }
 
 Control::~Control() {}
 
 ControlDelete Control::getControlDelete() { return this->ctr_delete; }
-ControlSelect Control::getControlSelect() { return this->ctr_select; };
+ControlSelect Control::getControlSelect() { return this->ctr_select; }
 ControlInsert Control::getControlInsert() { return this->ctr_insert; }
 ControlUpdate Control::getControlUpdate() { return this->ctr_update; }
+
+MYSQL *Control::getMysql() { return this->mysql; }
+Util *Control::getUtil() { return this->util; }
+
+void Control::setMysql(MYSQL *mysql) { this->mysql = mysql; }
+void Control::setUtil(Util *util) { this->util = util; }
+
+void Control::opcoesInsert(int op) {
+
+}
+
+void Control::opcoesSelect(int op) {
+
+}
+
+void Control::opcoesUpdate(int op) {
+
+}
+
+void Control::opcoesDelete(int op) {
+    string query;
+
+    if (op == 1) {
+        getControlDelete().construirQueryRemocao("ingredientes");
+    } else if (op == 2) {
+        getControlDelete().construirQueryRemocao("usuarios");
+    } else if (op == 3) {
+        getControlDelete().removerReceitaEmCascata();
+    } else if (op == 4) {
+        query.assign("select id, nome from receitas");
+
+        if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+            string receita_id;
+
+            cout << "\nInforme o codigo da receita: ";
+            cin.ignore();
+            getline(cin, receita_id);
+
+            query.assign("select ingrediente_id, nome from vw_receitas_ingredientes");
+            query.append(" where receita_id = ").append(receita_id);
+
+            if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+                string ingrediente_id;
+
+                cout << "\nInforme o codigo do ingrediente: ";
+                getline(cin, ingrediente_id);
+
+                getControlDelete().removerIngredienteDaReceita(receita_id, ingrediente_id);
+            }
+        }
+    } else if (op == 5) {
+        query.assign("select id, nome from receitas");
+
+        if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+            string receita_id;
+
+            cout << "\nInforme o codigo da receita: ";
+            cin.ignore();
+            getline(cin, receita_id);
+
+            query.assign("select numero, titulo from receitas_etapas")
+                .append(" where receita_id = ").append(receita_id);
+
+            if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+                string etapa_numero;
+
+                cout << "\nInforme o codigo da etapa: ";
+                getline(cin, etapa_numero);
+
+                getControlDelete().removerEtapaDaReceita(receita_id, etapa_numero);
+            }
+        }
+    } else if (op == 6) {
+        query.assign("select id, nome from receitas");
+
+        if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+            string receita_id;
+
+            cout << "\nInforme o codigo da receita: ";
+            cin.ignore();
+            getline(cin, receita_id);
+
+            query.assign("select numero, titulo from receitas_etapas")
+                .append(" where receita_id = ").append(receita_id);
+
+            if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+                string etapa_numero;
+
+                cout << "\nInforme o codigo da etapa: ";
+                getline(cin, etapa_numero);
+
+                query.assign("select sequencia, instrucao from receitas_passos")
+                    .append(" where receita_id = ").append(receita_id)
+                    .append(" and etapa_numero = ").append(etapa_numero);
+
+                if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+                    string sequencia;
+
+                    cout << "\nInforme o codigo da sequencia: ";
+                    getline(cin, sequencia);
+
+                    getControlDelete().removerPassoDaEtapa(receita_id, etapa_numero, sequencia);
+                }
+            }
+        }
+    } else if (op == 0) {
+        return;
+    } else {
+        cout << "Opcao invalida" << endl;
+    }
+}

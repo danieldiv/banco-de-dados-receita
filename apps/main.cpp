@@ -7,13 +7,15 @@
 
 int menu(Util *util);
 void gerenciamento(MYSQL *mysql, Util *util);
+
 int menuGerenciamento();
-int menuExclusao();
+int menuInsersao();
+int menuImpresao();
+int menuEdicao();
+int menuRemocao();
 
 int main() {
     Util *util = new Util;
-
-    // printf("%s\n", mysql_get_client_info());
 
     char usuario[] = "aluno";
     char senha[] = "Senh@Alun0";
@@ -125,14 +127,15 @@ void gerenciamento(MYSQL *mysql, Util *util) {
             control->getControlSelect().carregarReceitas("");
             break;
         case 7:
-            control->getControlDelete().construirQueryRemocao("ingredientes");
+            // control->getControlDelete().construirQueryRemocao("ingredientes");
+            control->opcoesDelete(menuRemocao());
             break;
-        case 8:
-            control->getControlDelete().construirQueryRemocao("usuarios");
-            break;
-        case 10:
-            control->getControlDelete().removerReceitaEmCascata();
-            break;
+            // case 8:
+            //     control->getControlDelete().construirQueryRemocao("usuarios");
+            //     break;
+            // case 9:
+            //     control->getControlDelete().removerReceitaEmCascata();
+            //     break;
         case 11:
             control->getControlUpdate().atualizarIngrediente();
             break;
@@ -160,14 +163,47 @@ int menuGerenciamento() {
     cout << "[ 5] Castrar Receita" << endl;
     cout << "[ 6] Imprimir Receitas" << endl << endl;
 
-    cout << "[ 7] Remover Ingrediente" << endl;
-    cout << "[ 8] Remover Usuario" << endl;
-    cout << "[10] Remover Receita em cascata" << endl;
+    cout << "[7] Remocao" << endl;
+
+    // cout << "[ 7] Remover Ingrediente" << endl;
+    // cout << "[ 8] Remover Usuario" << endl;
+    // cout << "[ 9] Remover Receita" << endl;
 
     cout << "[11] Atualizar Ingrediente" << endl;
 
     cout << "[12] Adicionar ingrediente na receita" << endl;
     cout << "[ 0] Voltar" << endl << endl;
+    cout << ">>> ";
+
+    cin >> opcao;
+
+    return opcao;
+}
+
+int menuInsersao() {
+    return 0;
+}
+
+int menuImpresao() {
+    return 0;
+}
+
+int menuEdicao() {
+    return 0;
+}
+
+int menuRemocao() {
+    if (system("clear") == -1)cout << "erro no system" << endl;
+    int opcao;
+
+    cout << "MENU REMOCAO" << endl << endl;
+    cout << "[1] Remover Ingrediente" << endl;
+    cout << "[2] Remover Usuario" << endl;
+    cout << "[3] Remover Receita" << endl;
+    cout << "[4] Remover Ingrediente da Receita" << endl;
+    cout << "[5] Remover Etapas da Receita" << endl;
+    cout << "[6] Remover Passos da Receita" << endl;
+    cout << "[0] Voltar" << endl << endl;
     cout << ">>> ";
 
     cin >> opcao;

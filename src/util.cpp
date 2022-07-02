@@ -88,17 +88,17 @@ int Util::conexao_banco(MYSQL *mysql, char *host, char *usuario, char *senha, ch
     return EXIT_SUCCESS;
 }
 
-void Util::imprimeDados(MYSQL *mysql, const char *query) {
+bool Util::imprimeDados(MYSQL *mysql, const char *query) {
     mysql_query(mysql, query);
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;
 
     if (resultado == NULL) {
         cout << "Query invalida" << endl;
-        return;
+        return false;
     } else if (mysql_affected_rows(mysql) == 0) {
         cout << "Empty set" << endl;
-        return;
+        return false;
     }
 
     int n_col = mysql_num_fields(resultado);
@@ -113,6 +113,7 @@ void Util::imprimeDados(MYSQL *mysql, const char *query) {
         }
         cout << endl;
     }
+    return true;
 }
 
 void Util::setStatus(bool status) {

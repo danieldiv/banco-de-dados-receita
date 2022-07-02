@@ -23,14 +23,21 @@ public:
 
 	void setMysql(MYSQL *mysql);
 	void setUtil(Util *util);
+	int testQuery(string query);
 
 	void removerLinha(string query);
 	void construirQueryRemocao(string tabela);
 
 	void removerReceitaEmCascata();
+
 	void removerIngredientesDaReceita(string receita_id);
+	void removerIngredienteDaReceita(string receita_id, string ingrediente_id);
+
 	void removerEtapasDaReceita(string receita_id);
+	void removerEtapaDaReceita(string receita_id, string etapa_numero);
+
 	void removerPassosDaEtapa(string receita_id, string etapa_numero);
+	void removerPassoDaEtapa(string receita_id, string etapa_numero, string sequencia);
 };
 
 #endif

@@ -31,6 +31,17 @@ public:
     ControlSelect getControlSelect();
     ControlInsert getControlInsert();
     ControlUpdate getControlUpdate();
+
+    MYSQL *getMysql();
+    Util *getUtil();
+
+    void setMysql(MYSQL *mysql);
+    void setUtil(Util *util);
+
+    void opcoesInsert(int op);
+    void opcoesSelect(int op);
+    void opcoesUpdate(int op);
+    void opcoesDelete(int op);
 };
 
 #endif

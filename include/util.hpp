@@ -19,7 +19,7 @@ public:
     bool checkCredencial(MYSQL *mysql, int codigo, string senha);
 
     int conexao_banco(MYSQL *mysql, char *host, char *usuario, char *senha, char *banco);
-    void imprimeDados(MYSQL *mysql, const char *query);
+    bool imprimeDados(MYSQL *mysql, const char *query);
 
     void setStatus(bool status);
     bool getStatus();
