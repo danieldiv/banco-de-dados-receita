@@ -130,9 +130,6 @@ void gerenciamento(MYSQL *mysql, Util *util) {
         case 8:
             control->getControlDelete().construirQueryRemocao("usuarios");
             break;
-        case 9:
-            control->getControlDelete().construirQueryRemocao("receitas");
-            break;
         case 10:
             control->getControlDelete().removerReceitaEmCascata();
             break;
@@ -165,7 +162,6 @@ int menuGerenciamento() {
 
     cout << "[ 7] Remover Ingrediente" << endl;
     cout << "[ 8] Remover Usuario" << endl;
-    cout << "[ 9] Remover Receita" << endl;
     cout << "[10] Remover Receita em cascata" << endl;
 
     cout << "[11] Atualizar Ingrediente" << endl;

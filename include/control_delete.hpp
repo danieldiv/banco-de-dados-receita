@@ -8,7 +8,6 @@
 
 #include "receita.hpp"
 #include "util.hpp"
-#include "teste.hpp"
 
 class ControlDelete {
 private:
@@ -29,9 +28,9 @@ public:
 	void construirQueryRemocao(string tabela);
 
 	void removerReceitaEmCascata();
-	void removerIngredientesDaReceita(Receita *rec);
-	void removerEtapasDaReceita(Receita *rec);
-	void removerPassosDaEtapa(Etapa *etapa);
+	void removerIngredientesDaReceita(string receita_id);
+	void removerEtapasDaReceita(string receita_id);
+	void removerPassosDaEtapa(string receita_id, string etapa_numero);
 };
 
 #endif
