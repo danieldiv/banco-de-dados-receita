@@ -11,7 +11,7 @@ Util *ControlDelete::getUtil() { return this->util; }
 
 /**
  * @brief testeQuery testa a query informada
- *
+ * nao esta funcionando bem
  * @param query
  * @return int -1 = query invalida
  * 				1 = query executada com sucesso
@@ -47,6 +47,7 @@ void ControlDelete::construirQueryRemocao(string tabela) {
 
 	string id;
 
+	// TODO fazer do lado de fora
 	cout << "\nInforme o codigo da tabela (" << tabela << ") para excluir: ";
 	cin.ignore();
 	getline(cin, id);
@@ -65,6 +66,7 @@ void ControlDelete::removerReceitaEmCascata() {
 
 	string id;
 
+	// TODO: fazer do lado de fora
 	cout << "\nInforme o codigo da receita para excluir: ";
 	cin.ignore();
 	getline(cin, id);

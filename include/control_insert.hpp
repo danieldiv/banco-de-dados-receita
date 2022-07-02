@@ -6,6 +6,10 @@
 #include <vector>
 #include <map>
 
+#include <time.h>
+#include <stdio.h>
+#include <string.h>
+
 #include "receita.hpp"
 #include "util.hpp"
 
@@ -20,6 +24,7 @@ public:
 
 	MYSQL *getMysql();
 	Util *getUtil();
+	int testQuery(string query);
 
 	void setMysql(MYSQL *mysql);
 	void setUtil(Util *util);
@@ -28,6 +33,7 @@ public:
 	void adicionarUsuario();
 	void adicionarReceita(string id_usuario);
 	void adicionarIngredienteReceitas();
+	void adicionarComentarioReceita();
 };
 
 #endif

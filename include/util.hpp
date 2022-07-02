@@ -14,6 +14,9 @@ private:
 public:
     ~Util();
     Util();
+
+    string getDataAtual();
+
     void login(MYSQL *mysql);
     bool checkUsuario(MYSQL *mysql, string usuario, string senha);
     bool checkCredencial(MYSQL *mysql, int codigo, string senha);

@@ -89,6 +89,7 @@ int Util::conexao_banco(MYSQL *mysql, char *host, char *usuario, char *senha, ch
 }
 
 bool Util::imprimeDados(MYSQL *mysql, const char *query) {
+    cout << "dados: " << query << endl;
     mysql_query(mysql, query);
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;
@@ -114,6 +115,20 @@ bool Util::imprimeDados(MYSQL *mysql, const char *query) {
         cout << endl;
     }
     return true;
+}
+
+string Util::getDataAtual() {
+    time_t now;
+    struct tm *tm_now;
+    char texto[20];
+
+    time(&now);
+    tm_now = localtime(&now);
+    strftime(texto, sizeof(texto), "%Y/%m/%d %H:%M:%S", tm_now);
+
+    string str = texto;
+
+    return str;
 }
 
 void Util::setStatus(bool status) {

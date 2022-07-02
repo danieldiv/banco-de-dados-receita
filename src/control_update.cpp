@@ -32,7 +32,7 @@ void ControlUpdate::atualizarIngrediente() {
 		cout << "A ingrediente " << nome << " foi atualizado com sucesso" << endl;
 }
 
-void ControlUpdate::atualizarUsuario(){
+void ControlUpdate::atualizarUsuario() {
 	string id, nome, telefone, email, cidade, estado, foto;
 	string query = "select * from usuarios";
 	getUtil()->imprimeDados(getMysql(), query.c_str());
@@ -80,8 +80,8 @@ void ControlUpdate::atualizarUsuario(){
 		cout << "A ingrediente " << nome << " foi atualizado com sucesso" << endl;
 }
 
-void ControlUpdate::atualizarReceita(){}
-void ControlUpdate::atualizarFoto(){}
-void ControlUpdate::atualiozarReceitaIngrediente(){}
-void ControlUpdate::atualizarReceitaEtapa(){}
-void ControlUpdate::atualizarReceitaPassos(){}
+void ControlUpdate::atualizarReceita() {}
+void ControlUpdate::atualizarFoto() {}
+void ControlUpdate::atualiozarReceitaIngrediente() {}
+void ControlUpdate::atualizarReceitaEtapa() {}
+void ControlUpdate::atualizarReceitaPassos() {}
