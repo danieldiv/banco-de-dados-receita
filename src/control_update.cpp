@@ -31,3 +31,67 @@ void ControlUpdate::atualizarIngrediente() {
 	else
 		cout << "A ingrediente " << nome << " foi atualizado com sucesso" << endl;
 }
+
+void ControlUpdate::atualizarUsuario(){
+	string id, nome, telefone, email, cidade, estado, foto;
+	string query = "select * from usuarios";
+	getUtil()->imprimeDados(getMysql(), query.c_str());
+
+	cout << "\nInforme o id do usuario: ";
+	cin.ignore();
+	getline(cin, id);
+	query.append(id);
+
+	cout << "Informe o nome do usuario: ";
+	getline(cin, nome);
+
+	cout << "Informe o telefone do usuario: ";
+	getline(cin, telefone);
+
+	cout << "Informe o email do usuario: ";
+	getline(cin, email);
+
+	cout << "Informe o cidade do usuario: ";
+	getline(cin, cidade);
+
+	cout << "Informe o estado do usuario: ";
+	getline(cin, estado);
+
+	cout << "Informe o foto do usuario: ";
+	getline(cin, foto);
+
+	query.assign("UPDATE usuarios set nome = ")
+		.append("'").append(nome).append("'")
+		.append(" where id = ").append(id);
+
+	query.assign("UPDATE usuarios set telefone = ")
+		.append("'").append(telefone).append("'")
+		.append(" where id = ").append(id);
+
+	query.assign("UPDATE usuarios set email = ")
+		.append("'").append(email).append("'")
+		.append(" where id = ").append(id);
+
+	query.assign("UPDATE usuarios set cidade = ")
+		.append("'").append(cidade).append("'")
+		.append(" where id = ").append(id);
+	
+	query.assign("UPDATE usuarios set estado = ")
+		.append("'").append(estado).append("'")
+		.append(" where id = ").append(id);
+
+	query.assign("UPDATE usuarios set foto = ")
+		.append("'").append(foto).append("'")
+		.append(" where id = ").append(id);
+
+	if (mysql_query(getMysql(), query.c_str()) != 0)
+		cout << "Ops... nao foi possivel atualizar o ingrdiente " << nome << "." << endl;
+	else
+		cout << "A ingrediente " << nome << " foi atualizado com sucesso" << endl;
+}
+
+void ControlUpdate::atualizarReceita(){}
+void ControlUpdate::atualizarFoto(){}
+void ControlUpdate::atualiozarReceitaIngrediente(){}
+void ControlUpdate::atualizarReceitaEtapa(){}
+void ControlUpdate::atualizarReceitaPassos(){}
