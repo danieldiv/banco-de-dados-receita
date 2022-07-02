@@ -18,7 +18,7 @@ int main() {
     Util *util = new Util;
 
     char usuario[] = "aluno";
-    char senha[] = "Senh@Alun0";
+    char senha[] = "123456";
     char banco[] = "cefet_receitas";
     char host[] = "127.0.0.1";
 

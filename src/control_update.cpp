@@ -77,7 +77,7 @@ void ControlUpdate::atualizarUsuario() {
 	if (mysql_query(getMysql(), query.c_str()) != 0)
 		cout << "Ops... nao foi possivel atualizar o ingrdiente " << nome << "." << endl;
 	else
-		cout << "A ingrediente " << nome << " foi atualizado com sucesso" << endl;
+		cout << "O ususario " << nome << " foi atualizado com sucesso" << endl;
 }
 
 void ControlUpdate::atualizarReceita() {}
