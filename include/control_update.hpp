@@ -25,6 +25,12 @@ public:
 	void setUtil(Util *util);
 
 	void atualizarIngrediente();
+	void atualizarUsuario();
+	void atualizarReceita();
+	void atualizarFoto();
+	void atualiozarReceitaIngrediente();
+	void atualizarReceitaEtapa();
+	void atualizarReceitaPassos();
 };
 
 #endif
