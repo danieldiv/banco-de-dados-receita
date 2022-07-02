@@ -226,3 +226,80 @@ void ControlInsert::adicionarComentarioReceita() {
 		cout << "comentario inserido com sucesso" << endl;
 	}
 }
+
+void ControlInsert::adicionarCurtidaReceita() {
+	string query = "select id, nome from receitas";
+
+	if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+		string receita_id;
+
+		cout << "\nInforme o codigo da receita: ";
+		cin.ignore();
+		getline(cin, receita_id);
+
+		query.append(" where id = ").append(receita_id);
+
+		mysql_query(getMysql(), query.c_str());
+		if (mysql_store_result(getMysql()) == NULL) {
+			cout << "Query invalida" << endl;
+			return;
+		} else if (mysql_affected_rows(getMysql()) == 0) {
+			cout << "Receita nao encontrada" << endl;
+			return;
+		}
+
+		string estrelas;
+		cout << "Informe a quantidade de estrelas: ";
+		getline(cin, estrelas);
+
+		query.assign("insert into curtidas")
+			.append("(usuario_id, receita_id, estrelas) values (")
+			.append(to_string(getUtil()->getId())).append(", ")
+			.append(receita_id).append(", '")
+			.append(estrelas).append("')");
+
+		if (mysql_query(getMysql(), query.c_str()) != 0) {
+			cout << "Nao foi possivel cadastrar a curtida" << endl;
+			return;
+		}
+		cout << "Curtida inserida com sucesso" << endl;
+	}
+}
+
+void ControlInsert::adicionarFotoReceita() {
+	string query = "select id, nome from receitas";
+
+	if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+		string receita_id;
+
+		cout << "\nInforme o codigo da receita: ";
+		cin.ignore();
+		getline(cin, receita_id);
+
+		query.append(" where id = ").append(receita_id);
+
+		mysql_query(getMysql(), query.c_str());
+		if (mysql_store_result(getMysql()) == NULL) {
+			cout << "Query invalida" << endl;
+			return;
+		} else if (mysql_affected_rows(getMysql()) == 0) {
+			cout << "Receita nao encontrada" << endl;
+			return;
+		}
+
+		string arquivoFoto;
+		cout << "Informe o nome de arquivo da foto: ";
+		getline(cin, arquivoFoto);
+
+		query.assign("insert into receitas_fotos")
+			.append("(receita_id, arquivo) values (")
+			.append(receita_id).append(", '")
+			.append(arquivoFoto).append("')");
+
+		if (mysql_query(getMysql(), query.c_str()) != 0) {
+			cout << "Nao foi possivel cadastrar a foto" << endl;
+			return;
+		}
+		cout << "Foto inserida com sucesso" << endl;
+	}
+}

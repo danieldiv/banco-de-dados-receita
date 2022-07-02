@@ -18,7 +18,7 @@ int main() {
     Util *util = new Util;
 
     char usuario[] = "aluno";
-    char senha[] = "123456";
+    char senha[] = "Senh@Alun0";
     char banco[] = "cefet_receitas";
     char host[] = "127.0.0.1";
 
@@ -41,7 +41,7 @@ int main() {
             getline(cin, nomeReceita);
 
             if (nomeReceita.length() > 0)
-                control->getControlSelect().carregarReceitas(nomeReceita);
+                control->getControlSelect().carregarReceitas(mysql, nomeReceita);
             else
                 cout << "\nNao foi informada a receita" << endl;
             break;
@@ -109,34 +109,14 @@ void gerenciamento(MYSQL *mysql, Util *util) {
 
         switch (op) {
         case 1:
-            control->getControlInsert().adicionarIngrediente();
+            control->opcoesInsert(menuInsersao());
             break;
         case 2:
-            util->imprimeDados(mysql, "select * from ingredientes order by nome");
+            control->opcoesSelect(menuImpresao());
             break;
         case 3:
-            control->getControlInsert().adicionarUsuario();
-            break;
-        case 4:
-            util->imprimeDados(mysql, "select * from usuarios");
-            break;
-        case 5:
-            control->getControlInsert().adicionarComentarioReceita();
-            // control->getControlInsert().adicionarReceita(to_string(util->getId()));
-            break;
-        case 6:
-            control->getControlSelect().carregarReceitas("");
-            break;
-        case 7:
-            // control->getControlDelete().construirQueryRemocao("ingredientes");
             control->opcoesDelete(menuRemocao());
             break;
-            // case 8:
-            //     control->getControlDelete().construirQueryRemocao("usuarios");
-            //     break;
-            // case 9:
-            //     control->getControlDelete().removerReceitaEmCascata();
-            //     break;
         case 11:
             control->getControlUpdate().atualizarIngrediente();
             break;
@@ -164,24 +144,13 @@ int menuGerenciamento() {
     int opcao;
 
     cout << "MENU GERENCIAMENTO" << endl << endl;
-    cout << "[ 1] Cadastrar Ingrediente" << endl;
-    cout << "[ 2] Imprimir Ingredientes" << endl;
-    cout << "[ 3] Cadastrar Usuario" << endl;
-    cout << "[ 4] Imprimir Usuarios" << endl;
-    cout << "[ 5] Castrar Receita" << endl;
-    cout << "[ 6] Imprimir Receitas" << endl << endl;
-
-    cout << "[7] Remocao" << endl << endl;
-
-    // cout << "[ 7] Remover Ingrediente" << endl;
-    // cout << "[ 8] Remover Usuario" << endl;
-    // cout << "[ 9] Remover Receita" << endl;
+    cout << "[1] Cadastro" << endl;
+    cout << "[2] Impressao" << endl;
+    cout << "[3] Remocao" << endl << endl;
 
     cout << "[11] Atualizar Ingrediente" << endl;
     cout << "[12] Atualizar Usuario" << endl;
-    cout << "[13] Atualizar Usuario" << endl << endl;
-
-    cout << "[14] Adicionar ingrediente na receita" << endl;
+    cout << "[13] Atualizar Receita" << endl << endl;
     cout << "[ 0] Voltar" << endl << endl;
     cout << ">>> ";
 
@@ -191,11 +160,44 @@ int menuGerenciamento() {
 }
 
 int menuInsersao() {
-    return 0;
+    if (system("clear") == -1)cout << "erro no system" << endl;
+    int opcao;
+
+    cout << "MENU INSERCAO" << endl << endl;
+    cout << "[1] Inserir Ingrediente" << endl;
+    cout << "[2] Inserir Usuario" << endl;
+    cout << "[3] Inserir Receita" << endl;
+    cout << "[4] Inserir Ingrediente da Receita" << endl;
+    cout << "[5] Inserir Etapas da Receita" << endl;
+    cout << "[6] Inserir Etapa" << endl;
+    cout << "[7] Inserir Comentario" << endl;
+    cout << "[8] Inserir Curtida" << endl;
+    cout << "[9] Inserir Foto" << endl;
+    cout << "[0] Voltar" << endl << endl;
+    cout << ">>> ";
+
+    cin >> opcao;
+
+    return opcao;
 }
 
 int menuImpresao() {
-    return 0;
+    if (system("clear") == -1)cout << "erro no system" << endl;
+    int opcao;
+
+    cout << "MENU IMPRESSAO" << endl << endl;
+    cout << "[1] Imprimir Ingredientes" << endl;
+    cout << "[2] Imprimir Usuarios" << endl;
+    cout << "[3] Imprimir Receitas" << endl;
+    cout << "[4] Imprimir Comentarios" << endl;
+    cout << "[5] Imprimir Curtidas" << endl;
+    cout << "[6] Imprimir Fotos" << endl;
+    cout << "[0] Voltar" << endl << endl;
+    cout << ">>> ";
+
+    cin >> opcao;
+
+    return opcao;
 }
 
 int menuEdicao() {

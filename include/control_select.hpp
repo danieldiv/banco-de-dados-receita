@@ -26,7 +26,7 @@ public:
 
 	Usuario buscarUsuarioPorId(string id);
 
-	void carregarReceitas(string nomeReceita);
+	void carregarReceitas(MYSQL *sql, string nomeReceita);
 	void buscarIngredientesDaReceita(Receita *rec);
 	void buscarEtapasDaReceita(Receita *rec);
 	void buscarPassosDaEtapa(Etapa *etapa);

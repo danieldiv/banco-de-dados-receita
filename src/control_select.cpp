@@ -9,12 +9,14 @@ void ControlSelect::setUtil(Util *util) { this->util = util; }
 MYSQL *ControlSelect::getMysql() { return this->mysql; }
 Util *ControlSelect::getUtil() { return this->util; }
 
-void ControlSelect::carregarReceitas(string nomeReceita) {
+void ControlSelect::carregarReceitas(MYSQL *sql, string nomeReceita) {
 	string query = "select * from receitas";
 	query.append(" where nome like '%").append(nomeReceita).append("%'");
 
+	setMysql(sql);
+
 	mysql_query(getMysql(), query.c_str());
-	MYSQL_RES *resultado = mysql_store_result(mysql);
+	MYSQL_RES *resultado = mysql_store_result(getMysql());
 
 	if (mysql_num_rows(resultado) > 0) {
 		MYSQL_ROW linha;

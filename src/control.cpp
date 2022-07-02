@@ -31,11 +31,51 @@ void Control::setMysql(MYSQL *mysql) { this->mysql = mysql; }
 void Control::setUtil(Util *util) { this->util = util; }
 
 void Control::opcoesInsert(int op) {
-
+    if (op == 1) {
+        getControlInsert().adicionarIngrediente();
+    } else if (op == 2) {
+        getControlInsert().adicionarUsuario();
+    } else if (op == 3) {
+        getControlInsert().adicionarReceita(to_string(getUtil()->getId()));
+    } else if (op == 4) {
+        getControlInsert().adicionarIngredienteReceitas();
+    } else if (op == 5) {
+        // etapa da receita
+    } else if (op == 6) {
+        // passo da etapa
+    } else if (op == 7) {
+        getControlInsert().adicionarComentarioReceita();
+    } else if (op == 8) {
+        getControlInsert().adicionarCurtidaReceita();
+    } else if (op == 9) {
+        getControlInsert().adicionarFotoReceita();
+    } else if (op == 0) {
+        return;
+    } else {
+        cout << "Opcao invalida" << endl;
+    }
 }
 
 void Control::opcoesSelect(int op) {
+    string query = "select * from ";
 
+    if (op == 1) {
+        getUtil()->imprimeDados(getMysql(), query.append("ingredientes").c_str());
+    } else if (op == 2) {
+        getUtil()->imprimeDados(getMysql(), query.append("usuarios").c_str());
+    } else if (op == 3) {
+        ControlSelect().carregarReceitas(getMysql(), "");
+    } else if (op == 4) {
+        getUtil()->imprimeDados(getMysql(), query.append("comentarios").c_str());
+    } else if (op == 5) {
+        getUtil()->imprimeDados(getMysql(), query.append("curtidas").c_str());
+    } else if (op == 6) {
+        getUtil()->imprimeDados(getMysql(), query.append("receitas_fotos").c_str());
+    } else if (op == 0) {
+        return;
+    } else {
+        cout << "Opcao invalida" << endl;
+    }
 }
 
 void Control::opcoesUpdate(int op) {
