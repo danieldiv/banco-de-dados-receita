@@ -28,7 +28,7 @@ public:
 	void atualizarUsuario();
 	void atualizarReceita();
 	void atualizarFoto();
-	void atualiozarReceitaIngrediente();
+	void atualizarReceitaIngrediente();
 	void atualizarReceitaEtapa();
 	void atualizarReceitaPassos();
 };
