@@ -82,7 +82,7 @@ void ControlUpdate::atualizarUsuario() {
 
 void ControlUpdate::atualizarReceita() {
 	string id, nome, rendimento, tempo, info, email;
-	string query = "select * from usuarios";
+	string query = "select * from receitas";
 	getUtil()->imprimeDados(getMysql(), query.c_str());
 
 	cout << "\nInforme o id da receita: ";
@@ -102,7 +102,7 @@ void ControlUpdate::atualizarReceita() {
 	cout << "Informe o info da receita: ";
 	getline(cin, info);
 
-	query.assign("UPDATE usuarios set nome = ")
+	query.assign("UPDATE receitas set nome = ")
 		.append("'").append(nome).append("'")
 		.append(", rendimento = ")
 		.append("'").append(rendimento).append("'")
@@ -119,11 +119,115 @@ void ControlUpdate::atualizarReceita() {
 }
 
 void ControlUpdate::atualizarFoto() {
-	
+	string receita_id, arquivo;
+	string query = "select * from receitas_fotos";
+	getUtil()->imprimeDados(getMysql(), query.c_str());
+
+	cout << "\nInforme o id da receita: ";
+	cin.ignore();
+	getline(cin, receita_id);
+	query.append(receita_id);
+
+	cout << "Informe a foto da receita: ";
+	getline(cin, arquivo);
+
+	query.assign("UPDATE receitas_fotos set arquivo = ")
+		.append("'").append(arquivo).append("'")
+		.append(" where receitas_id = ").append(receita_id);
+
+	if (mysql_query(getMysql(), query.c_str()) != 0)
+		cout << "Ops... nao foi possivel atualizar a receita " << nome << "." << endl;
+	else
+		cout << "A receita " << arquivo << " foi atualizada com sucesso" << endl;
 }
 
-void ControlUpdate::atualiozarReceitaIngrediente() {}
+void ControlUpdate::atualiozarReceitaIngrediente() {
+	string receitas_id, ingrediente_id, quantidade, unidade;
+	string query = "select * from receitas_ingredientes";
+	getUtil()->imprimeDados(getMysql(), query.c_str());
 
-void ControlUpdate::atualizarReceitaEtapa() {}
+	cout << "\nInforme o id da receita: ";
+	cin.ignore();
+	getline(cin, receitas_id);
+	query.append(receitas_id);
 
-void ControlUpdate::atualizarReceitaPassos() {}
+	cout << "\nInforme o id do ingrediente: ";
+	getline(cin, receitas_id);
+	query.append(receitas_id);
+
+	cout << "Informe quantidade do ingrediente: ";
+	getline(cin, quantidade);
+
+	cout << "Informe unidade do ingrediente: ";
+	getline(cin, unidade);
+
+	query.assign("UPDATE receitas_ingredientes set arquivo = ")
+		.append("'").append(arquivo).append("'")
+		.append(" where receitas_id = ").append(receitas_id);
+
+	if (mysql_query(getMysql(), query.c_str()) != 0)
+		cout << "Ops... nao foi possivel atualizar a receita " << nome << "." << endl;
+	else
+		cout << "A receita " << receitas_id << " foi atualizada com sucesso" << endl;
+}
+
+void ControlUpdate::atualizarReceitaEtapa() {
+	string receitas_id, numero, titulo;
+	string query = "select * from receitas_etapas";
+	getUtil()->imprimeDados(getMysql(), query.c_str());
+
+	cout << "\nInforme o id da receita: ";
+	cin.ignore();
+	getline(cin, receitas_id);
+	query.append(receitas_id);
+
+	cout << "Informe o numero da etapa: ";
+	getline(cin, numero);
+
+	cout << "Informe o titulo da etapa: ";
+	getline(cin, titulo);
+
+	query.assign("UPDATE receitas_etapas set numero = ")
+		.append("'").append(numero).append("'")
+		.append(", unidade = ")
+		.append("'").append(unidade).append("'")
+		.append(" where id = ").append(id);
+
+	if (mysql_query(getMysql(), query.c_str()) != 0)
+		cout << "Ops... nao foi possivel atualizar a receita " << nome << "." << endl;
+	else
+		cout << "A etapa " << numero << " foi atualizada com sucesso" << endl;
+}
+
+void ControlUpdate::atualizarReceitaPassos() {
+	string receitas_id, etapa_numero, sequencia, introducao;
+	string query = "select * from receitas_passos";
+	getUtil()->imprimeDados(getMysql(), query.c_str());
+
+	cout << "\nInforme o id da receita: ";
+	cin.ignore();
+	getline(cin, receitas_id);
+	query.append(receitas_id);
+
+	cout << "Informe o numero da etapa: ";
+	getline(cin, etapa_numero);
+
+	cout << "Informe a sequencia de passoa: ";
+	getline(cin, sequencia);
+
+	cout << "Informe uma introducao do passo: ";
+	getline(cin, introducao);
+
+	query.assign("UPDATE receita_passos set  = ")
+		.append("'").append(etapa_numero).append("'")
+		.append(", unidade = ")
+		.append("'").append(sequencia).append("'")
+		.append(", unidade = ")
+		.append("'").append(introducao).append("'")
+		.append(" where id = ").append(id);
+
+	if (mysql_query(getMysql(), query.c_str()) != 0)
+		cout << "Ops... nao foi possivel atualizar a receita " << nome << "." << endl;
+	else
+		cout << "A receita " << nome << " foi atualizada com sucesso" << endl;
+}
