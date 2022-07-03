@@ -127,6 +127,18 @@ void gerenciamento(MYSQL *mysql, Util *util) {
             control->getControlUpdate().atualizarReceita();
             break;
         case 14:
+            control->getControlUpdate().atualizarFoto();
+            break;
+        case 15:
+            control->getControlUpdate().atualizarReceitaIngrediente();
+            break;
+        case 16:
+            control->getControlUpdate().atualizarReceitaEtapa();
+            break;
+        case 17:
+            control->getControlUpdate().atualizarReceitaPassos();
+            break;
+        case 18:
             control->getControlInsert().adicionarIngredienteReceitas();
             break;
         case 0:
@@ -150,10 +162,14 @@ int menuGerenciamento() {
 
     cout << "[11] Atualizar Ingrediente" << endl;
     cout << "[12] Atualizar Usuario" << endl;
-    cout << "[13] Atualizar Receita" << endl << endl;
+    cout << "[13] Atualizar Receita" << endl;
+    cout << "[14] Atualizar Foto da Receita" << endl;
+    cout << "[15] Atualizar Ingerdiente da Receita" << endl;
+    cout << "[16] Atualizar Etapa da Receita" << endl;
+    cout << "[17] Atualizar Passos da Receita" << endl << endl;
 <<<<<<< HEAD
 
-    cout << "[14] Adicionar ingrediente na receita" << endl;
+    cout << "[18] Adicionar ingrediente na receita" << endl;
 =======
 >>>>>>> 46bed728d9ce4740aa2690a8c5752f43ff6291bd
     cout << "[ 0] Voltar" << endl << endl;
