@@ -33,7 +33,10 @@ public:
 	void adicionarUsuario();
 	void adicionarReceita(string id_usuario);
 	void adicionarIngredienteReceitas();
+
 	void adicionarComentarioReceita();
+	void adicionarCurtidaReceita();
+	void adicionarFotoReceita();
 };
 
 #endif

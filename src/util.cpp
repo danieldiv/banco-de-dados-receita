@@ -89,7 +89,6 @@ int Util::conexao_banco(MYSQL *mysql, char *host, char *usuario, char *senha, ch
 }
 
 bool Util::imprimeDados(MYSQL *mysql, const char *query) {
-    cout << "dados: " << query << endl;
     mysql_query(mysql, query);
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;

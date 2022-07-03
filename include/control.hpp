@@ -1,11 +1,6 @@
 #ifndef CONTROL_HPP
 #define CONTROL_HPP
 
-// #include <iostream>
-// #include <mysql/mysql.h>
-// #include <vector>
-// #include <map>
-
 #include "control_delete.hpp"
 #include "control_select.hpp"
 #include "control_insert.hpp"

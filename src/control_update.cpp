@@ -81,7 +81,7 @@ void ControlUpdate::atualizarUsuario() {
 }
 
 void ControlUpdate::atualizarReceita() {
-	string id, nome, rendimento, tempo, info;
+	string id, nome, rendimento, tempo, info, email;
 	string query = "select * from usuarios";
 	getUtil()->imprimeDados(getMysql(), query.c_str());
 
