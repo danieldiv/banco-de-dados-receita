@@ -179,7 +179,7 @@ int menuGerenciamento() {
 
     cout << "[11] Atualizar Ingrediente" << endl;
     cout << "[12] Atualizar Usuario" << endl;
-    cout << "[13] Atualizar Usuario" << endl << endl;
+    cout << "[13] Atualizar Receita" << endl << endl;
 
     cout << "[14] Adicionar ingrediente na receita" << endl;
     cout << "[ 0] Voltar" << endl << endl;

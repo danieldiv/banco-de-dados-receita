@@ -118,7 +118,12 @@ void ControlUpdate::atualizarReceita() {
 		cout << "A receita " << nome << " foi atualizada com sucesso" << endl;
 }
 
-void ControlUpdate::atualizarFoto() {}
+void ControlUpdate::atualizarFoto() {
+	
+}
+
 void ControlUpdate::atualiozarReceitaIngrediente() {}
+
 void ControlUpdate::atualizarReceitaEtapa() {}
+
 void ControlUpdate::atualizarReceitaPassos() {}
