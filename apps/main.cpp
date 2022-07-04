@@ -152,9 +152,9 @@ void gerenciamento(MYSQL *mysql, Util *util) {
         case 17:
             control->getControlUpdate().atualizarReceitaPassos();
             break;
-            // case 18:
-            //     control->getControlInsert().adicionarIngredienteReceitas();
-            //     break;
+              case 18:
+                control->getControlInsert().adicionarEtapasReceita();
+            break;
         case 0:
             delete control;
             return;
