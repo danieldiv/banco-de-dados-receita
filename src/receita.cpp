@@ -36,6 +36,15 @@ void Receita::getEtapas() {
         cout << "\nA receita nao possui etapas" << endl;
 }
 
+void Receita::setCurtida(Curtida curtida) { this->curtidas.push_back(curtida); }
+
+void Receita::getCurtidas() {
+    if (this->curtidas.size() != 0)
+        for (Curtida curtida : this->curtidas) curtida.toString();
+    else
+        cout << "\nA receita nao possui curtidas" << endl;
+}
+
 void Receita::setUsuario(Usuario usuario) { this->usuario = usuario; }
 Usuario Receita::getUsuario() { return this->usuario; }
 
@@ -64,5 +73,8 @@ void Receita::toString() {
 
     cout << endl << "[Fotos]" << endl << endl;
     getFotos();
+
+    cout << endl << "[Curtidas]" << endl << endl;
+    getCurtidas();
     cout << endl << "---------------------------------------------------------------------------" << endl;
 }

@@ -15,6 +15,7 @@ int menuEdicao();
 int menuRemocao();
 
 int main() {
+
     Util *util = new Util;
 
     char usuario[] = "aluno";
@@ -22,7 +23,20 @@ int main() {
     char banco[] = "cefet_receitas";
     char host[] = "127.0.0.1";
 
+    // char *teste = (char *)malloc(sizeof(char) * 20);
+    // strcpy(teste, "\"or 1=1 or ''=\"");
+
+    // char *res = (char *)malloc(sizeof(char) * 20);
+
     MYSQL *mysql = mysql_init(NULL);
+    // mysql_real_escape_string_quote(mysql, res, teste, strlen(teste), '\'');
+    // mysql_real_escape_string_quote(mysql, res, teste, strlen(teste), ' ');
+
+    // cout << "teste: " << teste << endl;
+    // cout << "res: " << res << endl;
+    // mysql_real_escape_string_quote(mysql, res, teste, strlen(teste), '\'');
+    // mysql_real_escape_string_quote(mysql, res, teste, strlen(teste), '\'');
+    // return 0;
     if (util->conexao_banco(mysql, host, usuario, senha, banco) == EXIT_FAILURE) return EXIT_FAILURE;
 
     Control *control = new Control(mysql, util);

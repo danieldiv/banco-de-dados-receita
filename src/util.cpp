@@ -57,7 +57,7 @@ bool Util::checkUsuario(MYSQL *mysql, string usuario, string senha) {
 }
 
 bool Util::checkCredencial(MYSQL *mysql, int codigo, string senha) {
-    string query = "select * from credenciais";
+    string query = "select * from credenciais where ";
 
     string codigo_credencial;
     string senha_credencial;

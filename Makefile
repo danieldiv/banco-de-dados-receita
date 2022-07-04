@@ -20,8 +20,9 @@ libed: \
 	$(OBJ)/passo.o \
 	$(OBJ)/etapa.o \
 	$(OBJ)/ingrediente.o \
-	$(OBJ)/foto.o \
 	$(OBJ)/receita.o \
+	$(OBJ)/foto.o \
+	$(OBJ)/curtida.o \
 	$(OBJ)/control.o
 	ar -rcs $(LIB)/libed.a $(OBJ)/*.o
 
