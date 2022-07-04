@@ -150,3 +150,18 @@ void ControlSelect::buscarReceitaPorId(string id) {
 	for (Receita r : this->receitas) r.toString();
 	this->receitas.clear();
 }
+
+void ControlSelect::buscarFotosReceita(Receita *rec) {
+	string query = "select * from receitas_fotos where receita_id = ";
+	query.append(rec->getId());
+
+	mysql_query(getMysql(), query.c_str());
+	MYSQL_RES *resultado = mysql_store_result(mysql);
+	MYSQL_ROW linha;
+
+	Ingrediente *ing;
+	while ((linha = mysql_fetch_row(resultado))) {
+		ing = new Ingrediente(linha[1], linha[2], linha[3], linha[4]);
+		rec->setIngredientes(*ing);
+	}
+}

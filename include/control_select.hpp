@@ -32,6 +32,7 @@ public:
 	void buscarPassosDaEtapa(Etapa *etapa);
 	void buscarReceitaPorIngrediente(string ingrediente);
 	void buscarReceitaPorId(string id);
+	void buscarFotosReceita(Receita *rec);
 };
 
 #endif

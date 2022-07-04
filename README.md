@@ -16,13 +16,13 @@
 | usuarios              | :red_circle: :heavy_check_mark:    | :red_circle: :heavy_check_mark:    | :yellow_circle: :heavy_check_mark: | :yellow_circle: :heavy_check_mark: |
 | ingredientes          | :red_circle: :heavy_check_mark:    | :red_circle: :heavy_check_mark:    | :red_circle: :heavy_check_mark:     | :red_circle: :heavy_check_mark:    |
 | receitas              | :red_circle: :heavy_check_mark:    | :red_circle: :heavy_check_mark:    | :yellow_circle: :heavy_check_mark:  | :yellow_circle: :heavy_check_mark: |
-| receitas fotos        | :green_circle: :x:  | :red_circle: :x:    | :yellow_circle: :heavy_check_mark:  | :green_circle: :heavy_check_mark:  |
+| receitas fotos        | :green_circle: :x:  | :red_circle: :heavy_check_mark:    | :yellow_circle: :heavy_check_mark:  | :green_circle: :heavy_check_mark:  |
 | receitas ingredientes | :green_circle: :heavy_check_mark:  | :red_circle: :heavy_check_mark:    | :yellow_circle: :heavy_check_mark:| :green_circle: :heavy_check_mark:  |
 | receitas etapas       | :green_circle: :heavy_check_mark:  | :red_circle: :x:    | :yellow_circle: :heavy_check_mark:  | :green_circle: :heavy_check_mark:  |
 | receitas passos       | :green_circle: :heavy_check_mark:  | :red_circle: :x:    | :yellow_circle: :heavy_check_mark:  | :green_circle: :heavy_check_mark:  |
-| comentarios           | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :heavy_check_mark:  |
+| comentarios           | :yellow_circle: :x: | :yellow_circle: :heavy_check_mark: | :green_circle: :x:  | :green_circle: :heavy_check_mark:  |
 | avaliacoes            | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :x:  |
-| curtidas              | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :heavy_check_mark:  |
+| curtidas              | :yellow_circle: :x: | :yellow_circle: :heavy_check_mark: | :green_circle: :x:  | :green_circle: :heavy_check_mark:  |
 | receitas salvas       | :yellow_circle: :x: | :yellow_circle: :x: | :green_circle: :x:  | :green_circle: :x:  |
 
 ### Legenda (prioridade)
