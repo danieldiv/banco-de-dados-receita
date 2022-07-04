@@ -33,6 +33,8 @@ public:
 	void adicionarUsuario();
 	void adicionarReceita(string id_usuario);
 	void adicionarIngredienteReceitas();
+	void adicionarEtapasReceita();
+
 
 	void adicionarComentarioReceita();
 	void adicionarCurtidaReceita();
