@@ -38,6 +38,15 @@ public:
 
 	void removerPassosDaEtapa(string receita_id, string etapa_numero);
 	void removerPassoDaEtapa(string receita_id, string etapa_numero, string sequencia);
+
+	void removerComentariosDaReceita(string receita_id, string usuario_id);
+	void removerComentarioDaReceita(string receita_id, string usuario_id, string data_hora);
+
+	void removerCurtidasDaReceita(string receita_id, string usuario_id);
+	void removerCurtidaDaReceita(string receita_id, string usuario_id);
+
+	void removerFotosDaReceita(string receita_id);
+	void removerFotoDaReceita(string receita_id, string arquivo);
 };
 
 #endif

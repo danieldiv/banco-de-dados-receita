@@ -47,7 +47,6 @@ void ControlDelete::construirQueryRemocao(string tabela) {
 
 	string id;
 
-	// TODO fazer do lado de fora
 	cout << "\nInforme o codigo da tabela (" << tabela << ") para excluir: ";
 	cin.ignore();
 	getline(cin, id);
@@ -62,31 +61,35 @@ void ControlDelete::construirQueryRemocao(string tabela) {
  */
 void ControlDelete::removerReceitaEmCascata() {
 	string query = "select id, nome from receitas";
-	getUtil()->imprimeDados(getMysql(), query.c_str());
 
-	string id;
+	if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
 
-	// TODO: fazer do lado de fora
-	cout << "\nInforme o codigo da receita para excluir: ";
-	cin.ignore();
-	getline(cin, id);
+		string id;
 
-	query.assign("select id from receitas where id = ").append(id);
+		cout << "\nInforme o codigo da receita para excluir: ";
+		cin.ignore();
+		getline(cin, id);
 
-	mysql_query(getMysql(), query.c_str());
+		query.assign("select id from receitas where id = ").append(id);
 
-	if (mysql_store_result(getMysql()) == NULL) {
-		cout << "Query invalida" << endl;
-		return;
-	} else if (mysql_affected_rows(getMysql()) == 0) {
-		cout << "Receita nao encontrada" << endl;
-		return;
+		mysql_query(getMysql(), query.c_str());
+
+		if (mysql_store_result(getMysql()) == NULL) {
+			cout << "Query invalida" << endl;
+			return;
+		} else if (mysql_affected_rows(getMysql()) == 0) {
+			cout << "Receita nao encontrada" << endl;
+			return;
+		}
+		removerIngredientesDaReceita(id);
+		removerEtapasDaReceita(id);
+		removerFotosDaReceita(id);
+		removerCurtidaDaReceita(id, to_string(getUtil()->getId()));
+		removerComentariosDaReceita(id, to_string(getUtil()->getId()));
+
+		query.assign("delete from receitas where id = ").append(id);
+		removerLinha(query);
 	}
-	removerIngredientesDaReceita(id);
-	removerEtapasDaReceita(id);
-
-	query.assign("delete from receitas where id = ").append(id);
-	removerLinha(query);
 }
 
 void ControlDelete::removerIngredientesDaReceita(string receita_id) {
@@ -167,5 +170,87 @@ void ControlDelete::removerPassoDaEtapa(string receita_id, string etapa_numero, 
 	string query = "delete from receitas_passos where receita_id = ";
 	query.append(receita_id).append(" and etapa_numero = ").append(etapa_numero)
 		.append(" and sequencia = ").append(sequencia);
+	removerLinha(query);
+}
+
+void ControlDelete::removerComentariosDaReceita(string receita_id, string usuario_id) {
+	string query = "select usuario_id, receita_id, data_hora from comentarios";
+	query.append(" where usuario_id = ").append(usuario_id)
+		.append(" and receita_id = ").append(receita_id);
+
+	mysql_query(getMysql(), query.c_str());
+	MYSQL_RES *resultado = mysql_store_result(getMysql());
+
+	if (resultado == NULL) {
+		cout << "Query invalida" << endl;
+		return;
+	} else if (mysql_affected_rows(getMysql()) == 0) {
+		cout << "Nao possui passos na estapa desta receita" << endl;
+		return;
+	}
+	MYSQL_ROW linha;
+
+	while ((linha = mysql_fetch_row(resultado)))
+		removerComentarioDaReceita(receita_id, usuario_id, linha[2]);
+}
+
+void ControlDelete::removerComentarioDaReceita(string receita_id, string usuario_id, string data_hora) {
+	string query = "delete from comentarios where receita_id = ";
+	query.append(receita_id).append(" and usuario_id = ").append(usuario_id)
+		.append(" and data_hora = ").append("'").append(data_hora).append("'");
+	removerLinha(query);
+}
+
+void ControlDelete::removerCurtidasDaReceita(string receita_id, string usuario_id) {
+	string query = "select usuario_id, receita_id from curtidas";
+	query.append(" where usuario_id = ").append(usuario_id)
+		.append(" and receita_id = ").append(receita_id);
+
+	mysql_query(getMysql(), query.c_str());
+	MYSQL_RES *resultado = mysql_store_result(getMysql());
+
+	if (resultado == NULL) {
+		cout << "Query invalida" << endl;
+		return;
+	} else if (mysql_affected_rows(getMysql()) == 0) {
+		cout << "Nao possui passos na estapa desta receita" << endl;
+		return;
+	}
+	MYSQL_ROW linha;
+
+	while ((linha = mysql_fetch_row(resultado)))
+		removerCurtidaDaReceita(receita_id, usuario_id);
+}
+
+void ControlDelete::removerCurtidaDaReceita(string receita_id, string usuario_id) {
+	string query = "delete from curtidas where receita_id = ";
+	query.append(receita_id).append(" and usuario_id = ").append(usuario_id);
+	removerLinha(query);
+}
+
+void ControlDelete::removerFotosDaReceita(string receita_id) {
+	string query = "select * from receitas_fotos";
+	query.append(" where receita_id = ").append(receita_id);
+
+	mysql_query(getMysql(), query.c_str());
+	MYSQL_RES *resultado = mysql_store_result(getMysql());
+
+	if (resultado == NULL) {
+		cout << "Query invalida" << endl;
+		return;
+	} else if (mysql_affected_rows(getMysql()) == 0) {
+		cout << "Nao possui passos na estapa desta receita" << endl;
+		return;
+	}
+	MYSQL_ROW linha;
+
+	while ((linha = mysql_fetch_row(resultado)))
+		removerFotoDaReceita(receita_id, linha[1]);
+}
+
+void ControlDelete::removerFotoDaReceita(string receita_id, string arquivo) {
+	string query = "delete from receitas_fotos where receita_id = ";
+	query.append(receita_id).append(" and arquivo = ")
+		.append("'").append(arquivo).append("'");
 	removerLinha(query);
 }
