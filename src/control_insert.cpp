@@ -187,6 +187,66 @@ void ControlInsert::adicionarIngredienteReceitas() {
 		cout << "O ingrediente foi cadastrado na receita com sucesso" << endl;
 }
 
+/*
+[Thomás] - adicionarEtapasReceita()
+
+- adicionar função no menu;
+- conferir se ta funcionando corretamente 
+- Esta na opção 18 no Menu Gerenciamento
+*/
+
+void ControlInsert::adicionarEtapasReceita() {
+	string query = "select id, nome from receitas";
+	getUtil()->imprimeDados(getMysql(), query.c_str());
+
+	string numero_etapa;
+	string id_receita;
+	string titulo;
+
+	cout << "\nInforme id da receita: ";
+	cin.ignore();
+	getline(cin, id_receita);
+
+	query.assign("select * from receitas where id = ").append(id_receita);
+
+	mysql_query(getMysql(), query.c_str());
+	MYSQL_RES *resultado = mysql_store_result(mysql);
+
+	if (resultado == NULL) {
+		cout << "Query invalida" << endl;
+		return;
+	} else if (mysql_affected_rows(mysql) == 0) {
+		cout << "Empty set" << endl;
+		return;
+	}
+
+	query.assign("select numero, titulo from receitas_etapas where receita_id = ").append(id_receita);
+	getUtil()->imprimeDados(getMysql(), query.c_str());
+
+	cout << "\nInforme o numero da etapa:";
+	//cin.ignore();
+	getline(cin, numero_etapa);
+	
+	cout << "\nInforme o titulo da etapa:";
+	//cin.ignore();
+	getline(cin,titulo);
+
+	cout << endl << "[Adicionando Etapa à receita]" << endl << endl;
+
+	query.assign("insert INTO receitas_etapas(receita_id, numero, titulo) VALUES ")
+		.append("(").append(id_receita).append(",")
+		.append(numero_etapa).append(",'")
+		.append(titulo).append("')");
+
+
+	cout << "Query: " << query << endl;
+	if (mysql_query(getMysql(), query.c_str()) != 0)
+		cout << "Ops... nao foi possivel cadastrar etapa à receita." << endl;
+	else
+		cout << "A etapa foi cadastrada etapa na receita com sucesso" << endl;
+}
+
+
 void ControlInsert::adicionarComentarioReceita() {
 	string query = "select id, nome from receitas";
 
