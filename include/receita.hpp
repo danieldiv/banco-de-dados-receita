@@ -7,6 +7,7 @@
 #include "usuario.hpp"
 #include "ingrediente.hpp"
 #include "etapa.hpp"
+#include "foto.hpp"
 
 using namespace std;
 
@@ -22,6 +23,7 @@ private:
 
     vector<Ingrediente> ingredientes;
     vector<Etapa> etapas;
+    vector<Foto> fotos;
 public:
     Receita();
     Receita(string id, string nome, string rendimento, string tempo);
@@ -31,6 +33,9 @@ public:
 
     void setIngredientes(Ingrediente ingrediente);
     void getIngredientes();
+
+    void setFoto(Foto foto);
+    void getFotos();
 
     void setUsuario(Usuario usuario);
     Usuario getUsuario();

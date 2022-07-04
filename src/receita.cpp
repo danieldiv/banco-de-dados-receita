@@ -19,6 +19,14 @@ void Receita::getIngredientes() {
         cout << "A receita nao possui ingredientes" << endl;
 }
 
+void Receita::setFoto(Foto foto) { this->fotos.push_back(foto); }
+void Receita::getFotos() {
+    if (this->fotos.size() != 0)
+        for (Foto foto : this->fotos) foto.toString();
+    else
+        cout << "\nA receita nao possui fotos" << endl;
+}
+
 void Receita::setEtapas(Etapa etapa) { this->etapas.push_back(etapa); }
 
 void Receita::getEtapas() {
@@ -53,5 +61,8 @@ void Receita::toString() {
 
     cout << endl << "[Modo de preparo]" << endl;
     getEtapas();
+
+    cout << endl << "[Fotos]" << endl << endl;
+    getFotos();
     cout << endl << "---------------------------------------------------------------------------" << endl;
 }

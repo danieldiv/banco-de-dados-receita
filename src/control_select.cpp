@@ -29,6 +29,7 @@ void ControlSelect::carregarReceitas(MYSQL *sql, string nomeReceita) {
 
 			buscarIngredientesDaReceita(rec);
 			buscarEtapasDaReceita(rec);
+			buscarFotosReceita(rec);
 
 			this->receitas.push_back(*rec);
 		}
@@ -159,9 +160,11 @@ void ControlSelect::buscarFotosReceita(Receita *rec) {
 	MYSQL_RES *resultado = mysql_store_result(mysql);
 	MYSQL_ROW linha;
 
-	Ingrediente *ing;
+	Foto *foto;
 	while ((linha = mysql_fetch_row(resultado))) {
-		ing = new Ingrediente(linha[1], linha[2], linha[3], linha[4]);
-		rec->setIngredientes(*ing);
+		foto = new Foto(linha[1]);
+		rec->setFoto(*foto);
+		// ing = new Ingrediente(linha[1], linha[2], linha[3], linha[4]);
+	// rec->setIngredientes(*ing);
 	}
 }

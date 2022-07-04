@@ -16,7 +16,7 @@
 | usuarios              | :red_circle: :heavy_check_mark:    | :red_circle: :heavy_check_mark:    | :yellow_circle: :heavy_check_mark: | :yellow_circle: :heavy_check_mark: |
 | ingredientes          | :red_circle: :heavy_check_mark:    | :red_circle: :heavy_check_mark:    | :red_circle: :heavy_check_mark:     | :red_circle: :heavy_check_mark:    |
 | receitas              | :red_circle: :heavy_check_mark:    | :red_circle: :heavy_check_mark:    | :yellow_circle: :heavy_check_mark:  | :yellow_circle: :heavy_check_mark: |
-| receitas fotos        | :green_circle: :x:  | :red_circle: :heavy_check_mark:    | :yellow_circle: :heavy_check_mark:  | :green_circle: :heavy_check_mark:  |
+| receitas fotos        | :green_circle: :heavy_check_mark:  | :red_circle: :heavy_check_mark:    | :yellow_circle: :heavy_check_mark:  | :green_circle: :heavy_check_mark:  |
 | receitas ingredientes | :green_circle: :heavy_check_mark:  | :red_circle: :heavy_check_mark:    | :yellow_circle: :heavy_check_mark:| :green_circle: :heavy_check_mark:  |
 | receitas etapas       | :green_circle: :heavy_check_mark:  | :red_circle: :x:    | :yellow_circle: :heavy_check_mark:  | :green_circle: :heavy_check_mark:  |
 | receitas passos       | :green_circle: :heavy_check_mark:  | :red_circle: :x:    | :yellow_circle: :heavy_check_mark:  | :green_circle: :heavy_check_mark:  |

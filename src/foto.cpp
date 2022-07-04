@@ -10,3 +10,7 @@ Foto::~Foto() {}
 
 void Foto::setArquivo(string arquivo) { this->arquivo = arquivo; }
 string Foto::getArquivo() { return this->arquivo; }
+
+void Foto::toString() {
+	cout << getArquivo() << endl;
+}

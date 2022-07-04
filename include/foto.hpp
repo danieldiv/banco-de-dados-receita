@@ -13,6 +13,8 @@ public:
 	Foto(string arquivo);
 	~Foto();
 
+	void toString();
+
 	void setArquivo(string arquivo);
 	string getArquivo();
 
