@@ -31,27 +31,28 @@ void Control::setMysql(MYSQL *mysql) { this->mysql = mysql; }
 void Control::setUtil(Util *util) { this->util = util; }
 
 void Control::opcoesInsert(int op) {
-    if (op == 1) {
+    if (op == 1)
         getControlInsert().adicionarIngrediente();
-    } else if (op == 2) {
+    else if (op == 2)
         getControlInsert().adicionarUsuario();
-    } else if (op == 3) {
+    else if (op == 3)
         getControlInsert().adicionarReceita(to_string(getUtil()->getId()));
-    } else if (op == 4) {
+    else if (op == 4)
         getControlInsert().adicionarIngredienteReceitas();
-    } else if (op == 5) {
+    else if (op == 5)
         getControlInsert().adicionarEtapasReceita();
-    } else if (op == 6) {
+    else if (op == 6)
+        getControlInsert().adicionarPassoNaEtapa();
+    else if (op == 7)
         getControlInsert().adicionarComentarioReceita();
-    } else if (op == 7) {
+    else if (op == 8)
         getControlInsert().adicionarCurtidaReceita();
-    } else if (op == 8) {
+    else if (op == 9)
         getControlInsert().adicionarFotoReceita();
-    } else if (op == 0) {
+    else if (op == 0)
         return;
-    } else {
+    else
         cout << "Opcao invalida" << endl;
-    }
 }
 
 void Control::opcoesSelect(int op) {

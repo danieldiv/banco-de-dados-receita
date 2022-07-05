@@ -191,7 +191,7 @@ void ControlInsert::adicionarIngredienteReceitas() {
 [Thomás] - adicionarEtapasReceita()
 
 - adicionar função no menu;
-- conferir se ta funcionando corretamente 
+- conferir se ta funcionando corretamente
 - Esta na opção 18 no Menu Gerenciamento
 */
 
@@ -226,10 +226,10 @@ void ControlInsert::adicionarEtapasReceita() {
 	cout << "\nInforme o numero da etapa:";
 	//cin.ignore();
 	getline(cin, numero_etapa);
-	
+
 	cout << "\nInforme o titulo da etapa:";
 	//cin.ignore();
-	getline(cin,titulo);
+	getline(cin, titulo);
 
 	cout << endl << "[Adicionando Etapa à receita]" << endl << endl;
 
@@ -244,6 +244,68 @@ void ControlInsert::adicionarEtapasReceita() {
 		cout << "Ops... nao foi possivel cadastrar etapa à receita." << endl;
 	else
 		cout << "A etapa foi cadastrada etapa na receita com sucesso" << endl;
+}
+
+void ControlInsert::adicionarPassoNaEtapa() {
+	string query = "select id, nome from receitas";
+
+	if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+
+		string numero_etapa;
+		string id_receita;
+		// string titulo;
+
+		cout << "\nInforme id da receita: ";
+		cin.ignore();
+		getline(cin, id_receita);
+
+		query.assign("select id from receitas where id = ").append(id_receita);
+
+		mysql_query(getMysql(), query.c_str());
+		MYSQL_RES *resultado = mysql_store_result(mysql);
+
+		if (resultado == NULL) {
+			cout << "Query invalida" << endl;
+			return;
+		} else if (mysql_affected_rows(mysql) == 0) {
+			cout << "Empty set" << endl;
+			return;
+		}
+
+		query.assign("select numero, titulo from receitas_etapas where receita_id = ").append(id_receita);
+
+		if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+			cout << "\nInforme o numero da etapa:";
+			getline(cin, numero_etapa);
+
+			query.append(" and numero = ").append(numero_etapa);
+
+			if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+				cout << endl << "[Adicionando Passo na Etapa]" << endl;
+
+				cout << "\nInforme o a sequencia do passo:";
+				string sequencia;
+				getline(cin, sequencia);
+
+				cout << "\nInforme o a instrucao do passo:";
+				string instrucao;
+				getline(cin, instrucao);
+
+				query.assign("insert into receitas_passos ")
+					.append(" (receita_id, etapa_numero, sequencia, instrucao) VALUES ")
+					.append("(").append(id_receita).append(",")
+					.append(numero_etapa).append(",'")
+					.append(sequencia).append("','")
+					.append(instrucao).append("')");
+
+				cout << "Query: " << query << endl;
+				if (mysql_query(getMysql(), query.c_str()) != 0)
+					cout << "Ops... nao foi possivel cadastrar etapa à receita." << endl;
+				else
+					cout << "O passo da etapa foi cadastrada com sucesso" << endl;
+			}
+		}
+	}
 }
 
 

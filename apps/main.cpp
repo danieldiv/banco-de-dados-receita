@@ -170,9 +170,10 @@ int menuInsersao() {
     cout << "[3] Inserir Receita" << endl;
     cout << "[4] Inserir Ingrediente da Receita" << endl;
     cout << "[5] Inserir Etapa" << endl;
-    cout << "[6] Inserir Comentario" << endl;
-    cout << "[7] Inserir Curtida" << endl;
-    cout << "[8] Inserir Foto" << endl;
+    cout << "[6] Inserir Passo" << endl;
+    cout << "[7] Inserir Comentario" << endl;
+    cout << "[8] Inserir Curtida" << endl;
+    cout << "[9] Inserir Foto" << endl;
     cout << "[0] Voltar" << endl << endl;
     cout << ">>> ";
 

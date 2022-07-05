@@ -34,7 +34,7 @@ public:
 	void adicionarReceita(string id_usuario);
 	void adicionarIngredienteReceitas();
 	void adicionarEtapasReceita();
-
+	void adicionarPassoNaEtapa();
 
 	void adicionarComentarioReceita();
 	void adicionarCurtidaReceita();
