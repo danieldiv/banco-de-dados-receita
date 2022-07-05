@@ -105,5 +105,5 @@ Dentro do menu de cadastros:
 ## Conclusões
 
 <p>
-asdfasdfafd
+Este software foi desenvolvido para que pudessemos treinar nossas abilidades com mysql em uma aplicação real. Optamos por desenvolver em C e C++ visto a nossa experiência anterior nessas linguagens. O trabalho foi desenvolvido ao longo de um mês e os resultados foram muito bons visto que a aplicação está 100% funcional além de ter contribuido positivamente para o nosso aprendizado no uso de banco de dados.
 </p>
