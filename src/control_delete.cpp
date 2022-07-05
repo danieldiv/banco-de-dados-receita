@@ -185,7 +185,7 @@ void ControlDelete::removerComentariosDaReceita(string receita_id, string usuari
 		cout << "Query invalida" << endl;
 		return;
 	} else if (mysql_affected_rows(getMysql()) == 0) {
-		cout << "Nao possui passos na estapa desta receita" << endl;
+		cout << "Nao possui comentarios na receita" << endl;
 		return;
 	}
 	MYSQL_ROW linha;
@@ -213,7 +213,7 @@ void ControlDelete::removerCurtidasDaReceita(string receita_id, string usuario_i
 		cout << "Query invalida" << endl;
 		return;
 	} else if (mysql_affected_rows(getMysql()) == 0) {
-		cout << "Nao possui passos na estapa desta receita" << endl;
+		cout << "Nao possui curtidas na receita" << endl;
 		return;
 	}
 	MYSQL_ROW linha;
@@ -239,7 +239,7 @@ void ControlDelete::removerFotosDaReceita(string receita_id) {
 		cout << "Query invalida" << endl;
 		return;
 	} else if (mysql_affected_rows(getMysql()) == 0) {
-		cout << "Nao possui passos na estapa desta receita" << endl;
+		cout << "Nao possui fotos na receita" << endl;
 		return;
 	}
 	MYSQL_ROW linha;

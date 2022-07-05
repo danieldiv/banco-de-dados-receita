@@ -16,7 +16,7 @@ void Etapa::getPassos() {
     if (this->passos.size() != 0)
         for (Passo passo : this->passos) passo.toString();
     else
-        cout << "\tA receita nao possui passos" << endl;
+        cout << "\tA etapa nao possui passos" << endl;
 }
 
 void Etapa::setNumero(string numero) { this->numero = numero; }

@@ -36,8 +36,6 @@ bool Util::checkUsuario(MYSQL *mysql, string usuario, string senha) {
     int codigo;
     string nome;
 
-    cout << "A2" << endl;
-
     mysql_query(mysql, query.c_str());
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;

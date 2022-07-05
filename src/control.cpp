@@ -40,14 +40,12 @@ void Control::opcoesInsert(int op) {
     } else if (op == 4) {
         getControlInsert().adicionarIngredienteReceitas();
     } else if (op == 5) {
-        // etapa da receita
+        getControlInsert().adicionarEtapasReceita();
     } else if (op == 6) {
-        // passo da etapa
-    } else if (op == 7) {
         getControlInsert().adicionarComentarioReceita();
-    } else if (op == 8) {
+    } else if (op == 7) {
         getControlInsert().adicionarCurtidaReceita();
-    } else if (op == 9) {
+    } else if (op == 8) {
         getControlInsert().adicionarFotoReceita();
     } else if (op == 0) {
         return;
@@ -79,7 +77,24 @@ void Control::opcoesSelect(int op) {
 }
 
 void Control::opcoesUpdate(int op) {
-
+    if (op == 1)
+        getControlUpdate().atualizarIngrediente();
+    else if (op == 2)
+        getControlUpdate().atualizarUsuario();
+    else if (op == 3)
+        getControlUpdate().atualizarReceita();
+    else if (op == 4)
+        getControlUpdate().atualizarFoto();
+    else if (op == 5)
+        getControlUpdate().atualizarReceitaIngrediente();
+    else if (op == 6)
+        getControlUpdate().atualizarReceitaEtapa();
+    else if (op == 7)
+        getControlUpdate().atualizarReceitaPassos();
+    else if (op == 0)
+        return;
+    else
+        cout << "Opcao invalida" << endl;
 }
 
 void Control::opcoesDelete(int op) {

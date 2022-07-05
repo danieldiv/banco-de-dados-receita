@@ -131,29 +131,8 @@ void gerenciamento(MYSQL *mysql, Util *util) {
         case 3:
             control->opcoesDelete(menuRemocao());
             break;
-        case 11:
-            control->getControlUpdate().atualizarIngrediente();
-            break;
-        case 12:
-            control->getControlUpdate().atualizarUsuario();
-            break;
-        case 13:
-            control->getControlUpdate().atualizarReceita();
-            break;
-        case 14:
-            control->getControlUpdate().atualizarFoto();
-            break;
-        case 15:
-            control->getControlUpdate().atualizarReceitaIngrediente();
-            break;
-        case 16:
-            control->getControlUpdate().atualizarReceitaEtapa();
-            break;
-        case 17:
-            control->getControlUpdate().atualizarReceitaPassos();
-            break;
-              case 18:
-                control->getControlInsert().adicionarEtapasReceita();
+        case 4:
+            control->opcoesUpdate(menuEdicao());
             break;
         case 0:
             delete control;
@@ -172,20 +151,12 @@ int menuGerenciamento() {
     cout << "MENU GERENCIAMENTO" << endl << endl;
     cout << "[1] Cadastro" << endl;
     cout << "[2] Impressao" << endl;
-    cout << "[3] Remocao" << endl << endl;
-
-    cout << "[11] Atualizar Ingrediente" << endl;
-    cout << "[12] Atualizar Usuario" << endl;
-    cout << "[13] Atualizar Receita" << endl;
-    cout << "[14] Atualizar Foto da Receita" << endl;
-    cout << "[15] Atualizar Ingrediente da Receita" << endl;
-    cout << "[16] Atualizar Etapa da Receita" << endl;
-    cout << "[17] Atualizar Passos da Receita" << endl << endl;
-    cout << "[ 0] Voltar" << endl << endl;
+    cout << "[3] Remocao" << endl;
+    cout << "[4] Atualizacao" << endl;
+    cout << "[0] Voltar" << endl << endl;
     cout << ">>> ";
 
     cin >> opcao;
-
     return opcao;
 }
 
@@ -198,16 +169,14 @@ int menuInsersao() {
     cout << "[2] Inserir Usuario" << endl;
     cout << "[3] Inserir Receita" << endl;
     cout << "[4] Inserir Ingrediente da Receita" << endl;
-    cout << "[5] Inserir Etapas da Receita" << endl;
-    cout << "[6] Inserir Etapa" << endl;
-    cout << "[7] Inserir Comentario" << endl;
-    cout << "[8] Inserir Curtida" << endl;
-    cout << "[9] Inserir Foto" << endl;
+    cout << "[5] Inserir Etapa" << endl;
+    cout << "[6] Inserir Comentario" << endl;
+    cout << "[7] Inserir Curtida" << endl;
+    cout << "[8] Inserir Foto" << endl;
     cout << "[0] Voltar" << endl << endl;
     cout << ">>> ";
 
     cin >> opcao;
-
     return opcao;
 }
 
@@ -226,12 +195,25 @@ int menuImpresao() {
     cout << ">>> ";
 
     cin >> opcao;
-
     return opcao;
 }
 
 int menuEdicao() {
-    return 0;
+    if (system("clear") == -1)cout << "erro no system" << endl;
+    int opcao;
+
+    cout << "MENU ATUALIZACAO" << endl << endl;
+    cout << "[1] Atualizar Ingrediente" << endl;
+    cout << "[2] Atualizar Usuario" << endl;
+    cout << "[3] Atualizar Receita" << endl;
+    cout << "[4] Atualizar Foto da Receita" << endl;
+    cout << "[5] Atualizar Ingrediente da Receita" << endl;
+    cout << "[6] Atualizar Etapa da Receita" << endl;
+    cout << "[7] Atualizar Passos da Receita" << endl << endl;
+    cout << "[0] Voltar" << endl << endl;
+
+    cin >> opcao;
+    return opcao;
 }
 
 int menuRemocao() {
@@ -249,6 +231,5 @@ int menuRemocao() {
     cout << ">>> ";
 
     cin >> opcao;
-
     return opcao;
 }
