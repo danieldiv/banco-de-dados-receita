@@ -12,7 +12,7 @@
 ## Fazer
 
 | Tabelas               | Leitura                            | Cadastro                           | Atualizacao                         | Remocao                            |
-| --------------------- | ------------------- ---------------|--------------- ------------------- | ----------------------------------- | ---------------------------------- |
+| --------------------- | -----------------------------------|----------------------------------- | ----------------------------------- | ---------------------------------- |
 | usuarios              | :red_circle: :heavy_check_mark:    | :red_circle: :heavy_check_mark:    | :yellow_circle: :heavy_check_mark:  | :yellow_circle: :heavy_check_mark: |
 | ingredientes          | :red_circle: :heavy_check_mark:    | :red_circle: :heavy_check_mark:    | :red_circle: :heavy_check_mark:     | :red_circle: :heavy_check_mark:    |
 | receitas              | :red_circle: :heavy_check_mark:    | :red_circle: :heavy_check_mark:    | :yellow_circle: :heavy_check_mark:  | :yellow_circle: :heavy_check_mark: |
