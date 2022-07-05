@@ -71,5 +71,39 @@
 ## Menu
 
 <p>
-    Através do menu o usuário pode pesquisar por receitas e ingredientes cadastrados no banco de dados, além de poder logar no sistema em questão...
+Através do menu o usuário pode pesquisar por receitas e ingredientes cadastrados no banco de dados, além de poder logar no sistema em questão:
+</p>
+
+<p align = "">
+    <img src="https://github.com/danieldiv/banco-de-dados-receita/blob/main/imagens/menu1.jpeg" alt="MYSQL-server" width="300"></img>
+</p>
+
+<p>
+Já no menu de administrador, poderá fazer pesquisa por receita e ingrediente, tendo também acesso ao gerenciamento do banco de dados, onde poderá fazer inserções, atualização e exclusões de receitas no banco de dados.
+</p>
+
+<p align = "">
+    <img src="https://github.com/danieldiv/banco-de-dados-receita/blob/main/imagens/menu2.jpeg" alt="MYSQL-server" width="300"></img>
+</p>
+
+<p>
+Dentro de menu de gerenciamento o usuário:
+</p>
+
+<p align = "">
+    <img src="https://github.com/danieldiv/banco-de-dados-receita/blob/main/imagens/menu3.jpeg" alt="MYSQL-server" width="300"></img>
+</p>
+
+<p>
+Dentro do menu de cadastros:
+</p>
+
+<p align = "">
+    <img src="https://github.com/danieldiv/banco-de-dados-receita/blob/main/imagens/menu4.jpeg" alt="MYSQL-server" width="300"></img>
+</p>
+
+## Conclusões
+
+<p>
+asdfasdfafd
 </p>
