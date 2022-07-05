@@ -126,7 +126,6 @@ void ControlUpdate::atualizarFoto() {
 	cout << "\nInforme o id da receita: ";
 	cin.ignore();
 	getline(cin, receita_id);
-	// query.append(receita_id);
 
 	cout << "Informe a foto da receita: ";
 	getline(cin, arquivo);
@@ -141,7 +140,6 @@ void ControlUpdate::atualizarFoto() {
 
 	if (mysql_query(getMysql(), query.c_str()) != 0) {
 		cout << "Nao fossivel atualizar o nome da foto da receita" << endl;
-		// cout << "Ops... nao foi possivel atualizar a receita " << nome << "." << endl;
 	} else
 		cout << "A foto da receita foi atualizada com sucesso" << endl;
 }
