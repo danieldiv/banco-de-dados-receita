@@ -24,7 +24,7 @@ void Receita::getFotos() {
     if (this->fotos.size() != 0)
         for (Foto foto : this->fotos) foto.toString();
     else
-        cout << "\nA receita nao possui fotos" << endl;
+        cout << "A receita nao possui fotos" << endl;
 }
 
 void Receita::setEtapas(Etapa etapa) { this->etapas.push_back(etapa); }
@@ -42,7 +42,15 @@ void Receita::getCurtidas() {
     if (this->curtidas.size() != 0)
         for (Curtida curtida : this->curtidas) curtida.toString();
     else
-        cout << "\nA receita nao possui curtidas" << endl;
+        cout << "A receita nao possui curtidas" << endl;
+}
+
+void Receita::setComentarios(Comentario comentario) { this->comentarios.push_back(comentario); }
+void Receita::getComentarios() {
+    if (this->comentarios.size() != 0)
+        for (Comentario comentario : this->comentarios) comentario.toString();
+    else
+        cout << "A receita nao possui comentarios" << endl;
 }
 
 void Receita::setUsuario(Usuario usuario) { this->usuario = usuario; }
@@ -76,5 +84,8 @@ void Receita::toString() {
 
     cout << endl << "[Curtidas]" << endl << endl;
     getCurtidas();
+
+    cout << endl << "[Comentarios]" << endl << endl;
+    getComentarios();
     cout << endl << "---------------------------------------------------------------------------" << endl;
 }

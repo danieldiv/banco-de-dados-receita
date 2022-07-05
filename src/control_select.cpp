@@ -31,6 +31,7 @@ void ControlSelect::carregarReceitas(MYSQL *sql, string nomeReceita) {
 			buscarEtapasDaReceita(rec);
 			buscarFotosReceita(rec);
 			buscarCurtidaReceita(rec);
+			buscarComentariosReceita(rec);
 
 			this->receitas.push_back(*rec);
 		}
@@ -70,7 +71,6 @@ Usuario ControlSelect::buscarUsuarioPorId(string id) {
 		usu->setNome(linha[1]);
 
 		return *usu;
-		// rec->setUsuario(*usu);
 	}
 	return *usu;
 }
@@ -180,5 +180,20 @@ void ControlSelect::buscarCurtidaReceita(Receita *rec) {
 	while ((linha = mysql_fetch_row(resultado))) {
 		curtida = new Curtida(linha[0], linha[1]);
 		rec->setCurtida(*curtida);
+	}
+}
+
+void ControlSelect::buscarComentariosReceita(Receita *rec) {
+	string query = "select usuario_id, data_hora, mensagem from comentarios where receita_id = ";
+	query.append(rec->getId());
+
+	mysql_query(getMysql(), query.c_str());
+	MYSQL_RES *resultado = mysql_store_result(mysql);
+	MYSQL_ROW linha;
+
+	Comentario *comentario;
+	while ((linha = mysql_fetch_row(resultado))) {
+		comentario = new Comentario(linha[0], linha[1], linha[2]);
+		rec->setComentarios(*comentario);
 	}
 }

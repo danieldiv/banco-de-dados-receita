@@ -20,7 +20,6 @@ void Util::login(MYSQL *mysql) {
 
         // cout << "Senha: ";
         // getline(cin, password);
-
         if (!(checkUsuario(mysql, user, password))) {
             cout << "\nUsuario ou senha invalida" << endl;
         } else {
@@ -37,9 +36,12 @@ bool Util::checkUsuario(MYSQL *mysql, string usuario, string senha) {
     int codigo;
     string nome;
 
+    cout << "A2" << endl;
+
     mysql_query(mysql, query.c_str());
     MYSQL_RES *resultado = mysql_store_result(mysql);
     MYSQL_ROW linha;
+
 
     while ((linha = mysql_fetch_row(resultado))) {
         codigo = stoi(linha[0]);
@@ -57,7 +59,7 @@ bool Util::checkUsuario(MYSQL *mysql, string usuario, string senha) {
 }
 
 bool Util::checkCredencial(MYSQL *mysql, int codigo, string senha) {
-    string query = "select * from credenciais where ";
+    string query = "select * from credenciais";
 
     string codigo_credencial;
     string senha_credencial;

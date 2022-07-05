@@ -9,6 +9,7 @@
 #include "etapa.hpp"
 #include "foto.hpp"
 #include "curtida.hpp"
+#include "comentario.hpp"
 
 using namespace std;
 
@@ -26,6 +27,7 @@ private:
     vector<Etapa> etapas;
     vector<Foto> fotos;
     vector<Curtida> curtidas;
+    vector<Comentario> comentarios;
 public:
     Receita();
     Receita(string id, string nome, string rendimento, string tempo);
@@ -47,6 +49,9 @@ public:
 
     void setEtapas(Etapa etapa);
     void getEtapas();
+
+    void setComentarios(Comentario comentario);
+    void getComentarios();
 
     void setId(string id);
     void setNome(string nome);

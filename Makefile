@@ -23,6 +23,7 @@ libed: \
 	$(OBJ)/receita.o \
 	$(OBJ)/foto.o \
 	$(OBJ)/curtida.o \
+	$(OBJ)/comentario.o \
 	$(OBJ)/control.o
 	ar -rcs $(LIB)/libed.a $(OBJ)/*.o
 

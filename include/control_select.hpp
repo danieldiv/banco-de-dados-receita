@@ -34,6 +34,7 @@ public:
 	void buscarReceitaPorId(string id);
 	void buscarFotosReceita(Receita *rec);
 	void buscarCurtidaReceita(Receita *rec);
+	void buscarComentariosReceita(Receita *rec);
 };
 
 #endif
