@@ -78,8 +78,34 @@ void ControlInsert::adicionarUsuario() {
 
 	if (mysql_query(getMysql(), query.c_str()) != 0)
 		cout << "Ops... nao foi possivel cadastrar o usuario " << nome << "." << endl;
-	else
+	else {
 		cout << "O usuario " << nome << " foi cadastrado com sucesso" << endl;
+		adicionarCredencial();
+	}
+
+}
+
+void  ControlInsert::adicionarCredencial() {
+	string query = "select * from usuarios";
+	string credencial, id;
+
+	cout << endl;
+	if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+		cout << "\nInforme o id do usario para adicionar a credencial: ";
+		getline(cin, id);
+
+		cout << "Informe a credencial: ";
+		getline(cin, credencial);
+
+		string query = "insert into credenciais (id, senha) values ";
+		query.append("(").append(id).append(", '")
+			.append(credencial).append("')");
+
+		if (mysql_query(getMysql(), query.c_str()) != 0)
+			cout << "Ops... nao foi possivel cadastrar a credencial no usuario" << endl;
+		else
+			cout << "A credencial foi cadastrada" << endl;
+	}
 }
 
 void ControlInsert::adicionarReceita(string id_usuario) {

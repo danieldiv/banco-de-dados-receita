@@ -224,8 +224,10 @@ void ControlSelect::buscarCurtidaReceita(Receita *rec) {
 	MYSQL_ROW linha;
 
 	Curtida *curtida;
+	Usuario usu;
 	while ((linha = mysql_fetch_row(resultado))) {
-		curtida = new Curtida(linha[0], linha[1]);
+		usu = buscarUsuarioPorId(linha[0]);
+		curtida = new Curtida(usu.getNome(), linha[1]);
 		rec->setCurtida(*curtida);
 	}
 }

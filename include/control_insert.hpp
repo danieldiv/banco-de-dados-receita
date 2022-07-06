@@ -30,7 +30,10 @@ public:
 	void setUtil(Util *util);
 
 	void adicionarIngrediente();
+
 	void adicionarUsuario();
+	void adicionarCredencial();
+
 	void adicionarReceita(string id_usuario);
 	void adicionarIngredienteReceitas();
 	void adicionarEtapasReceita();
