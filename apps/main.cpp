@@ -29,6 +29,13 @@ int main() {
     // char *res = (char *)malloc(sizeof(char) * 20);
 
     MYSQL *mysql = mysql_init(NULL);
+    // string t = "danie'l";
+    // string newStr = util->testSqlInjection(mysql, t);
+
+    // cout << t << endl;
+    // cout << newStr << endl;
+
+    // return 0;
     // mysql_real_escape_string_quote(mysql, res, teste, strlen(teste), '\'');
     // mysql_real_escape_string_quote(mysql, res, teste, strlen(teste), ' ');
 

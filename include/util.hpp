@@ -32,6 +32,8 @@ public:
 
     void setId(long id);
     long getId();
+
+    string testSqlInjection(MYSQL *mysql, string str);
 };
 
 #endif

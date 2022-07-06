@@ -30,6 +30,7 @@ void ControlInsert::adicionarIngrediente() {
 	cout << "Informe o nome do ingrediente: ";
 	cin.ignore();
 	getline(cin, nome);
+	nome = getUtil()->testSqlInjection(getMysql(), nome);
 
 	query.assign("insert INTO ingredientes (nome) VALUES ('").append(nome).append("');");
 
@@ -52,21 +53,27 @@ void ControlInsert::adicionarUsuario() {
 	cout << "Informe o nome do Usuario: ";
 	cin.ignore();
 	getline(cin, nome);
+	nome = getUtil()->testSqlInjection(getMysql(), nome);
 
 	cout << "Informe o telefone: ";
 	getline(cin, telefone);
+	telefone = getUtil()->testSqlInjection(getMysql(), telefone);
 
 	cout << "Informe o email: ";
 	getline(cin, email);
+	email = getUtil()->testSqlInjection(getMysql(), email);
 
 	cout << "Informe a cidade: ";
 	getline(cin, cidade);
+	cidade = getUtil()->testSqlInjection(getMysql(), cidade);
 
 	cout << "Informe o estado: ";
 	getline(cin, estado);
+	estado = getUtil()->testSqlInjection(getMysql(), estado);
 
 	cout << "Informe a foto: ";
 	getline(cin, foto);
+	foto = getUtil()->testSqlInjection(getMysql(), foto);
 
 	query.assign("insert INTO usuarios (nome, telefone, email, cidade, estado, foto) VALUES ")
 		.append("('").append(nome).append("','")
@@ -93,9 +100,11 @@ void  ControlInsert::adicionarCredencial() {
 	if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
 		cout << "\nInforme o id do usario para adicionar a credencial: ";
 		getline(cin, id);
+		id = getUtil()->testSqlInjection(getMysql(), id);
 
 		cout << "Informe a credencial: ";
 		getline(cin, credencial);
+		credencial = getUtil()->testSqlInjection(getMysql(), credencial);
 
 		string query = "insert into credenciais (id, senha) values ";
 		query.append("(").append(id).append(", '")
@@ -118,12 +127,15 @@ void ControlInsert::adicionarReceita(string id_usuario) {
 	cout << "Informe o nome da receita: ";
 	cin.ignore();
 	getline(cin, nome);
+	nome = getUtil()->testSqlInjection(getMysql(), nome);
 
 	cout << "Informe o rendimento: ";
 	getline(cin, rendimento);
+	rendimento = getUtil()->testSqlInjection(getMysql(), rendimento);
 
 	cout << "Informe o tempo: ";
 	getline(cin, tempo);
+	tempo = getUtil()->testSqlInjection(getMysql(), tempo);
 
 	query.assign("insert INTO receitas (usuario_id, nome, rendimento, tempo) VALUES ")
 		.append("(").append(id_usuario).append(",'")
@@ -158,6 +170,7 @@ void ControlInsert::adicionarIngredienteReceitas() {
 	cout << "\nInforme id da receita: ";
 	cin.ignore();
 	getline(cin, id_receita);
+	id_receita = getUtil()->testSqlInjection(getMysql(), id_receita);
 
 	query.assign("select * from receitas where id = ").append(id_receita);
 
@@ -180,6 +193,7 @@ void ControlInsert::adicionarIngredienteReceitas() {
 	cout << "\nInforme o id do ingrediente: ";
 	// cin.ignore();
 	getline(cin, id_ingrediente);
+	id_ingrediente = getUtil()->testSqlInjection(getMysql(), id_ingrediente);
 
 	query.assign("select * from ingredientes where id = ").append(id_ingrediente);
 
@@ -197,9 +211,11 @@ void ControlInsert::adicionarIngredienteReceitas() {
 
 	cout << "Informe a quantidade: ";
 	getline(cin, quantidade);
+	quantidade = getUtil()->testSqlInjection(getMysql(), quantidade);
 
 	cout << "Informe a unidade: ";
 	getline(cin, unidade);
+	unidade = getUtil()->testSqlInjection(getMysql(), unidade);
 
 	query.assign("insert INTO receitas_ingredientes(receita_id, ingrediente_id, quantidade, unidade) VALUES ")
 		.append("(").append(id_receita).append(",")
@@ -232,6 +248,7 @@ void ControlInsert::adicionarEtapasReceita() {
 	cout << "\nInforme id da receita: ";
 	cin.ignore();
 	getline(cin, id_receita);
+	id_receita = getUtil()->testSqlInjection(getMysql(), id_receita);
 
 	query.assign("select * from receitas where id = ").append(id_receita);
 
@@ -252,10 +269,12 @@ void ControlInsert::adicionarEtapasReceita() {
 	cout << "\nInforme o numero da etapa:";
 	//cin.ignore();
 	getline(cin, numero_etapa);
+	numero_etapa = getUtil()->testSqlInjection(getMysql(), numero_etapa);
 
 	cout << "\nInforme o titulo da etapa:";
 	//cin.ignore();
 	getline(cin, titulo);
+	titulo = getUtil()->testSqlInjection(getMysql(), titulo);
 
 	cout << endl << "[Adicionando Etapa à receita]" << endl << endl;
 
@@ -284,6 +303,7 @@ void ControlInsert::adicionarPassoNaEtapa() {
 		cout << "\nInforme id da receita: ";
 		cin.ignore();
 		getline(cin, id_receita);
+		id_receita = getUtil()->testSqlInjection(getMysql(), id_receita);
 
 		query.assign("select id from receitas where id = ").append(id_receita);
 
@@ -303,6 +323,7 @@ void ControlInsert::adicionarPassoNaEtapa() {
 		if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
 			cout << "\nInforme o numero da etapa:";
 			getline(cin, numero_etapa);
+			numero_etapa = getUtil()->testSqlInjection(getMysql(), numero_etapa);
 
 			query.append(" and numero = ").append(numero_etapa);
 
@@ -312,10 +333,12 @@ void ControlInsert::adicionarPassoNaEtapa() {
 				cout << "\nInforme o a sequencia do passo:";
 				string sequencia;
 				getline(cin, sequencia);
+				sequencia = getUtil()->testSqlInjection(getMysql(), sequencia);
 
 				cout << "\nInforme o a instrucao do passo:";
 				string instrucao;
 				getline(cin, instrucao);
+				instrucao = getUtil()->testSqlInjection(getMysql(), instrucao);
 
 				query.assign("insert into receitas_passos ")
 					.append(" (receita_id, etapa_numero, sequencia, instrucao) VALUES ")
@@ -344,6 +367,7 @@ void ControlInsert::adicionarComentarioReceita() {
 		cout << "\nInforme o codigo da receita: ";
 		cin.ignore();
 		getline(cin, receita_id);
+		receita_id = getUtil()->testSqlInjection(getMysql(), receita_id);
 
 		query.append(" where id = ").append(receita_id);
 
@@ -359,6 +383,7 @@ void ControlInsert::adicionarComentarioReceita() {
 		string mensagem;
 		cout << "Informe a mensagem do comentario: ";
 		getline(cin, mensagem);
+		mensagem = getUtil()->testSqlInjection(getMysql(), mensagem);
 
 		query.assign("insert into comentarios")
 			.append("(usuario_id, receita_id, data_hora, mensagem) values (")
@@ -384,6 +409,7 @@ void ControlInsert::adicionarCurtidaReceita() {
 		cout << "\nInforme o codigo da receita: ";
 		cin.ignore();
 		getline(cin, receita_id);
+		receita_id = getUtil()->testSqlInjection(getMysql(), receita_id);
 
 		query.append(" where id = ").append(receita_id);
 
@@ -399,6 +425,7 @@ void ControlInsert::adicionarCurtidaReceita() {
 		string estrelas;
 		cout << "Informe a quantidade de estrelas: ";
 		getline(cin, estrelas);
+		estrelas = getUtil()->testSqlInjection(getMysql(), estrelas);
 
 		query.assign("insert into curtidas")
 			.append("(usuario_id, receita_id, estrelas) values (")
@@ -423,6 +450,7 @@ void ControlInsert::adicionarFotoReceita() {
 		cout << "\nInforme o codigo da receita: ";
 		cin.ignore();
 		getline(cin, receita_id);
+		receita_id = getUtil()->testSqlInjection(getMysql(), receita_id);
 
 		query.append(" where id = ").append(receita_id);
 
@@ -438,6 +466,7 @@ void ControlInsert::adicionarFotoReceita() {
 		string arquivoFoto;
 		cout << "Informe o nome de arquivo da foto: ";
 		getline(cin, arquivoFoto);
+		arquivoFoto = getUtil()->testSqlInjection(getMysql(), arquivoFoto);
 
 		query.assign("insert into receitas_fotos")
 			.append("(receita_id, arquivo) values (")
@@ -460,6 +489,7 @@ void ControlInsert::receitaExperimentar(string usuario_id) {
 		cout << "\nInforme o codigo da receita: ";
 		cin.ignore();
 		getline(cin, receita_id);
+		receita_id = getUtil()->testSqlInjection(getMysql(), receita_id);
 
 		query.assign("insert into receitas_salvas")
 			.append("(usuario_id, receita_id) values (")

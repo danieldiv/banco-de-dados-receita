@@ -153,3 +153,10 @@ void Util::setId(long id) {
 long Util::getId() {
     return this->id;
 }
+
+string Util::testSqlInjection(MYSQL *mysql, string str) {
+    char *res = (char *)malloc(sizeof(char) * 20);
+    mysql_real_escape_string_quote(mysql, res, str.c_str(), str.length(), '\'');
+    string newStr = res;
+    return newStr;
+}
