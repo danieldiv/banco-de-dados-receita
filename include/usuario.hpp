@@ -2,6 +2,9 @@
 #define USUARIO_HPP
 
 #include <iostream>
+#include <vector>
+
+#include "receita_salva.hpp"
 
 using namespace std;
 
@@ -15,11 +18,17 @@ private:
     string estado;
     string foto;
 
+    vector<ReceitaSalva> receitas;
 public:
     Usuario();
     Usuario(string id, string nome);
-    Usuario(string nome, string telefone, string email, string cidade, string estado, string foto);
+    Usuario(string id, string nome, string telefone, string email, string cidade, string estado, string foto);
     ~Usuario();
+
+    void toString();
+
+    void setReceitas(ReceitaSalva receita);
+    void getReceitas();
 
     void setId(string id);
     void setNome(string nome);

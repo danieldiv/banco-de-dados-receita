@@ -254,3 +254,30 @@ void ControlDelete::removerFotoDaReceita(string receita_id, string arquivo) {
 		.append("'").append(arquivo).append("'");
 	removerLinha(query);
 }
+
+void ControlDelete::removerReceitaDoUsuario() {
+	string query = "select id, nome from usuarios";
+
+	if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+		string usuario_id;
+
+		cin.ignore();
+		cout << "Informe o codigo do usuario: ";
+		getline(cin, usuario_id);
+
+		query.assign("select r.id, r.nome from receitas_salvas rs")
+			.append(" left outer join receitas r on r.id = rs.receita_id")
+			.append(" where rs.usuario_id = ").append(usuario_id);
+
+		if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+			string receita_id;
+			cout << "Informe o codigo da receita: ";
+			getline(cin, receita_id);
+
+			query.assign("delete from receitas_salvas where receita_id = ")
+				.append(receita_id).append(" and usuario_id = ")
+				.append(to_string(getUtil()->getId()));
+			removerLinha(query);
+		}
+	}
+}

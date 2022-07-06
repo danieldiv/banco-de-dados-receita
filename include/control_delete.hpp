@@ -27,6 +27,7 @@ public:
 
 	void removerLinha(string query);
 	void construirQueryRemocao(string tabela);
+	void removerReceitaDoUsuario();
 
 	void removerReceitaEmCascata();
 

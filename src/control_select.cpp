@@ -9,6 +9,48 @@ void ControlSelect::setUtil(Util *util) { this->util = util; }
 MYSQL *ControlSelect::getMysql() { return this->mysql; }
 Util *ControlSelect::getUtil() { return this->util; }
 
+void ControlSelect::carregarUsuarios() {
+	string query = "select * from usuarios";
+	string query_receitas = "select nome from receitas where id = ";
+
+	mysql_query(getMysql(), query.c_str());
+	MYSQL_RES *resultado = mysql_store_result(getMysql());
+	MYSQL_RES *resultado_receitas;
+
+	if (mysql_num_rows(resultado) > 0) {
+		MYSQL_ROW linha;
+
+		Usuario *usu;
+		ReceitaSalva *rec;
+		while ((linha = mysql_fetch_row(resultado))) {
+			usu = new Usuario(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6]);
+
+			query.assign("select * from receitas_salvas where usuario_id = ").append(usu->getId());
+			mysql_query(getMysql(), query.c_str());
+			resultado_receitas = mysql_store_result(getMysql());
+
+			if (mysql_num_rows(resultado_receitas) > 0) {
+				MYSQL_ROW linha_receitas;
+
+				cout << "\n[Receitas salvas]" << endl << endl;
+				while ((linha_receitas = mysql_fetch_row(resultado_receitas))) {
+					rec = new ReceitaSalva(linha_receitas[0], linha_receitas[1]);
+					usu->setReceitas(*rec);
+
+					buscarReceitaPorId(query_receitas, linha_receitas[1], false);
+				}
+			}
+			setUsuario(*usu);
+		}
+		cout << endl;
+		for (Usuario u : this->usuarios) u.toString();
+	} else
+		cout << "\nNenhum usuario encontrado" << endl;
+	this->receitas.clear();
+}
+
+void ControlSelect::setUsuario(Usuario usu) { this->usuarios.push_back(usu); }
+
 void ControlSelect::carregarReceitas(MYSQL *sql, string nomeReceita) {
 	string query = "select * from receitas";
 	query.append(" where nome like '%").append(nomeReceita).append("%'");
@@ -124,13 +166,14 @@ void ControlSelect::buscarReceitaPorIngrediente(string ingrediente) {
 	}
 
 	if (mapeamento.size() > 0) {
+		query.assign("select * from receitas where id = ");
 		for (itr = mapeamento.begin(); itr != mapeamento.end(); itr++)
-			buscarReceitaPorId(itr->first);
+			buscarReceitaPorId(query, itr->first, true);
 	} else cout << "\nNenhuma receita encontrada" << endl;
 }
 
-void ControlSelect::buscarReceitaPorId(string id) {
-	string query = "select * from receitas where id = ";
+void ControlSelect::buscarReceitaPorId(string query, string id, bool controle) {
+	// string query = "select * from receitas where id = ";
 	query.append(id);
 
 	mysql_query(getMysql(), query.c_str());
@@ -140,14 +183,18 @@ void ControlSelect::buscarReceitaPorId(string id) {
 	Receita *rec;
 
 	while ((linha = mysql_fetch_row(resultado))) {
-		rec = new Receita(linha[0], linha[2], linha[3], linha[4]);
+		if (controle) {
+			rec = new Receita(linha[0], linha[2], linha[3], linha[4]);
 
-		if (linha[1] != NULL) rec->setUsuario(buscarUsuarioPorId(linha[1]));
+			if (linha[1] != NULL) rec->setUsuario(buscarUsuarioPorId(linha[1]));
 
-		buscarIngredientesDaReceita(rec);
-		buscarEtapasDaReceita(rec);
+			buscarIngredientesDaReceita(rec);
+			buscarEtapasDaReceita(rec);
 
-		this->receitas.push_back(*rec);
+			this->receitas.push_back(*rec);
+		} else {
+			cout << linha[0] << endl;
+		}
 	}
 	for (Receita r : this->receitas) r.toString();
 	this->receitas.clear();

@@ -24,6 +24,7 @@ libed: \
 	$(OBJ)/foto.o \
 	$(OBJ)/curtida.o \
 	$(OBJ)/comentario.o \
+	$(OBJ)/receita_salva.o \
 	$(OBJ)/control.o
 	ar -rcs $(LIB)/libed.a $(OBJ)/*.o
 

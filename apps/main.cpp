@@ -165,16 +165,17 @@ int menuInsersao() {
     int opcao;
 
     cout << "MENU INSERCAO" << endl << endl;
-    cout << "[1] Inserir Ingrediente" << endl;
-    cout << "[2] Inserir Usuario" << endl;
-    cout << "[3] Inserir Receita" << endl;
-    cout << "[4] Inserir Ingrediente da Receita" << endl;
-    cout << "[5] Inserir Etapa" << endl;
-    cout << "[6] Inserir Passo" << endl;
-    cout << "[7] Inserir Comentario" << endl;
-    cout << "[8] Inserir Curtida" << endl;
-    cout << "[9] Inserir Foto" << endl;
-    cout << "[0] Voltar" << endl << endl;
+    cout << "[ 1] Inserir Ingrediente" << endl;
+    cout << "[ 2] Inserir Usuario" << endl;
+    cout << "[ 3] Inserir Receita" << endl;
+    cout << "[ 4] Inserir Ingrediente da Receita" << endl;
+    cout << "[ 5] Inserir Etapa" << endl;
+    cout << "[ 6] Inserir Passo" << endl;
+    cout << "[ 7] Inserir Comentario" << endl;
+    cout << "[ 8] Inserir Curtida" << endl;
+    cout << "[ 9] Inserir Foto" << endl;
+    cout << "[10] Inserir Receita no usuario" << endl;
+    cout << "[ 0] Voltar" << endl << endl;
     cout << ">>> ";
 
     cin >> opcao;
@@ -228,6 +229,7 @@ int menuRemocao() {
     cout << "[4] Remover Ingrediente da Receita" << endl;
     cout << "[5] Remover Etapas da Receita" << endl;
     cout << "[6] Remover Passos da Receita" << endl;
+    cout << "[7] Remover Receita do usuario" << endl;
     cout << "[0] Voltar" << endl << endl;
     cout << ">>> ";
 

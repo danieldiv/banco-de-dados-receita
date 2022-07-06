@@ -49,6 +49,8 @@ void Control::opcoesInsert(int op) {
         getControlInsert().adicionarCurtidaReceita();
     else if (op == 9)
         getControlInsert().adicionarFotoReceita();
+    else if (op == 10)
+        getControlInsert().receitaExperimentar(to_string(getUtil()->getId()));
     else if (op == 0)
         return;
     else
@@ -61,9 +63,9 @@ void Control::opcoesSelect(int op) {
     if (op == 1) {
         getUtil()->imprimeDados(getMysql(), query.append("ingredientes").c_str());
     } else if (op == 2) {
-        getUtil()->imprimeDados(getMysql(), query.append("usuarios").c_str());
+        getControlSelect().carregarUsuarios();
     } else if (op == 3) {
-        ControlSelect().carregarReceitas(getMysql(), "");
+        getControlSelect().carregarReceitas(getMysql(), "");
     } else if (op == 4) {
         getUtil()->imprimeDados(getMysql(), query.append("comentarios").c_str());
     } else if (op == 5) {
@@ -184,6 +186,8 @@ void Control::opcoesDelete(int op) {
                 }
             }
         }
+    } else if (op == 7) {
+        getControlDelete().removerReceitaDoUsuario();
     } else if (op == 0) {
         return;
     } else {

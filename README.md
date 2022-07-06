@@ -22,7 +22,7 @@
 | receitas passos       | :green_circle: :heavy_check_mark:  | :red_circle: :heavy_check_mark:    | :yellow_circle: :heavy_check_mark:  | :green_circle: :heavy_check_mark:  |
 | comentarios           | :yellow_circle: :heavy_check_mark: | :yellow_circle: :heavy_check_mark: |                                     | :green_circle: :heavy_check_mark:  |
 | curtidas              | :yellow_circle: :heavy_check_mark: | :yellow_circle: :heavy_check_mark: |                                     | :green_circle: :heavy_check_mark:  |
-| receitas salvas       | :yellow_circle: :x:                | :yellow_circle: :x:                | :green_circle: :x:                  | :green_circle: :x:                 |
+| receitas salvas       | :yellow_circle: :heavy_check_mark: | :yellow_circle: :heavy_check_mark: |                                     | :green_circle: :heavy_check_mark:  |
 
 ### Legenda (prioridade)
 

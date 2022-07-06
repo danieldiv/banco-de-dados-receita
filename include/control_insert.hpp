@@ -39,6 +39,7 @@ public:
 	void adicionarComentarioReceita();
 	void adicionarCurtidaReceita();
 	void adicionarFotoReceita();
+	void receitaExperimentar(string usuario_id);
 };
 
 #endif

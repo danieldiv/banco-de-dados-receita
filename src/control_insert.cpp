@@ -425,3 +425,25 @@ void ControlInsert::adicionarFotoReceita() {
 		cout << "Foto inserida com sucesso" << endl;
 	}
 }
+
+void ControlInsert::receitaExperimentar(string usuario_id) {
+	string query = "select id, nome from receitas";
+
+	if (getUtil()->imprimeDados(getMysql(), query.c_str())) {
+		string receita_id;
+		cout << "\nInforme o codigo da receita: ";
+		cin.ignore();
+		getline(cin, receita_id);
+
+		query.assign("insert into receitas_salvas")
+			.append("(usuario_id, receita_id) values (")
+			.append(usuario_id).append(", ")
+			.append(receita_id).append(")");
+
+		if (mysql_query(getMysql(), query.c_str()) != 0) {
+			cout << "Nao foi possivel salvar a receita" << endl;
+			return;
+		}
+		cout << "Receita salva para ver mais tarde" << endl;
+	}
+}
