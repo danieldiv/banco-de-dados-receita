@@ -17,9 +17,12 @@ void Util::login(MYSQL *mysql) {
 
         cout << "Usuario: ";
         getline(cin, user);
+        user = testSqlInjection(mysql, user);
 
         cout << "Senha: ";
         getline(cin, password);
+        password = testSqlInjection(mysql, password);
+
         if (!(checkUsuario(mysql, user, password))) {
             cout << "\nUsuario ou senha invalida" << endl;
         } else {

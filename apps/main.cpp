@@ -60,6 +60,7 @@ int main() {
             cout << "Informe o nome da receita: ";
             cin.ignore();
             getline(cin, nomeReceita);
+            nomeReceita = util->testSqlInjection(mysql, nomeReceita);
 
             if (nomeReceita.length() > 0)
                 control->getControlSelect().carregarReceitas(mysql, nomeReceita);
@@ -70,6 +71,7 @@ int main() {
             cout << "Informe o nome da receita: ";
             cin.ignore();
             getline(cin, nomeIngrediente);
+            nomeIngrediente = util->testSqlInjection(mysql, nomeIngrediente);
 
             if (nomeIngrediente.length() > 0)
                 control->getControlSelect().buscarReceitaPorIngrediente(nomeIngrediente);

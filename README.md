@@ -102,6 +102,10 @@ Dentro do menu de cadastros:
     <img src="https://github.com/danieldiv/banco-de-dados-receita/blob/main/imagens/menu4.jpeg" alt="MYSQL-server" width="300"></img>
 </p>
 
+## Info
+
+- Em alguns casos se faz necessario estar logado no usuario que realizou o cadastro da receita para poder excluir as receitas salvas nele ou tabelas que fazem referencia ao usuario, pois o ususario passado sera o que esta logado, do contrario nao sera possivel excluir a receita.
+
 ## Conclusões
 
 <p>

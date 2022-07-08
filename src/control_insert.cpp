@@ -266,13 +266,11 @@ void ControlInsert::adicionarEtapasReceita() {
 	query.assign("select numero, titulo from receitas_etapas where receita_id = ").append(id_receita);
 	getUtil()->imprimeDados(getMysql(), query.c_str());
 
-	cout << "\nInforme o numero da etapa:";
-	//cin.ignore();
+	cout << "\nInforme o numero da etapa: ";
 	getline(cin, numero_etapa);
 	numero_etapa = getUtil()->testSqlInjection(getMysql(), numero_etapa);
 
-	cout << "\nInforme o titulo da etapa:";
-	//cin.ignore();
+	cout << "\nInforme o titulo da etapa: ";
 	getline(cin, titulo);
 	titulo = getUtil()->testSqlInjection(getMysql(), titulo);
 
@@ -283,8 +281,6 @@ void ControlInsert::adicionarEtapasReceita() {
 		.append(numero_etapa).append(",'")
 		.append(titulo).append("')");
 
-
-	cout << "Query: " << query << endl;
 	if (mysql_query(getMysql(), query.c_str()) != 0)
 		cout << "Ops... nao foi possivel cadastrar etapa à receita." << endl;
 	else
@@ -343,11 +339,10 @@ void ControlInsert::adicionarPassoNaEtapa() {
 				query.assign("insert into receitas_passos ")
 					.append(" (receita_id, etapa_numero, sequencia, instrucao) VALUES ")
 					.append("(").append(id_receita).append(",")
-					.append(numero_etapa).append(",'")
-					.append(sequencia).append("','")
+					.append(numero_etapa).append(",")
+					.append(sequencia).append(",'")
 					.append(instrucao).append("')");
 
-				cout << "Query: " << query << endl;
 				if (mysql_query(getMysql(), query.c_str()) != 0)
 					cout << "Ops... nao foi possivel cadastrar etapa à receita." << endl;
 				else

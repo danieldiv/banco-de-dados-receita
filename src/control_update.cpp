@@ -17,10 +17,12 @@ void ControlUpdate::atualizarIngrediente() {
 	cout << "\nInforme o id do ingrediente: ";
 	cin.ignore();
 	getline(cin, id);
+	id = getUtil()->testSqlInjection(getMysql(), id);
 	query.append(id);
 
 	cout << "Informe o novo nome do ingrediente: ";
 	getline(cin, nome);
+	nome = getUtil()->testSqlInjection(getMysql(), nome);
 
 	query.assign("UPDATE ingredientes set nome = ")
 		.append("'").append(nome).append("'")
@@ -40,25 +42,33 @@ void ControlUpdate::atualizarUsuario() {
 	cout << "\nInforme o id do usuario: ";
 	cin.ignore();
 	getline(cin, id);
+	id = getUtil()->testSqlInjection(getMysql(), id);
+
 	query.append(id);
 
 	cout << "Informe o nome do usuario: ";
 	getline(cin, nome);
+	nome = getUtil()->testSqlInjection(getMysql(), nome);
 
 	cout << "Informe o telefone do usuario: ";
 	getline(cin, telefone);
+	telefone = getUtil()->testSqlInjection(getMysql(), telefone);
 
 	cout << "Informe o email do usuario: ";
 	getline(cin, email);
+	email = getUtil()->testSqlInjection(getMysql(), email);
 
 	cout << "Informe o cidade do usuario: ";
 	getline(cin, cidade);
+	cidade = getUtil()->testSqlInjection(getMysql(), cidade);
 
 	cout << "Informe o estado do usuario: ";
 	getline(cin, estado);
+	estado = getUtil()->testSqlInjection(getMysql(), estado);
 
 	cout << "Informe o foto do usuario: ";
 	getline(cin, foto);
+	foto = getUtil()->testSqlInjection(getMysql(), foto);
 
 	query.assign("UPDATE usuarios set nome = ")
 		.append("'").append(nome).append("'")
@@ -88,19 +98,24 @@ void ControlUpdate::atualizarReceita() {
 	cout << "\nInforme o id da receita: ";
 	cin.ignore();
 	getline(cin, id);
+	id = getUtil()->testSqlInjection(getMysql(), id);
 	query.append(id);
 
 	cout << "Informe o nome da receita: ";
 	getline(cin, nome);
+	nome = getUtil()->testSqlInjection(getMysql(), nome);
 
 	cout << "Informe o rendimento da receita: ";
 	getline(cin, rendimento);
+	rendimento = getUtil()->testSqlInjection(getMysql(), rendimento);
 
 	cout << "Informe o tempo da receita: ";
 	getline(cin, tempo);
+	tempo = getUtil()->testSqlInjection(getMysql(), tempo);
 
 	cout << "Informe o info da receita: ";
 	getline(cin, info);
+	info = getUtil()->testSqlInjection(getMysql(), info);
 
 	query.assign("UPDATE receitas set nome = ")
 		.append("'").append(nome).append("'")
@@ -126,12 +141,15 @@ void ControlUpdate::atualizarFoto() {
 	cout << "\nInforme o id da receita: ";
 	cin.ignore();
 	getline(cin, receita_id);
+	receita_id = getUtil()->testSqlInjection(getMysql(), receita_id);
 
 	cout << "Informe a foto da receita: ";
 	getline(cin, arquivo);
+	arquivo = getUtil()->testSqlInjection(getMysql(), arquivo);
 
 	cout << "Informe a novo foto da receita: ";
 	getline(cin, novo_arquivo);
+	novo_arquivo = getUtil()->testSqlInjection(getMysql(), novo_arquivo);
 
 	query.assign("UPDATE receitas_fotos set arquivo = ")
 		.append("'").append(novo_arquivo).append("'")
@@ -152,18 +170,22 @@ void ControlUpdate::atualizarReceitaIngrediente() {
 	cout << "\nInforme o id da receita: ";
 	cin.ignore();
 	getline(cin, receita_id);
+	receita_id = getUtil()->testSqlInjection(getMysql(), receita_id);
 
 	query.assign("select * from receitas_ingredientes where receita_id = ").append(receita_id);
 	getUtil()->imprimeDados(getMysql(), query.c_str());
 
 	cout << "\nInforme o id do ingrediente: ";
 	getline(cin, ingrediente_id);
+	ingrediente_id = getUtil()->testSqlInjection(getMysql(), ingrediente_id);
 
 	cout << "Informe quantidade do ingrediente: ";
 	getline(cin, quantidade);
+	quantidade = getUtil()->testSqlInjection(getMysql(), quantidade);
 
 	cout << "Informe unidade do ingrediente: ";
 	getline(cin, unidade);
+	unidade = getUtil()->testSqlInjection(getMysql(), unidade);
 
 	query.assign("UPDATE receitas_ingredientes set quantidade = ")
 		.append(quantidade).append(", unidade = '").append(unidade).append("'")
@@ -185,15 +207,18 @@ void ControlUpdate::atualizarReceitaEtapa() {
 	cout << "\nInforme o id da receita: ";
 	cin.ignore();
 	getline(cin, receita_id);
+	receita_id = getUtil()->testSqlInjection(getMysql(), receita_id);
 
 	query.assign("select numero, titulo from receitas_etapas where receita_id = ").append(receita_id);
 	getUtil()->imprimeDados(getMysql(), query.c_str());
 
 	cout << "\nInforme o numero da etapa: ";
 	getline(cin, numero);
+	numero = getUtil()->testSqlInjection(getMysql(), numero);
 
 	cout << "Informe o titulo da etapa: ";
 	getline(cin, titulo);
+	titulo = getUtil()->testSqlInjection(getMysql(), titulo);
 
 	query.assign("UPDATE receitas_etapas set titulo = ")
 		.append("'").append(titulo).append("'")
@@ -215,12 +240,14 @@ void ControlUpdate::atualizarReceitaPassos() {
 	cout << "\nInforme o id da receita: ";
 	cin.ignore();
 	getline(cin, receita_id);
+	receita_id = getUtil()->testSqlInjection(getMysql(), receita_id);
 
 	query.assign("select * from receitas_etapas where receita_id = ").append(receita_id);
 	getUtil()->imprimeDados(getMysql(), query.c_str());
 
 	cout << "\nInforme o numero da etapa: ";
 	getline(cin, etapa_numero);
+	etapa_numero = getUtil()->testSqlInjection(getMysql(), etapa_numero);
 
 	query.assign("select * from receitas_passos where receita_id = ")
 		.append(receita_id).append(" and etapa_numero = ")
@@ -229,12 +256,15 @@ void ControlUpdate::atualizarReceitaPassos() {
 
 	cout << "Informe a sequencia do passo: ";
 	getline(cin, sequencia);
+	sequencia = getUtil()->testSqlInjection(getMysql(), sequencia);
 
 	cout << "Informe a nova sequencia do passo: ";
 	getline(cin, nova_sequencia);
+	nova_sequencia = getUtil()->testSqlInjection(getMysql(), nova_sequencia);
 
 	cout << "Informe uma introducao do passo: ";
 	getline(cin, introducao);
+	introducao = getUtil()->testSqlInjection(getMysql(), introducao);
 
 	query.assign("UPDATE receitas_passos set ")
 		.append("sequencia = ")

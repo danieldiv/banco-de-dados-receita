@@ -118,6 +118,7 @@ void Control::opcoesDelete(int op) {
             cout << "\nInforme o codigo da receita: ";
             cin.ignore();
             getline(cin, receita_id);
+            receita_id = getUtil()->testSqlInjection(getMysql(), receita_id);
 
             query.assign("select ingrediente_id, nome from vw_receitas_ingredientes");
             query.append(" where receita_id = ").append(receita_id);
@@ -127,6 +128,7 @@ void Control::opcoesDelete(int op) {
 
                 cout << "\nInforme o codigo do ingrediente: ";
                 getline(cin, ingrediente_id);
+                ingrediente_id = getUtil()->testSqlInjection(getMysql(), ingrediente_id);
 
                 getControlDelete().removerIngredienteDaReceita(receita_id, ingrediente_id);
             }
@@ -140,6 +142,7 @@ void Control::opcoesDelete(int op) {
             cout << "\nInforme o codigo da receita: ";
             cin.ignore();
             getline(cin, receita_id);
+            receita_id = getUtil()->testSqlInjection(getMysql(), receita_id);
 
             query.assign("select numero, titulo from receitas_etapas")
                 .append(" where receita_id = ").append(receita_id);
@@ -149,6 +152,7 @@ void Control::opcoesDelete(int op) {
 
                 cout << "\nInforme o codigo da etapa: ";
                 getline(cin, etapa_numero);
+                etapa_numero = getUtil()->testSqlInjection(getMysql(), etapa_numero);
 
                 getControlDelete().removerEtapaDaReceita(receita_id, etapa_numero);
             }
@@ -162,6 +166,7 @@ void Control::opcoesDelete(int op) {
             cout << "\nInforme o codigo da receita: ";
             cin.ignore();
             getline(cin, receita_id);
+            receita_id = getUtil()->testSqlInjection(getMysql(), receita_id);
 
             query.assign("select numero, titulo from receitas_etapas")
                 .append(" where receita_id = ").append(receita_id);
@@ -171,6 +176,7 @@ void Control::opcoesDelete(int op) {
 
                 cout << "\nInforme o codigo da etapa: ";
                 getline(cin, etapa_numero);
+                etapa_numero = getUtil()->testSqlInjection(getMysql(), etapa_numero);
 
                 query.assign("select sequencia, instrucao from receitas_passos")
                     .append(" where receita_id = ").append(receita_id)
@@ -181,6 +187,7 @@ void Control::opcoesDelete(int op) {
 
                     cout << "\nInforme o codigo da sequencia: ";
                     getline(cin, sequencia);
+                    sequencia = getUtil()->testSqlInjection(getMysql(), sequencia);
 
                     getControlDelete().removerPassoDaEtapa(receita_id, etapa_numero, sequencia);
                 }

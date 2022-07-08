@@ -50,6 +50,7 @@ void ControlDelete::construirQueryRemocao(string tabela) {
 	cout << "\nInforme o codigo da tabela (" << tabela << ") para excluir: ";
 	cin.ignore();
 	getline(cin, id);
+	id = getUtil()->testSqlInjection(getMysql(), id);
 
 	query.assign("delete from ").append(tabela).append(" where id = ").append(id);
 	removerLinha(query);
@@ -69,6 +70,7 @@ void ControlDelete::removerReceitaEmCascata() {
 		cout << "\nInforme o codigo da receita para excluir: ";
 		cin.ignore();
 		getline(cin, id);
+		id = getUtil()->testSqlInjection(getMysql(), id);
 
 		query.assign("select id from receitas where id = ").append(id);
 
@@ -264,6 +266,7 @@ void ControlDelete::removerReceitaDoUsuario() {
 		cin.ignore();
 		cout << "Informe o codigo do usuario: ";
 		getline(cin, usuario_id);
+		usuario_id = getUtil()->testSqlInjection(getMysql(), usuario_id);
 
 		query.assign("select r.id, r.nome from receitas_salvas rs")
 			.append(" left outer join receitas r on r.id = rs.receita_id")
@@ -273,6 +276,7 @@ void ControlDelete::removerReceitaDoUsuario() {
 			string receita_id;
 			cout << "Informe o codigo da receita: ";
 			getline(cin, receita_id);
+			receita_id = getUtil()->testSqlInjection(getMysql(), receita_id);
 
 			query.assign("delete from receitas_salvas where receita_id = ")
 				.append(receita_id).append(" and usuario_id = ")
