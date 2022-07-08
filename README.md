@@ -104,7 +104,7 @@ Dentro do menu de cadastros:
 
 ## Info
 
-- Em alguns casos se faz necessario estar logado no usuario que realizou o cadastro da receita para poder excluir as receitas salvas nele ou tabelas que fazem referencia ao usuario, pois o ususario passado sera o que esta logado, do contrario nao sera possivel excluir a receita.
+- Em alguns casos se faz necessario estar logado no usuario que realizou o cadastro da receita para poder excluir as receitas salvas nele ou tabelas que fazem referencia ao usuario, pois o usuario passado sera o que esta logado, do contrario nao sera possivel excluir a receita.
 
 ## Conclusões
 

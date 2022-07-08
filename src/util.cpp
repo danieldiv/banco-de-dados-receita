@@ -10,8 +10,8 @@ void Util::login(MYSQL *mysql) {
         setUser("");
         cout << "Logout com sucesso" << endl;
     } else {
-        string user = "admin";
-        string password = "123456";
+        string user;
+        string password;
 
         cin.ignore();
 
