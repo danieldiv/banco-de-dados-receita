@@ -45,6 +45,8 @@
 
 `mysql -u admin -p < arquivo.sql`
 
+- Caso seja necessario instalar o gerenciador de banco de dados, siga os comandos abaixo em ambiente linux
+
 > sudo apt update
 >
 > sudo apt upgrade
