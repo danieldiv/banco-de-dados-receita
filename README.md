@@ -41,7 +41,7 @@
 
 ## Configuracao (Ubuntu)
 
-- Dentro da pasta bd execute o comando para criar o banco e inserir os dados
+- Dentro da pasta bd execute o comando para criar o banco e inserir os dados. O nome de usuario admin deve ser modificado para o usuario correto da maquina com o myslq
 
 `mysql -u admin -p < arquivo.sql`
 
