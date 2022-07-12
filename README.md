@@ -41,7 +41,7 @@
 
 ## Configuracao (Ubuntu)
 
-- Dentro da pasta bd execute o comando para criar o banco e inserir os dados. O nome de usuario admin deve ser modificado para o usuario correto da maquina com o myslq
+- Dentro da pasta [bd](https://github.com/danieldiv/banco-de-dados-receita/blob/main/bd) execute o comando para criar o banco e inserir os dados. O nome de usuario admin deve ser modificado para o usuario correto da maquina com o myslq
 
 `mysql -u admin -p < arquivo.sql`
 
