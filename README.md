@@ -39,11 +39,6 @@
 | `make run`   | Executa o programa apoz a compilacao                                                |
 | `make r`     | Compila e Executa                                                                   |
 
-## Compilacao (padrao)
-
-- `gcc -o main main.c -lmysqlclient`
-- `./main`
-
 ## Configuracao (Ubuntu)
 
 - Dentro da pasta bd execute o comando para criar o banco e inserir os dados
