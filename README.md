@@ -32,7 +32,7 @@
 
 ## Codigo da aplicacao
 
-- Os codigo da aplicacao pode ser encontrado [aqui](https://github.com/danieldiv/banco-de-dados-receita#readme)
+- Os codigo da aplicacao desenvolvidad pode ser encontrado [aqui](https://github.com/danieldiv/banco-de-dados-receita#readme)
 
 ## Compilacao (makefile)
 
