@@ -34,7 +34,7 @@
 
 - O codigo da aplicacao desenvolvida pode ser encontrado [aqui](https://github.com/danieldiv/banco-de-dados-receita#readme)
 
-- Para acessar o gerenciamento dentro da aplicacao, é necessario realizar o login, inicialmente o usuario cadastrado é o admin com a senha 123456
+- Para acessar o gerenciamento dentro da aplicacao, é necessario entrar na aplicacao, inicialmente o usuario cadastrado é o admin com a senha 123456
 
 ## Compilacao (makefile)
 
